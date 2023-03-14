@@ -1,5 +1,5 @@
 {
-  "name": "@fleetbase/console-iam",
+  "name": "@fleetbase/flb-iam-extension",
   "version": "0.0.0",
   "description": "The default blueprint for ember-cli addons.",
   "keywords": [
