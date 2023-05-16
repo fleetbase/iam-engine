@@ -1,17 +1,24 @@
 {
   "name": "@fleetbase/iam-engine",
   "version": "0.0.1",
-  "description": "The default blueprint for ember-cli addons.",
-  "keywords": [
-    "ember-addon"
-  ],
-  "repository": "",
-  "license": "MIT",
-  "author": "",
-  "directories": {
-    "doc": "doc",
-    "test": "tests"
-  },
+    "description": "Fleetbase IAM extension provides identity and access management module for managing users, permissions and policies.",
+    "keywords": [
+        "fleetbase-extension",
+        "identity-access-management",
+        "fleetbase-iam",
+        "fleetbase-policy-management",
+        "fleetbase",
+        "ember-addon",
+        "ember-engine"
+    ],
+    "repository": "https://github.com/fleetbase/iam-engine",
+    "license": "MIT",
+    "author": "Fleetbase Pte Ltd <hello@fleetbase.io>",
+    "directories": {
+        "app": "app",
+        "addon": "addon",
+        "tests": "tests"
+    },
   "scripts": {
     "build": "ember build --environment=production",
     "lint": "npm-run-all --aggregate-output --continue-on-error --parallel \"lint:!(fix)\"",
