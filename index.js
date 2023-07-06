@@ -1,5 +1,15 @@
 'use strict';
+const { buildEngine } = require('ember-engines/lib/engine-addon');
+const { name } = require('./package');
 
-module.exports = {
-  name: require('./package').name,
-};
+module.exports = buildEngine({
+    name,
+
+    lazyLoading: {
+        enabled: true,
+    },
+
+    isDevelopingAddon() {
+        return true;
+    },
+});
