@@ -1,4 +1,4 @@
-# @fleetbase/console-iam
+# @fleetbase/iam-engine
 
 [Short description of the addon.]
 
@@ -13,7 +13,7 @@
 ## Installation
 
 ```
-ember install @fleetbase/console-iam
+ember install @fleetbase/iam-engine
 ```
 
 
