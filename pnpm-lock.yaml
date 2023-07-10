@@ -5,8 +5,8 @@ dependencies:
     specifier: ^0.0.8
     version: 0.0.8(@babel/core@7.22.5)(ember-fetch@8.1.2)(postcss@8.4.24)(webpack@5.74.0)
   '@fleetbase/ember-ui':
-    specifier: ^0.1.0
-    version: 0.1.0(@babel/core@7.22.5)(@ember/test-helpers@2.8.1)(ember-source@4.6.0)(rollup@3.26.0)(webpack@5.74.0)
+    specifier: ^0.1.2
+    version: 0.1.2(@babel/core@7.22.5)(@ember/test-helpers@2.8.1)(ember-source@4.6.0)(rollup@3.26.0)(webpack@5.74.0)
   '@fortawesome/ember-fontawesome':
     specifier: ^0.4.1
     version: 0.4.1(rollup@3.26.0)
@@ -1908,8 +1908,8 @@ packages:
       - webpack
     dev: false
 
-  /@fleetbase/ember-ui@0.1.0(@babel/core@7.22.5)(@ember/test-helpers@2.8.1)(ember-source@4.6.0)(rollup@3.26.0)(webpack@5.74.0):
-    resolution: {integrity: sha512-dKQsIAjfs67VcznJbR/Y1npHC4UMkMJETtFGvPd+yRSnLUhCwlvQL7gKtyhRlEO5Ln3zkL/oL+6HZKOCzDptPQ==}
+  /@fleetbase/ember-ui@0.1.2(@babel/core@7.22.5)(@ember/test-helpers@2.8.1)(ember-source@4.6.0)(rollup@3.26.0)(webpack@5.74.0):
+    resolution: {integrity: sha512-qqsSYYDa3+BlaXbq/AtFWnJ1P6JujRFFvDV8FVFsNTJ+nUfdAbn6XCKmjGpWeDasOTWHAkoOTw7YgbbHC7qA9g==}
     engines: {node: 14.* || >= 16}
     dependencies:
       '@ember/render-modifiers': 2.1.0(@babel/core@7.22.5)(ember-source@4.6.0)
