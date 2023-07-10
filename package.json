@@ -2,7 +2,7 @@
     "name": "@fleetbase/iam-engine",
     "extension": "IAM",
     "icon": "shield-halved",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "priority": 3,
     "fleetbase": {
         "dashboard": "int/v1/metrics/iam-dashboard"
@@ -40,7 +40,7 @@
     },
     "dependencies": {
         "@fleetbase/ember-core": "^0.0.8",
-        "@fleetbase/ember-ui": "^0.1.0",
+        "@fleetbase/ember-ui": "^0.1.2",
         "@fortawesome/ember-fontawesome": "^0.4.1",
         "@fortawesome/fontawesome-svg-core": "^6.4.0",
         "@fortawesome/free-solid-svg-icons": "^6.4.0",
