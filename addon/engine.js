@@ -14,6 +14,10 @@ export default class IAMEngine extends Engine {
         services,
         externalRoutes,
     };
+    setupExtension = function (app, engine, universe) {
+        // register menu item in header
+        universe.registerHeaderMenuItem('IAM', 'console.iam', { icon: 'shield-halved', priority: 3 });
+    }
 }
 
 loadInitializers(IAMEngine, modulePrefix);
