@@ -5,6 +5,8 @@ const { name } = require('./package');
 module.exports = buildEngine({
     name,
 
+    _concatStyles: function () {},
+
     lazyLoading: {
         enabled: true,
     },
