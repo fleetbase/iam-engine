@@ -1,14 +1,11 @@
-<Layout::Section::Header @title="Identity & Access Management" />
+<Layout::Section::Header @title="Identity & Access Management" @hideActions={{true}} />
 
 <Layout::Section::Body>
     <div class="container mx-auto h-screen" {{increase-height-by 800}}>
         <div class="max-w-3xl my-10 mx-auto space-y-6">
-            <div class="grid grid-cols-4 xs:grid-cols-1 gap-4">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
                 {{#each-in @model as |key value|}}
-                    <div class="bg-gray-700 rounded-lg shadow-sm p-4 flex flex-col items-center justify-center text-center">
-                        <h3 class="text-gray-100 text-lg mb-1">{{humanize key}}</h3>
-                        <h2 class="text-white text-3xl font-bold">{{value}}</h2>
-                    </div>
+                    <StatWidget @title={{humanize key}} @value={{value}} />
                 {{/each-in}}
             </div>
         </div>
