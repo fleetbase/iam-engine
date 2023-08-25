@@ -2,11 +2,11 @@ lockfileVersion: '6.0'
 
 dependencies:
   '@fleetbase/ember-core':
-    specifier: ^0.1.1
-    version: 0.1.1(@babel/core@7.22.10)(ember-fetch@8.1.2)(postcss@8.4.28)(webpack@5.74.0)
+    specifier: ^0.1.2
+    version: 0.1.2(@babel/core@7.22.10)(ember-fetch@8.1.2)(postcss@8.4.28)(webpack@5.74.0)
   '@fleetbase/ember-ui':
-    specifier: ^0.1.7
-    version: 0.1.7(@babel/core@7.22.10)(@ember/test-helpers@2.8.1)(ember-source@4.6.0)(postcss@8.4.28)(rollup@3.28.0)(webpack@5.74.0)
+    specifier: ^0.1.8
+    version: 0.1.8(@babel/core@7.22.10)(@ember/test-helpers@2.8.1)(ember-source@4.6.0)(postcss@8.4.28)(rollup@3.28.0)(webpack@5.74.0)
   '@fortawesome/ember-fontawesome':
     specifier: ^0.4.1
     version: 0.4.1(rollup@3.28.0)
@@ -2171,14 +2171,14 @@ packages:
       - supports-color
     dev: true
 
-  /@fleetbase/ember-core@0.1.1(@babel/core@7.22.10)(ember-fetch@8.1.2)(postcss@8.4.28)(webpack@5.74.0):
-    resolution: {integrity: sha512-Ss8Rc9gFXt7OSa2xb3bS0dBFTwbRVGdgsJmDQAWIIKBdZBIJWIWwOElKkCdfk1gl7DC37OnBZyPLj401KGPMKg==}
+  /@fleetbase/ember-core@0.1.2(@babel/core@7.22.10)(ember-fetch@8.1.2)(postcss@8.4.28)(webpack@5.74.0):
+    resolution: {integrity: sha512-cd6rKJWxiXgI8OZtwp8bHOF1BLyfjQPAg3bqzSO/31MPVQHL230tmjbfB1yggb72iv247LXxgHHjiTb2th9lPw==}
     engines: {node: 14.* || >= 16}
     dependencies:
       date-fns: 2.30.0
-      ember-auto-import: 2.4.2(webpack@5.74.0)
+      ember-auto-import: 2.6.3(webpack@5.74.0)
       ember-cli-babel: 7.26.11
-      ember-cli-htmlbars: 6.1.0
+      ember-cli-htmlbars: 6.3.0
       ember-cli-notifications: 8.0.0(@babel/core@7.22.10)(postcss@8.4.28)
       ember-concurrency: 2.3.7(@babel/core@7.22.10)
       ember-concurrency-decorators: 2.0.3(@babel/core@7.22.10)
@@ -2203,8 +2203,8 @@ packages:
       - webpack
     dev: false
 
-  /@fleetbase/ember-ui@0.1.7(@babel/core@7.22.10)(@ember/test-helpers@2.8.1)(ember-source@4.6.0)(postcss@8.4.28)(rollup@3.28.0)(webpack@5.74.0):
-    resolution: {integrity: sha512-uQfqu7etEF5+6Rg5Jvgm/EtHJCTcMW/gipm0ctHUXerSJpdmAW6UOurCcsGK6oDQDWjfLy5O1CzwyDzCHEQczw==}
+  /@fleetbase/ember-ui@0.1.8(@babel/core@7.22.10)(@ember/test-helpers@2.8.1)(ember-source@4.6.0)(postcss@8.4.28)(rollup@3.28.0)(webpack@5.74.0):
+    resolution: {integrity: sha512-9MAICV1fp25SPROLrJV1Sn6VtWiWkbZQtcD58ITzYQaqRBSvN8pbu3/OPeXpa8KqZjhmDyMn4zXshRj3rc28Ng==}
     engines: {node: 14.* || >= 16}
     dependencies:
       '@ember/render-modifiers': 2.1.0(@babel/core@7.22.10)(ember-source@4.6.0)
@@ -2227,11 +2227,11 @@ packages:
       chartjs-adapter-date-fns: 3.0.0(chart.js@4.3.3)(date-fns@2.30.0)
       date-fns: 2.30.0
       ember-animated: 1.0.4(@ember/test-helpers@2.8.1)(ember-source@4.6.0)
-      ember-auto-import: 2.4.2(webpack@5.74.0)
+      ember-auto-import: 2.6.3(webpack@5.74.0)
       ember-basic-dropdown: 7.2.1(@babel/core@7.22.10)(@ember/string@3.1.1)(ember-source@4.6.0)(webpack@5.74.0)
       ember-cli-accounting: 2.1.0
       ember-cli-babel: 7.26.11
-      ember-cli-htmlbars: 6.1.0
+      ember-cli-htmlbars: 6.3.0
       ember-cli-postcss: 8.2.0
       ember-cli-string-helpers: 6.1.0
       ember-composable-helpers: 5.0.0
@@ -2402,7 +2402,7 @@ packages:
       broccoli-source: 3.0.1
       camel-case: 4.1.2
       ember-ast-helpers: 0.3.5
-      ember-auto-import: 2.4.2(webpack@5.74.0)
+      ember-auto-import: 2.6.3(webpack@5.74.0)
       ember-cli-babel: 7.26.11
       ember-cli-htmlbars: 5.7.2
       ember-get-config: 2.1.1
@@ -6141,7 +6141,7 @@ packages:
     engines: {node: '>= 12'}
     dependencies:
       ember-cli-babel: 7.26.11
-      ember-cli-htmlbars: 6.1.0
+      ember-cli-htmlbars: 6.3.0
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -6282,7 +6282,7 @@ packages:
       '@glimmer/component': 1.1.2(@babel/core@7.22.10)
       '@glimmer/tracking': 1.1.2
       ember-cli-babel: 7.26.11
-      ember-cli-htmlbars: 6.1.0
+      ember-cli-htmlbars: 6.3.0
       ember-cli-typescript: 4.2.1
       ember-element-helper: 0.6.1(ember-source@4.6.0)
       ember-get-config: 2.1.1
@@ -6553,7 +6553,7 @@ packages:
       broccoli-merge-trees: 4.2.0
       broccoli-postcss: 6.1.0
       ember-cli-babel: 7.26.11
-      ember-cli-htmlbars: 6.1.0
+      ember-cli-htmlbars: 6.3.0
       ember-decorators-polyfill: 1.1.5(@babel/core@7.22.10)
       ember-get-config: 0.5.0
       ember-on-modifier: 1.0.1(@babel/core@7.22.10)
@@ -7123,7 +7123,7 @@ packages:
     dependencies:
       '@embroider/util': 1.12.0(ember-source@4.6.0)
       ember-cli-babel: 7.26.11
-      ember-cli-htmlbars: 6.1.0
+      ember-cli-htmlbars: 6.3.0
       ember-source: 4.6.0(@babel/core@7.22.10)(webpack@5.74.0)
     transitivePeerDependencies:
       - '@glint/environment-ember-loose'
@@ -7211,7 +7211,7 @@ packages:
       '@embroider/macros': 1.13.1
       '@glimmer/component': 1.1.2(@babel/core@7.22.10)
       '@glimmer/tracking': 1.1.2
-      ember-auto-import: 2.4.2(webpack@5.74.0)
+      ember-auto-import: 2.6.3(webpack@5.74.0)
       ember-modifier: 3.2.7(@babel/core@7.22.10)
       tracked-built-ins: 3.1.1
     transitivePeerDependencies:
@@ -7491,7 +7491,7 @@ packages:
       ember-assign-helper: 0.4.0
       ember-cli-babel: 7.26.11
       ember-cli-element-closest-polyfill: 0.0.2
-      ember-cli-htmlbars: 6.1.0
+      ember-cli-htmlbars: 6.3.0
       ember-concurrency: 2.3.7(@babel/core@7.22.10)
       ember-decorators: 6.1.1
       ember-element-helper: 0.6.1(ember-source@4.6.0)
@@ -7514,7 +7514,7 @@ packages:
       ember-assign-helper: 0.4.0
       ember-basic-dropdown: 6.0.2(@babel/core@7.22.10)(ember-source@4.6.0)
       ember-cli-babel: 7.26.11
-      ember-cli-htmlbars: 6.1.0
+      ember-cli-htmlbars: 6.3.0
       ember-cli-typescript: 4.2.1
       ember-concurrency: 2.3.7(@babel/core@7.22.10)
       ember-concurrency-decorators: 2.0.3(@babel/core@7.22.10)
@@ -7572,7 +7572,7 @@ packages:
     engines: {node: 10.* || >= 12}
     dependencies:
       ember-cli-babel: 7.26.11
-      ember-cli-htmlbars: 6.1.0
+      ember-cli-htmlbars: 6.3.0
       ember-modifier: 3.2.7(@babel/core@7.22.10)
     transitivePeerDependencies:
       - '@babel/core'
