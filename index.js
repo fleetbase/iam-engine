@@ -9,7 +9,7 @@ module.exports = buildEngine({
     postprocessTree(type, tree) {
         if (type === 'css') {
             tree = new Funnel(tree, {
-                exclude: ['**/@fleetbase/ember-ui/**/*.css']
+                exclude: ['**/@fleetbase/ember-ui/**/*.css'],
             });
         }
 
