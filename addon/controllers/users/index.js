@@ -410,7 +410,7 @@ export default class UsersIndexController extends Controller {
             confirm: (modal) => {
                 modal.startLoading();
                 return user.resendInvite().then(() => {
-                    this.notifications.success(`Invitation resent.`);
+                    this.notifications.success('Invitation resent.');
                     this.hostRouter.refresh();
                 });
             },
