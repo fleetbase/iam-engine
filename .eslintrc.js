@@ -2,12 +2,13 @@
 
 module.exports = {
     root: true,
-    parser: 'babel-eslint',
+    parser: '@babel/eslint-parser',
     parserOptions: {
-        ecmaVersion: 2018,
+        ecmaVersion: 'latest',
         sourceType: 'module',
-        ecmaFeatures: {
-            legacyDecorators: true,
+        requireConfigFile: false,
+        babelOptions: {
+            plugins: [['@babel/plugin-proposal-decorators', { decoratorsBeforeExport: true }]],
         },
     },
     plugins: ['ember'],
@@ -23,7 +24,7 @@ module.exports = {
         'ember/no-get': 'off',
         'ember/classic-decorator-no-classic-methods': 'off',
         'no-prototype-builtins': 'off',
-        'node/no-unpublished-require': [
+        'n/no-unpublished-require': [
             'error',
             {
                 allowModules: ['resolve', 'broccoli-funnel'],
@@ -36,6 +37,7 @@ module.exports = {
             files: [
                 './.eslintrc.js',
                 './.prettierrc.js',
+                './.stylelintrc.js',
                 './.template-lintrc.js',
                 './ember-cli-build.js',
                 './index.js',
@@ -51,13 +53,7 @@ module.exports = {
                 browser: false,
                 node: true,
             },
-            plugins: ['node'],
-            extends: ['plugin:node/recommended'],
-        },
-        {
-            // test files
-            files: ['tests/**/*-test.{js,ts}'],
-            extends: ['plugin:qunit/recommended'],
+            extends: ['plugin:n/recommended'],
         },
     ],
 };
