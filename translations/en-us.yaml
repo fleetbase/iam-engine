@@ -1,2 +1,74 @@
 iam:
   extension-name: IAM
+    common:
+      new: New
+      export: Export
+      bulk-action: Bulk Action
+      primary: primary
+      role: roles
+      user: Users
+      dashboard: Dashboard 
+      group: Groups
+      policie: Policies
+      member: Members
+      status: Status
+      address: Address
+      photo: photos
+      name: Name
+      email: Email
+      phone: Phone
+      country: Country
+      permission: Permission
+      description: Description
+  components:
+    modals:
+      group-details:    
+        group-name: Group Name
+      group-form:
+        group-name: Group Name
+        group-description: Group Description
+        labelText: Select users to add to group
+        helpText: Search and select users to add to this group.
+        placeholder: Select user to add to group
+        no-user-group: No users added to group
+      policy-form:
+        policy-name: Policy Name
+        placeholder: Enter a name for your policy
+        policy-description: Policy Description
+        placeholder-policy: Enter a description for your policy
+        select-permissions: Select Permissions
+      role-form:
+        role-name: Role Name
+        placeholder: Enter a name for this role
+        role-description: Role Description
+        placeholder-role: Enter a description for your role
+        select-permission: Select Permissions
+      user-form:
+    table:
+      group-members:
+        no-member: No Members
+      permission-picker: 
+        placeholder: Search permissions by keywords
+        loading-permission: Loading permissions...
+  groups:
+    index:
+      delete-group: Delete Groups
+  policies:
+    index:
+      delete-policies: Delete Policies
+  rols:
+    index:
+      delete-roles: Delete Roles
+  users:
+    index:
+      delete-users: Delete Users
+  application:
+      title: Access Management
+  home:
+      title: Identity & Access Management
+  
+      
+
+
+
+      
