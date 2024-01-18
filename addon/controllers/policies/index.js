@@ -138,17 +138,17 @@ export default class PoliciesIndexController extends Controller {
             ddButtonText: false,
             ddButtonIcon: 'ellipsis-h',
             ddButtonIconPrefix: 'fas',
-            ddMenuLabel: this.intl.t('iam.controllers.policies.index.contact-action'),
+            ddMenuLabel: this.intl.t('iam.policies.index.contact-action'),
             cellClassNames: 'overflow-visible',
             wrapperClass: 'flex items-center justify-end mx-2',
             width: '10%',
             actions: [
                 {
-                    label: this.intl.t('iam.controllers.policies.index.edit-policy'),
+                    label: this.intl.t('iam.policies.index.edit-policy'),
                     fn: this.editPolicy,
                 },
                 {
-                    label: this.intl.t('iam.controllers.policies.index.delete-policy'),
+                    label: this.intl.t('iam.policies.index.delete-policy'),
                     fn: this.deletePolicy,
                     className: 'text-red-700 hover:text-red-800',
                 },
@@ -191,7 +191,7 @@ export default class PoliciesIndexController extends Controller {
 
         this.crud.bulkDelete(selected, {
             modelNamePath: `name`,
-            acceptButtonText: this.intl.t('iam.controllers.policies.index.delete-policies'),
+            acceptButtonText: this.intl.t('iam.policies.index.delete-policies'),
             onSuccess: () => {
                 return this.hostRouter.refresh();
             },
@@ -210,11 +210,11 @@ export default class PoliciesIndexController extends Controller {
         });
 
         this.editPolicy(policy, {
-            title: this.intl.t('iam.controllers.policies.index.new-policy'),
+            title: this.intl.t('iam.policies.index.new-policy'),
             confirm: (modal) => {
                 modal.startLoading();
                 return policy.save().then(() => {
-                    this.notifications.success(this.intl.t('iam.controllers.policies.index.new-policy-created'));
+                    this.notifications.success(this.intl.t('iam.policies.index.new-policy-created'));
                     return this.hostRouter.refresh();
                 });
             },
@@ -228,16 +228,16 @@ export default class PoliciesIndexController extends Controller {
      */
     @action editPolicy(policy, options = {}) {
         if (!policy.is_mutable) {
-            return this.notifications.warning(this.intl.t('iam.controllers.policies.index.unable-changes-policy-warning', {policyType: policy.type}));
+            return this.notifications.warning(this.intl.t('iam.policies.index.unable-changes-policy-warning', {policyType: policy.type}));
         }
 
         this.modalsManager.show('modals/policy-form', {
-            title: this.intl.t('iam.controllers.policies.index.edit-policy-title'),
+            title: this.intl.t('iam.policies.index.edit-policy-title'),
             policy,
             confirm: (modal) => {
                 modal.startLoading();
                 return policy.save().then(() => {
-                    this.notifications.success(this.intl.t('iam.controllers.policies.index.changes-policy-saved-success'));
+                    this.notifications.success(this.intl.t('iam.policies.index.changes-policy-saved-success'));
                     return this.hostRouter.refresh();
                 });
             },
@@ -252,16 +252,16 @@ export default class PoliciesIndexController extends Controller {
      */
     @action deletePolicy(policy) {
         if (!policy.is_deletable) {
-            return this.notifications.warning(this.intl.t('iam.controllers.policies.index.unable-delete-policy-warning', {policyType: policy.type}));
+            return this.notifications.warning(this.intl.t('iam.policies.index.unable-delete-policy-warning', {policyType: policy.type}));
         }
 
         this.modalsManager.confirm({
             title: `Delete (${policy.name || 'Untitled'}) policy`,
-            body: this.intl.t('iam.controllers.policies.index.data-assosciated-this-policy-deleted'),
+            body: this.intl.t('iam.policies.index.data-assosciated-this-policy-deleted'),
             confirm: (modal) => {
                 modal.startLoading();
                 return policy.destroyRecord().then((policy) => {
-                    this.notifications.success(this.intl.t('iam.controllers.policies.index.policy-deleted', {policyName: policy.name}));
+                    this.notifications.success(this.intl.t('iam.policies.index.policy-deleted', {policyName: policy.name}));
                     return this.hostRouter.refresh();
                 });
             },

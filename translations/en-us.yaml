@@ -1,27 +1,27 @@
 iam:
   extension-name: IAM
-    common:
-      new: New
-      export: Export
-      bulk-action: Bulk Action
-      primary: primary
-      role: roles
-      user: Users
-      dashboard: Dashboard 
-      group: Groups
-      policie: Policies
-      member: Members
-      status: Status
-      address: Address
-      photo: photos
-      name: Name
-      email: Email
-      phone: Phone
-      country: Country
-      permission: Permission
-      description: Description
-      type: Type
-      create: Created
+  common:
+    address: Address
+    bulk-action: Bulk Action
+    country: Country
+    create: Created
+    dashboard: Dashboard 
+    description: Description
+    email: Email
+    export: Export
+    group: Groups
+    member: Members
+    name: Name
+    new: New
+    permission: Permission
+    phone: Phone
+    photo: photos
+    policie: Policies
+    primary: primary
+    role: Roles
+    status: Status
+    type: Type
+    user: Users
   components:
     modals:
       group-details:    
@@ -48,11 +48,16 @@ iam:
     table:
       group-members:
         no-member: No Members
-      permission-picker: 
-        search-permissions-keyword: Search permissions by keywords
-        loading-permission: Loading permissions...
+    permission-picker:
+      selected: >-
+        Selected: 
+      search-permissions-keyword: Search permissions by keywords
+      loading-permission: Loading permissions...
   groups:
     index:
+      untitled: Untitled
+      delete-group-title: Delete {groupName} group
+      delete-group-success-message: Group {name} deleted.
       delete-group: Delete Groups
       created: Created
       edit-group: Edit group...
@@ -64,18 +69,19 @@ iam:
       data-assosciated-this-group-deleted: Are you sure you want to delete this group? All data assosciated with this group will also be deleted. This action cannot be undone.
   policies:
     index:
+      title: Policies
       delete-policies: Delete Policies
       contact-action: Contact Actions
       edit-policy: Edit policy...
       delete-policy: Delete policy...
       new-policy: New Policy
       new-policy-created: New policy created.
-      unable-changes-policy-warning: Unable to make changes to a {policy.type} policy.
+      unable-changes-policy-warning: Unable to make changes to a {policyType} policy.
       edit-policy-title: Edit Policy
       changes-policy-saved-success: Changes to policy saved.
-      unable-delete-policy-warning: Unable to delete a {policy.type} policy.
+      unable-delete-policy-warning: Unable to delete a {policyType} policy.
       data-assosciated-this-policy-deleted: Are you sure you want to delete this policy? All data assosciated with this policy will also be deleted. This action cannot be undone.
-      policy-deleted: Policy {policy.name} deleted.
+      policy-deleted: Policy {policyName} deleted.
   roles:
     index:
       delete-roles: Delete Roles
@@ -87,9 +93,15 @@ iam:
       edit-role-title: Edit Role
       changes-role-saved: Changes to role saved.
       data-assosciated-this-role-deleted: Are you sure you want to delete this role? All data assosciated with this role will also be deleted. This action cannot be undone.
-      role-deleted: Role {role.name} deleted.
+      role-deleted: Role {roleName} deleted.
   users:
     index:
+      delete-user-title: Delete {userName} user
+      delete-user-success-message: User {userName} deleted.
+      deactivate-user-title: Deactivate {userName} user's account
+      deactivate-user-success-message: User {userName} deactivated.
+      re-activate-user-title: Re-activate {userName} user's account
+      re-activate-user-success-message: User {userName} activated.
       delete-users: Delete Users
       last-login: Last Login
       created-at: Created At
@@ -100,7 +112,6 @@ iam:
       deactivate-user: Deactivate user...
       activate-user: Activate user...
       delete-user: Delete user...
-      delete-users: Delete Users
       new-user: New User
       user-invited-join-your-organization-success: User has been invited to join your organization.
       edit-user-title: Edit User

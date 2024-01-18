@@ -132,17 +132,17 @@ export default class RolesIndexController extends Controller {
             ddButtonText: false,
             ddButtonIcon: 'ellipsis-h',
             ddButtonIconPrefix: 'fas',
-            ddMenuLabel: this.intl.t('iam.controllers.roles.index.contact-action'),
+            ddMenuLabel: this.intl.t('iam.roles.index.contact-action'),
             cellClassNames: 'overflow-visible',
             wrapperClass: 'flex items-center justify-end mx-2',
             width: '10%',
             actions: [
                 {
-                    label: this.intl.t('iam.controllers.roles.index.edit-role'),
+                    label: this.intl.t('iam.roles.index.edit-role'),
                     fn: this.editRole,
                 },
                 {
-                    label: this.intl.t('iam.controllers.roles.index.delete-role'),
+                    label: this.intl.t('iam.roles.index.delete-role'),
                     fn: this.deleteRole,
                     className: 'text-red-700 hover:text-red-800',
                 },
@@ -185,7 +185,7 @@ export default class RolesIndexController extends Controller {
 
         this.crud.bulkDelete(selected, {
             modelNamePath: `name`,
-            acceptButtonText: this.intl.t('iam.controllers.roles.index.delete-roles'),
+            acceptButtonText: this.intl.t('iam.roles.index.delete-roles'),
             onSuccess: () => {
                 return this.hostRouter.refresh();
             },
@@ -201,11 +201,11 @@ export default class RolesIndexController extends Controller {
         const role = this.store.createRecord('role');
 
         this.editRole(role, {
-            title: this.intl.t('iam.controllers.roles.index.new-role'),
+            title: this.intl.t('iam.roles.index.new-role'),
             confirm: (modal) => {
                 modal.startLoading();
                 return role.save().then(() => {
-                    this.notifications.success(this.intl.t('iam.controllers.roles.index.new-role-create'));
+                    this.notifications.success(this.intl.t('iam.roles.index.new-role-create'));
                     return this.hostRouter.refresh();
                 });
             },
@@ -219,7 +219,7 @@ export default class RolesIndexController extends Controller {
      */
     @action editRole(role, options = {}) {
         this.modalsManager.show('modals/role-form', {
-            title: this.intl.t('iam.controllers.roles.index.edit-role-title'),
+            title: this.intl.t('iam.roles.index.edit-role-title'),
             role,
             setPermissions: (permissions) => {
                 role.permissions = permissions;
@@ -227,7 +227,7 @@ export default class RolesIndexController extends Controller {
             confirm: (modal) => {
                 modal.startLoading();
                 return role.save().then(() => {
-                    this.notifications.success(this.intl.t('iam.controllers.roles.index.changes-role-saved'));
+                    this.notifications.success(this.intl.t('iam.roles.index.changes-role-saved'));
                     return this.hostRouter.refresh();
                 });
             },
@@ -243,11 +243,11 @@ export default class RolesIndexController extends Controller {
     @action deleteRole(role) {
         this.modalsManager.confirm({
             title: `Delete (${role.name || 'Untitled'}) role`,
-            body: this.intl.t('iam.controllers.roles.index.data-assosciated-this-role-deleted'),
+            body: this.intl.t('iam.roles.index.data-assosciated-this-role-deleted'),
             confirm: (modal) => {
                 modal.startLoading();
                 return role.destroyRecord().then((role) => {
-                    this.notifications.success(this.intl.t('iam.controllers.roles.index.role-deleted', {roleName: role.name} ));
+                    this.notifications.success(this.intl.t('iam.roles.index.role-deleted', {roleName: role.name} ));
                     return this.hostRouter.refresh();
                 });
             },

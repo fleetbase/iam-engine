@@ -1,4 +1,4 @@
-<Layout::Section::Header @title={{t "iam.templates.policies.policie"}} @searchQuery={{this.query}} @onSearch={{perform this.search}}>
+<Layout::Section::Header @title={{t "iam.policies.index.title"}} @searchQuery={{this.query}} @onSearch={{perform this.search}}>
    {{#if (safe-has this.table "selectedRows")}}
         <DropdownButton @icon="layer-group" @text={{t "iam.common.bulk-action"}} @type="magic" @size="sm" @buttonWrapperClass="mr-2" @contentClass="dropdown-menu" as |dd|>
             <div class="next-dd-menu mt-2 mx-0">
@@ -10,7 +10,7 @@
             </div>
         </DropdownButton>
     {{/if}}
-    <Button @icon="plus" @iconPrefix="fas" @type={{t "iam.policies.common.primary"}} @text={{t "iam.policies.common.new"}} class="mr-2" @onClick={{this.createPolicy}} />
+    <Button @icon="plus" @iconPrefix="fas" @type="primary" @text={{t "iam.common.new"}} class="mr-2" @onClick={{this.createPolicy}} />
 </Layout::Section::Header>
 
 <Layout::Section::Body>
