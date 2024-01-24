@@ -5,6 +5,7 @@ import { action } from '@ember/object';
 import { isBlank } from '@ember/utils';
 import { timeout } from 'ember-concurrency';
 import { task } from 'ember-concurrency-decorators';
+import getWithDefault from '@fleetbase/ember-core/utils/get-with-default';
 
 export default class GroupsIndexController extends Controller {
     /**
@@ -20,6 +21,13 @@ export default class GroupsIndexController extends Controller {
      * @var {Service}
      */
     @service store;
+
+    /**
+     * Inject the `intl` service
+     *
+     * @var {Service}
+     */
+    @service intl;
 
     /**
      * Inject the `notifications` service
@@ -105,7 +113,7 @@ export default class GroupsIndexController extends Controller {
      */
     @tracked columns = [
         {
-            label: 'Name',
+            label: this.intl.t('iam.common.name'),
             valuePath: 'name',
             cellComponent: 'table/cell/anchor',
             onClick: this.editGroup,
@@ -113,13 +121,13 @@ export default class GroupsIndexController extends Controller {
             sortable: false,
         },
         {
-            label: 'Description',
+            label: this.intl.t('iam.common.description'),
             valuePath: 'description',
             sortable: false,
             width: '25%',
         },
         {
-            label: 'Members',
+            label: this.intl.t('iam.common.member'),
             valuePath: 'users',
             cellComponent: 'table/cell/group-members',
             onClick: (user) => {
@@ -129,7 +137,7 @@ export default class GroupsIndexController extends Controller {
             width: '35%',
         },
         {
-            label: 'Created',
+            label: this.intl.t('iam.groups.index.created'),
             valuePath: 'createdAt',
             sortable: false,
             width: '10%',
@@ -148,11 +156,11 @@ export default class GroupsIndexController extends Controller {
             width: '10%',
             actions: [
                 {
-                    label: 'Edit group...',
+                    label: this.intl.t('iam.groups.index.edit-group'),
                     fn: this.editGroup,
                 },
                 {
-                    label: 'Delete group...',
+                    label: this.intl.t('iam.groups.index.delete-group-label'),
                     fn: this.deleteGroup,
                     className: 'text-red-700 hover:text-red-800',
                 },
@@ -195,7 +203,7 @@ export default class GroupsIndexController extends Controller {
 
         this.crud.bulkDelete(selected, {
             modelNamePath: `name`,
-            acceptButtonText: 'Delete Groups',
+            acceptButtonText: this.intl.t('aim.groups.index.delete-group'),
             onSuccess: () => {
                 return this.hostRouter.refresh();
             },
@@ -220,12 +228,12 @@ export default class GroupsIndexController extends Controller {
         const group = this.store.createRecord('group', { users: [] });
 
         this.editGroup(group, {
-            title: 'New Group',
+            title: this.intl.t('iam.groups.index.new-group'),
             group,
             confirm: (modal) => {
                 modal.startLoading();
                 return group.save().then(() => {
-                    this.notifications.success('New group created.');
+                    this.notifications.success(this.intl.t('iam.groups.index.new-group-created'));
                     return this.hostRouter.refresh();
                 });
             },
@@ -239,7 +247,7 @@ export default class GroupsIndexController extends Controller {
      */
     @action editGroup(group, options = {}) {
         this.modalsManager.show('modals/group-form', {
-            title: 'Edit Group',
+            title: this.intl.t('iam.groups.index.edit-group-title'),
             group,
             lastSelectedUser: null,
             removeUser: (user) => {
@@ -252,7 +260,7 @@ export default class GroupsIndexController extends Controller {
             confirm: (modal) => {
                 modal.startLoading();
                 return group.save().then(() => {
-                    this.notifications.success('Changes to group saved.');
+                    this.notifications.success(this.intl.t('iam.groups.index.changes-group-save'));
                     return this.hostRouter.refresh();
                 });
             },
@@ -266,13 +274,15 @@ export default class GroupsIndexController extends Controller {
      * @void
      */
     @action deleteGroup(group) {
+        const groupName = getWithDefault(group, 'name', this.intl.t('iam.groups.index.untitled'));
+
         this.modalsManager.confirm({
-            title: `Delete (${group.name || 'Untitled'}) group`,
-            body: 'Are you sure you want to delete this group? All data assosciated with this group will also be deleted. This action cannot be undone.',
+            title: this.intl.t('iam.groups.index.delete-group-title', { groupName }),
+            body: this.intl.t('iam.groups.index.data-assosciated-this-group-deleted'),
             confirm: (modal) => {
                 modal.startLoading();
                 return group.destroyRecord().then((group) => {
-                    this.notifications.success(`Group (${group.name}) deleted.`);
+                    this.notifications.success(this.intl.t('iam.groups.index.delete-group-success-message', { name: group.name }));
                     this.hostRouter.refresh();
                 });
             },

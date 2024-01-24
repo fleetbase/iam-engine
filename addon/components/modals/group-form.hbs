@@ -3,23 +3,23 @@
         <div class="text-xs dark:text-gray-100">
             <div class="input-group">
                 <label>
-                    Group Name
+                    {{t "iam.components.modals.group-form.group-name"}}
                 </label>
-                <Input @value={{@options.group.name}} @type="text" class="w-full form-input" placeholder="Group Name" />
+                <Input @value={{@options.group.name}} @type="text" class="w-full form-input" placeholder={{t "iam.components.modals.group-form.group-name"}} />
             </div>
             <div class="input-group">
                 <label>
-                    Group Description
+                    {{t "iam.components.modals.group-form.group-description"}}
                 </label>
-                <Textarea @value={{@options.group.description}} rows="5" class="w-full form-input" placeholder="Group Description" />
+                <Textarea @value={{@options.group.description}} rows="5" class="w-full form-input" placeholder={{t "iam.components.modals.group-form.group-description"}} />
             </div>
 
             <div class="input-group">
                 <div class="mb-4">
-                    <InputLabel class="mb-2" @labelText="Select users to add to group" @helpText="Search and select users to add to this group." />
+                    <InputLabel class="mb-2" @labelText={{t "iam.components.modals.group-form.select-users-add-group"}} @helpText={{t "iam.components.modals.group-form.search-select-users-add-group"}} />
 
                     <div class="flex items-start justify-between">
-                        <ModelSelect @modelName="user" @selectedModel={{@options.lastSelectedUser}} @placeholder="Select user to add to group" class="w-64" @triggerClass="form-select form-input" @infiniteScroll={{false}} @renderInPlace={{true}} @onChange={{@options.addUser}} as |model|>
+                        <ModelSelect @modelName="user" @selectedModel={{@options.lastSelectedUser}} @placeholder={{t "iam.components.modals.group-form.select-user-add-group"}} class="w-64" @triggerClass="form-select form-input" @infiniteScroll={{false}} @renderInPlace={{true}} @onChange={{@options.addUser}} as |model|>
                             {{model.name}}
                         </ModelSelect>
                     </div>
@@ -43,7 +43,7 @@
                         <div class="flex items-center justify-center h-full dark:text-gray-100">
                             <div class="flex flex-col items-center justify-center w-2/4 h-full my-8 text-center">
                                 <div class="text-base font-semibold">
-                                    No users added to group
+                                    {{t "iam.components.modals.group-form.no-user-add-group"}}
                                 </div>
                             </div>
                         </div>

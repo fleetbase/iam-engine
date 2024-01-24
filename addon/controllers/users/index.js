@@ -15,6 +15,13 @@ export default class UsersIndexController extends Controller {
     @service store;
 
     /**
+     * Inject the `intl` service
+     *
+     * @var {Service}
+     */
+    @service intl;
+
+    /**
      * Inject the `notifications` service
      *
      * @var {Service}
@@ -98,7 +105,7 @@ export default class UsersIndexController extends Controller {
      */
     @tracked columns = [
         {
-            label: 'Name',
+            label: this.intl.t('iam.common.name'),
             valuePath: 'name',
             width: '170px',
             cellComponent: 'table/cell/user-name',
@@ -110,34 +117,34 @@ export default class UsersIndexController extends Controller {
             filterComponent: 'filter/string',
         },
         {
-            label: 'Email',
+            label: this.intl.t('iam.common.email'),
             valuePath: 'email',
             cellComponent: 'click-to-copy',
             sortable: false,
             width: '12%',
         },
         {
-            label: 'Phone',
+            label: this.intl.t('iam.common.phone'),
             valuePath: 'phone',
             cellComponent: 'click-to-copy',
             sortable: false,
             width: '12%',
         },
         {
-            label: 'Type',
+            label: this.intl.t('iam.common.type'),
             valuePath: 'typesList',
             sortable: false,
             width: '12%',
         },
         {
-            label: 'Status',
+            label: this.intl.t('iam.common.status'),
             valuePath: 'session_status',
             sortable: false,
             width: '12%',
             cellComponent: 'table/cell/status',
         },
         {
-            label: 'Last Login',
+            label: this.intl.t('iam.users.index.last-login'),
             valuePath: 'lastLogin',
             width: '130px',
             resizable: true,
@@ -146,7 +153,7 @@ export default class UsersIndexController extends Controller {
             filterComponent: 'filter/date',
         },
         {
-            label: 'Created At',
+            label: this.intl.t('iam.users.index.created-at'),
             valuePath: 'createdAt',
             sortParam: 'created_at',
             width: '130px',
@@ -156,7 +163,7 @@ export default class UsersIndexController extends Controller {
             filterComponent: 'filter/date',
         },
         {
-            label: 'Updated At',
+            label: this.intl.t('iam.users.index.updated-at'),
             valuePath: 'updatedAt',
             sortParam: 'updated_at',
             width: '130px',
@@ -172,34 +179,34 @@ export default class UsersIndexController extends Controller {
             ddButtonText: false,
             ddButtonIcon: 'ellipsis-h',
             ddButtonIconPrefix: 'fas',
-            ddMenuLabel: 'Contact Actions',
+            ddMenuLabel: this.intl.t('iam.users.index.contact-action'),
             cellClassNames: 'overflow-visible',
             wrapperClass: 'flex items-center justify-end mx-2',
             width: '10%',
             actions: [
                 {
-                    label: 'Edit user...',
+                    label: this.intl.t('iam.users.index.edit-user'),
                     fn: this.editUser,
                 },
                 {
-                    label: 'Re-send invitation...',
+                    label: this.intl.t('iam.users.index.re-send-invitation'),
                     fn: this.resendInvitation,
                     isVisible: (user) => user.get('session_status') === 'pending',
                 },
                 {
-                    label: 'Deactivate user...',
+                    label: this.intl.t('iam.users.index.deactivate-user'),
                     fn: this.deactivateUser,
                     className: 'text-danger',
                     isVisible: (user) => user.get('session_status') === 'active',
                 },
                 {
-                    label: 'Activate user...',
+                    label: this.intl.t('iam.users.index.activate-user'),
                     fn: this.activateUser,
                     className: 'text-danger',
                     isVisible: (user) => user.get('session_status') === 'inactive' || (this.currentUser.user.is_admin && user.get('session_status') === 'pending'),
                 },
                 {
-                    label: 'Delete user...',
+                    label: this.intl.t('iam.users.index.delete-user'),
                     fn: this.deleteUser,
                     className: 'text-danger',
                 },
@@ -246,7 +253,7 @@ export default class UsersIndexController extends Controller {
 
         this.crud.bulkDelete(selected, {
             modelNamePath: `name`,
-            acceptButtonText: 'Delete Users',
+            acceptButtonText: this.intl.t('iam.users.index.delete-users'),
             onSuccess: () => {
                 return this.hostRouter.refresh();
             },
@@ -274,14 +281,14 @@ export default class UsersIndexController extends Controller {
         });
 
         this.editUser(user, {
-            title: 'New User',
+            title: this.intl.t('iam.users.index.new-user'),
             confirm: (modal) => {
                 modal.startLoading();
 
                 user.save()
                     .then(() => {
                         modal.done();
-                        this.notifications.success('User has been invited to join your organization.');
+                        this.notifications.success(this.intl.t('iam.users.index.user-invited-join-your-organization-success'));
                         return this.hostRouter.refresh();
                     })
                     .catch((error) => {
@@ -299,7 +306,7 @@ export default class UsersIndexController extends Controller {
      */
     @action editUser(user, options = {}) {
         this.modalsManager.show('modals/user-form', {
-            title: 'Edit User',
+            title: this.intl.t('iam.users.index.edit-user-title'),
             user,
             uploadNewPhoto: (file) => {
                 this.fetch.uploadFile.perform(
@@ -325,7 +332,7 @@ export default class UsersIndexController extends Controller {
                 user.save()
                     .then(() => {
                         modal.done();
-                        this.notifications.success('User changes saved.');
+                        this.notifications.success(this.intl.t('iam.users.index.user-changes-saved-success'));
                         return this.hostRouter.refresh();
                     })
                     .catch((error) => {
@@ -344,16 +351,16 @@ export default class UsersIndexController extends Controller {
      */
     @action deleteUser(user) {
         if (user.id === this.currentUser.id) {
-            return this.notifications.error("You can't delete yourself");
+            return this.notifications.error(this.intl.t('iam.users.index.error-you-cant-delete-yourself'));
         }
 
         this.modalsManager.confirm({
-            title: `Delete ${user.get('name')} user`,
-            body: 'Are you sure you want to delete this user? All data assosciated with this user will also be deleted. This action cannot be undone.',
+            title: this.intl.t('iam.users.index.delete-user-title', { userName: user.get('name') }),
+            body: this.intl.t('iam.users.index.data-assosciated-user-delete'),
             confirm: (modal) => {
                 modal.startLoading();
                 return user.removeFromCurrentCompany().then(() => {
-                    this.notifications.success(`User (${user.get('name')}) deleted.`);
+                    this.notifications.success(this.intl.t('iam.users.index.delete-user-success-message', { userName: user.get('name') }));
                     this.hostRouter.refresh();
                 });
             },
@@ -367,12 +374,12 @@ export default class UsersIndexController extends Controller {
      */
     @action deactivateUser(user) {
         this.modalsManager.confirm({
-            title: `Deactivate ${user.get('name')} user's account`,
-            body: 'Are you sure you want to deactivate this user? This user will no longer be able to access their account or resources unless re-activated.',
+            title: this.intl.t('iam.users.index.deactivate-user-title', { userName: user.get('name') }),
+            body: this.intl.t('iam.users.index.access-account-or-resources-unless-re-activated'),
             confirm: (modal) => {
                 modal.startLoading();
                 return user.deactivate().then(() => {
-                    this.notifications.success(`User (${user.get('name')}) deactivated.`);
+                    this.notifications.success(this.intl.t('iam.users.index.deactivate-user-success-message', { userName: user.get('name') }));
                     this.hostRouter.refresh();
                 });
             },
@@ -386,12 +393,12 @@ export default class UsersIndexController extends Controller {
      */
     @action activateUser(user) {
         this.modalsManager.confirm({
-            title: `Re-activate ${user.get('name')} user's account`,
-            body: 'Are you sure you want to re-activate this user? This user will regain access to your organization.',
+            title: this.intl.t('iam.users.index.re-activate-user-title', { userName: user.get('name') }),
+            body: this.intl.t('iam.users.index.this-user-will-regain-access-to-your-organization'),
             confirm: (modal) => {
                 modal.startLoading();
                 return user.activate().then(() => {
-                    this.notifications.success(`User (${user.get('name')}) activated.`);
+                    this.notifications.success(this.intl.t('iam.users.index.re-activate-user-success-message', { userName: user.get('name') }));
                     this.hostRouter.refresh();
                 });
             },
@@ -405,12 +412,12 @@ export default class UsersIndexController extends Controller {
      */
     @action resendInvitation(user) {
         this.modalsManager.confirm({
-            title: `Resend invitation to join organization`,
-            body: 'By confirming Fleetbase will re-send the invitation for this user to join your organization.',
+            title: this.intl.t('iam.users.index.resend-invitation-to-join-organization'),
+            body: this.intl.t('iam.users.index.confirming-fleetbase-will-re-send-invitation-for-user-to-join-your-organization'),
             confirm: (modal) => {
                 modal.startLoading();
                 return user.resendInvite().then(() => {
-                    this.notifications.success('Invitation resent.');
+                    this.notifications.success(this.intl.t('iam.users.index.invitation-resent'));
                     this.hostRouter.refresh();
                 });
             },

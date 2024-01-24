@@ -2,7 +2,7 @@
     <div class="mb-2 flex items-center justify-between">
         <div class="flex items-center">
             <div class="permission-picker-search">
-                <Input @type="text" {{on "input" (perform this.search)}} placeholder="Search permissions by keywords" class="w-64 form-input form-input-sm" />
+                <Input @type="text" {{on "input" (perform this.search)}} placeholder={{t "iam.components.permission-picker.search-permissions-keyword"}} class="w-64 form-input form-input-sm" />
             </div>
             <div>
                 {{#if this.isLoading}}
@@ -13,7 +13,7 @@
             </div>
         </div>
         <div class="text-sm dark:text-gray-100">
-            Selected: {{this.selected.length}}
+            {{t "iam.components.permission-picker.selected"}} {{this.selected.length}}
         </div>
     </div>
     <div class="bg-white border border-gray-200 rounded shadow-sm dark:bg-gray-700 dark:border-gray-900 text-xs">
@@ -22,8 +22,8 @@
                 <div class="flex items-center">
                     <Checkbox @value={{this.allSelected}} @onToggle={{this.selectAll}} @disabled={{not this.permissions}} />
                 </div>
-                <div class="col-span-5 flex items-center">Permission</div>
-                <div class="col-span-6 flex items-center">Description</div>
+                <div class="col-span-5 flex items-center">{{t "iam.common.permission"}}</div>
+                <div class="col-span-6 flex items-center">{{t "iam.common.description"}}</div>
             </div>
         </div>
         <div class="h-48 overflow-y-scroll">
@@ -32,7 +32,7 @@
                     <div class="mr-2">
                         <Spinner @iconClass="text-sky-500" />
                     </div>
-                    <span>Loading permissions...</span>
+                    <span>{{t "iam.components.permission-picker.loading-permission"}}</span>
                 </div>
             {{/unless}}
             {{#each this.permissions as |permission|}}
