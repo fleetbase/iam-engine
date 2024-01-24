@@ -355,12 +355,12 @@ export default class UsersIndexController extends Controller {
         }
 
         this.modalsManager.confirm({
-            title: this.intl.t('iam.users.index.delete-user-title', {userName: user.get('name')}),
+            title: this.intl.t('iam.users.index.delete-user-title', { userName: user.get('name') }),
             body: this.intl.t('iam.users.index.data-assosciated-user-delete'),
             confirm: (modal) => {
                 modal.startLoading();
                 return user.removeFromCurrentCompany().then(() => {
-                    this.notifications.success(this.intl.t('iam.users.index.delete-user-success-message', {userName: user.get('name')}));
+                    this.notifications.success(this.intl.t('iam.users.index.delete-user-success-message', { userName: user.get('name') }));
                     this.hostRouter.refresh();
                 });
             },
@@ -374,12 +374,12 @@ export default class UsersIndexController extends Controller {
      */
     @action deactivateUser(user) {
         this.modalsManager.confirm({
-            title: this.intl.t('iam.users.index.deactivate-user-title', {userName: user.get('name')}),
+            title: this.intl.t('iam.users.index.deactivate-user-title', { userName: user.get('name') }),
             body: this.intl.t('iam.users.index.access-account-or-resources-unless-re-activated'),
             confirm: (modal) => {
                 modal.startLoading();
                 return user.deactivate().then(() => {
-                    this.notifications.success(this.intl.t('iam.users.index.deactivate-user-success-message', {userName: user.get('name')}));
+                    this.notifications.success(this.intl.t('iam.users.index.deactivate-user-success-message', { userName: user.get('name') }));
                     this.hostRouter.refresh();
                 });
             },
@@ -393,12 +393,12 @@ export default class UsersIndexController extends Controller {
      */
     @action activateUser(user) {
         this.modalsManager.confirm({
-            title: this.intl.t('iam.users.index.re-activate-user-title', {userName: user.get('name')}),
+            title: this.intl.t('iam.users.index.re-activate-user-title', { userName: user.get('name') }),
             body: this.intl.t('iam.users.index.this-user-will-regain-access-to-your-organization'),
             confirm: (modal) => {
                 modal.startLoading();
                 return user.activate().then(() => {
-                    this.notifications.success(this.intl.t('iam.users.index.re-activate-user-success-message', {userName: user.get('name')}));
+                    this.notifications.success(this.intl.t('iam.users.index.re-activate-user-success-message', { userName: user.get('name') }));
                     this.hostRouter.refresh();
                 });
             },

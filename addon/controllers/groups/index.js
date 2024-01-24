@@ -21,7 +21,7 @@ export default class GroupsIndexController extends Controller {
      * @var {Service}
      */
     @service store;
-   
+
     /**
      * Inject the `intl` service
      *
@@ -282,7 +282,7 @@ export default class GroupsIndexController extends Controller {
             confirm: (modal) => {
                 modal.startLoading();
                 return group.destroyRecord().then((group) => {
-                    this.notifications.success(this.intl.t('iam.groups.index.delete-group-success-message', {name: group.name }),);
+                    this.notifications.success(this.intl.t('iam.groups.index.delete-group-success-message', { name: group.name }));
                     this.hostRouter.refresh();
                 });
             },

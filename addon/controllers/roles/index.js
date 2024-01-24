@@ -247,7 +247,7 @@ export default class RolesIndexController extends Controller {
             confirm: (modal) => {
                 modal.startLoading();
                 return role.destroyRecord().then((role) => {
-                    this.notifications.success(this.intl.t('iam.roles.index.role-deleted', {roleName: role.name} ));
+                    this.notifications.success(this.intl.t('iam.roles.index.role-deleted', { roleName: role.name }));
                     return this.hostRouter.refresh();
                 });
             },

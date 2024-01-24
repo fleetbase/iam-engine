@@ -228,7 +228,7 @@ export default class PoliciesIndexController extends Controller {
      */
     @action editPolicy(policy, options = {}) {
         if (!policy.is_mutable) {
-            return this.notifications.warning(this.intl.t('iam.policies.index.unable-changes-policy-warning', {policyType: policy.type}));
+            return this.notifications.warning(this.intl.t('iam.policies.index.unable-changes-policy-warning', { policyType: policy.type }));
         }
 
         this.modalsManager.show('modals/policy-form', {
@@ -252,7 +252,7 @@ export default class PoliciesIndexController extends Controller {
      */
     @action deletePolicy(policy) {
         if (!policy.is_deletable) {
-            return this.notifications.warning(this.intl.t('iam.policies.index.unable-delete-policy-warning', {policyType: policy.type}));
+            return this.notifications.warning(this.intl.t('iam.policies.index.unable-delete-policy-warning', { policyType: policy.type }));
         }
 
         this.modalsManager.confirm({
@@ -261,7 +261,7 @@ export default class PoliciesIndexController extends Controller {
             confirm: (modal) => {
                 modal.startLoading();
                 return policy.destroyRecord().then((policy) => {
-                    this.notifications.success(this.intl.t('iam.policies.index.policy-deleted', {policyName: policy.name}));
+                    this.notifications.success(this.intl.t('iam.policies.index.policy-deleted', { policyName: policy.name }));
                     return this.hostRouter.refresh();
                 });
             },
