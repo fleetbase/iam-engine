@@ -1,6 +1,6 @@
 {
     "name": "@fleetbase/iam-engine",
-    "version": "0.0.8",
+    "version": "0.0.9",
     "description": "Fleetbase IAM extension provides identity and access management module for managing users, permissions and policies.",
     "fleetbase": {
         "route": "iam",
