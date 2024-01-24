@@ -5,11 +5,11 @@ dependencies:
     specifier: ^7.23.2
     version: 7.23.2
   '@fleetbase/ember-core':
-    specifier: ^0.1.9
-    version: 0.1.9(@ember/test-helpers@3.2.0)(ember-source@5.4.0)(webpack@5.89.0)
+    specifier: ^0.2.0
+    version: 0.2.0(@ember/test-helpers@3.2.0)(ember-source@5.4.0)(webpack@5.89.0)
   '@fleetbase/ember-ui':
-    specifier: ^0.2.8
-    version: 0.2.8(@ember/test-helpers@3.2.0)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(ember-source@5.4.0)(postcss@8.4.32)(rollup@4.9.1)(tracked-built-ins@3.3.0)(webpack@5.89.0)
+    specifier: ^0.2.9
+    version: 0.2.9(@ember/test-helpers@3.2.0)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(ember-source@5.4.0)(postcss@8.4.32)(rollup@4.9.1)(tracked-built-ins@3.3.0)(webpack@5.89.0)
   '@fortawesome/ember-fontawesome':
     specifier: ^0.4.1
     version: 0.4.1(rollup@4.9.1)
@@ -2344,8 +2344,8 @@ packages:
       - supports-color
     dev: false
 
-  /@fleetbase/ember-core@0.1.9(@ember/test-helpers@3.2.0)(ember-source@5.4.0)(webpack@5.89.0):
-    resolution: {integrity: sha512-DoOCjua2iNpXVLC1NANncSNgITfV1TWJN3DQEqGYyEpBGn3shBklt1b86xKqf1fkX71dApEqX2UxyBDvj5lnlQ==}
+  /@fleetbase/ember-core@0.2.0(@ember/test-helpers@3.2.0)(ember-source@5.4.0)(webpack@5.89.0):
+    resolution: {integrity: sha512-J7Heq2dfw++16+KmzvSHEP2kzACDEkO0mJk0YBay47ghF9R/jK1if1s90XPHCEAJZ2LwYYrqsyhWukdJF57omA==}
     engines: {node: '>= 18'}
     dependencies:
       '@babel/core': 7.23.2
@@ -2376,8 +2376,8 @@ packages:
       - webpack
     dev: false
 
-  /@fleetbase/ember-ui@0.2.8(@ember/test-helpers@3.2.0)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(ember-source@5.4.0)(postcss@8.4.32)(rollup@4.9.1)(tracked-built-ins@3.3.0)(webpack@5.89.0):
-    resolution: {integrity: sha512-3WwGllSGCz4i1pIGK8vhkYKEjQktZXbDnUNrq434g3RFHpsYnXCSZBe8NmMauk3XUP6E4Ku6/u5dQvyByg1pFQ==}
+  /@fleetbase/ember-ui@0.2.9(@ember/test-helpers@3.2.0)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(ember-source@5.4.0)(postcss@8.4.32)(rollup@4.9.1)(tracked-built-ins@3.3.0)(webpack@5.89.0):
+    resolution: {integrity: sha512-j/vdIJbyeyzrEs3QfZ3ZbhxU6ZT4nLWCXpAPIugnyrHLt72pwBR71gWq5YNUW33JkyhB//aNAQFGhBGg5ASbzg==}
     engines: {node: '>= 18'}
     dependencies:
       '@babel/core': 7.23.2
