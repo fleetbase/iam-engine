@@ -5,11 +5,11 @@ dependencies:
     specifier: ^7.23.2
     version: 7.23.2
   '@fleetbase/ember-core':
-    specifier: ^0.1.9
-    version: 0.1.9(@ember/test-helpers@3.2.0)(ember-source@5.4.0)(webpack@5.89.0)
+    specifier: ^0.2.0
+    version: 0.2.0(@ember/test-helpers@3.2.0)(ember-source@5.4.0)(webpack@5.89.0)
   '@fleetbase/ember-ui':
-    specifier: ^0.2.8
-    version: 0.2.8(@ember/test-helpers@3.2.0)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(ember-source@5.4.0)(postcss@8.4.32)(rollup@4.9.1)(tracked-built-ins@3.3.0)(webpack@5.89.0)
+    specifier: ^0.2.9
+    version: 0.2.9(@ember/test-helpers@3.2.0)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(ember-source@5.4.0)(postcss@8.4.32)(rollup@4.9.1)(tracked-built-ins@3.3.0)(webpack@5.89.0)
   '@fortawesome/ember-fontawesome':
     specifier: ^0.4.1
     version: 0.4.1(rollup@4.9.1)
@@ -51,6 +51,9 @@ devDependencies:
   '@embroider/test-setup':
     specifier: ^3.0.2
     version: 3.0.2
+  '@fleetbase/intl-lint':
+    specifier: ^0.0.1
+    version: 0.0.1
   '@glimmer/component':
     specifier: ^1.1.2
     version: 1.1.2(@babel/core@7.23.2)
@@ -2341,8 +2344,8 @@ packages:
       - supports-color
     dev: false
 
-  /@fleetbase/ember-core@0.1.9(@ember/test-helpers@3.2.0)(ember-source@5.4.0)(webpack@5.89.0):
-    resolution: {integrity: sha512-DoOCjua2iNpXVLC1NANncSNgITfV1TWJN3DQEqGYyEpBGn3shBklt1b86xKqf1fkX71dApEqX2UxyBDvj5lnlQ==}
+  /@fleetbase/ember-core@0.2.0(@ember/test-helpers@3.2.0)(ember-source@5.4.0)(webpack@5.89.0):
+    resolution: {integrity: sha512-J7Heq2dfw++16+KmzvSHEP2kzACDEkO0mJk0YBay47ghF9R/jK1if1s90XPHCEAJZ2LwYYrqsyhWukdJF57omA==}
     engines: {node: '>= 18'}
     dependencies:
       '@babel/core': 7.23.2
@@ -2373,8 +2376,8 @@ packages:
       - webpack
     dev: false
 
-  /@fleetbase/ember-ui@0.2.8(@ember/test-helpers@3.2.0)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(ember-source@5.4.0)(postcss@8.4.32)(rollup@4.9.1)(tracked-built-ins@3.3.0)(webpack@5.89.0):
-    resolution: {integrity: sha512-3WwGllSGCz4i1pIGK8vhkYKEjQktZXbDnUNrq434g3RFHpsYnXCSZBe8NmMauk3XUP6E4Ku6/u5dQvyByg1pFQ==}
+  /@fleetbase/ember-ui@0.2.9(@ember/test-helpers@3.2.0)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(ember-source@5.4.0)(postcss@8.4.32)(rollup@4.9.1)(tracked-built-ins@3.3.0)(webpack@5.89.0):
+    resolution: {integrity: sha512-j/vdIJbyeyzrEs3QfZ3ZbhxU6ZT4nLWCXpAPIugnyrHLt72pwBR71gWq5YNUW33JkyhB//aNAQFGhBGg5ASbzg==}
     engines: {node: '>= 18'}
     dependencies:
       '@babel/core': 7.23.2
@@ -2455,6 +2458,14 @@ packages:
       - webpack-cli
       - webpack-command
     dev: false
+
+  /@fleetbase/intl-lint@0.0.1:
+    resolution: {integrity: sha512-LkjxJr15hSiGmqh3JwixcpjmkhXNieNAEgQUVv1Duo50jTr/D5WXEyOaeI8wuVnVFhT+FS/DMqm403DgSKlsEg==}
+    hasBin: true
+    dependencies:
+      js-yaml: 4.1.0
+      yargs: 17.7.2
+    dev: true
 
   /@floating-ui/core@1.5.2:
     resolution: {integrity: sha512-Ii3MrfY/GAIN3OhXNzpCKaLxHQfJF9qvwq/kEJYdqDxeIHa01K8sldugal6TmeeXl+WMvhv9cnVzUTaFFJF09A==}

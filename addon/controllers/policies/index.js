@@ -15,6 +15,13 @@ export default class PoliciesIndexController extends Controller {
     @service store;
 
     /**
+     * Inject the `intl` service
+     *
+     * @var {Service}
+     */
+    @service intl;
+
+    /**
      * Inject the `notifications` service
      *
      * @var {Service}
@@ -98,7 +105,7 @@ export default class PoliciesIndexController extends Controller {
      */
     @tracked columns = [
         {
-            label: 'Name',
+            label: this.intl.t('iam.common.name'),
             valuePath: 'name',
             cellComponent: 'table/cell/anchor',
             onClick: this.editPolicy,
@@ -106,19 +113,19 @@ export default class PoliciesIndexController extends Controller {
             sortable: false,
         },
         {
-            label: 'Description',
+            label: this.intl.t('iam.common.description'),
             valuePath: 'description',
             sortable: false,
             width: '40%',
         },
         {
-            label: 'Type',
+            label: this.intl.t('iam.common.type'),
             valuePath: 'type',
             sortable: false,
             width: '20%',
         },
         {
-            label: 'Created',
+            label: this.intl.t('iam.common.create'),
             valuePath: 'createdAt',
             sortable: false,
             width: '10%',
@@ -131,17 +138,17 @@ export default class PoliciesIndexController extends Controller {
             ddButtonText: false,
             ddButtonIcon: 'ellipsis-h',
             ddButtonIconPrefix: 'fas',
-            ddMenuLabel: 'Contact Actions',
+            ddMenuLabel: this.intl.t('iam.policies.index.contact-action'),
             cellClassNames: 'overflow-visible',
             wrapperClass: 'flex items-center justify-end mx-2',
             width: '10%',
             actions: [
                 {
-                    label: 'Edit policy...',
+                    label: this.intl.t('iam.policies.index.edit-policy'),
                     fn: this.editPolicy,
                 },
                 {
-                    label: 'Delete policy...',
+                    label: this.intl.t('iam.policies.index.delete-policy'),
                     fn: this.deletePolicy,
                     className: 'text-red-700 hover:text-red-800',
                 },
@@ -184,7 +191,7 @@ export default class PoliciesIndexController extends Controller {
 
         this.crud.bulkDelete(selected, {
             modelNamePath: `name`,
-            acceptButtonText: 'Delete Policies',
+            acceptButtonText: this.intl.t('iam.policies.index.delete-policies'),
             onSuccess: () => {
                 return this.hostRouter.refresh();
             },
@@ -203,11 +210,11 @@ export default class PoliciesIndexController extends Controller {
         });
 
         this.editPolicy(policy, {
-            title: 'New Policy',
+            title: this.intl.t('iam.policies.index.new-policy'),
             confirm: (modal) => {
                 modal.startLoading();
                 return policy.save().then(() => {
-                    this.notifications.success('New policy created.');
+                    this.notifications.success(this.intl.t('iam.policies.index.new-policy-created'));
                     return this.hostRouter.refresh();
                 });
             },
@@ -221,16 +228,16 @@ export default class PoliciesIndexController extends Controller {
      */
     @action editPolicy(policy, options = {}) {
         if (!policy.is_mutable) {
-            return this.notifications.warning(`Unable to make changes to a ${policy.type} policy.`);
+            return this.notifications.warning(this.intl.t('iam.policies.index.unable-changes-policy-warning', { policyType: policy.type }));
         }
 
         this.modalsManager.show('modals/policy-form', {
-            title: 'Edit Policy',
+            title: this.intl.t('iam.policies.index.edit-policy-title'),
             policy,
             confirm: (modal) => {
                 modal.startLoading();
                 return policy.save().then(() => {
-                    this.notifications.success('Changes to policy saved.');
+                    this.notifications.success(this.intl.t('iam.policies.index.changes-policy-saved-success'));
                     return this.hostRouter.refresh();
                 });
             },
@@ -245,16 +252,16 @@ export default class PoliciesIndexController extends Controller {
      */
     @action deletePolicy(policy) {
         if (!policy.is_deletable) {
-            return this.notifications.warning(`Unable to delete a ${policy.type} policy.`);
+            return this.notifications.warning(this.intl.t('iam.policies.index.unable-delete-policy-warning', { policyType: policy.type }));
         }
 
         this.modalsManager.confirm({
             title: `Delete (${policy.name || 'Untitled'}) policy`,
-            body: 'Are you sure you want to delete this policy? All data assosciated with this policy will also be deleted. This action cannot be undone.',
+            body: this.intl.t('iam.policies.index.data-assosciated-this-policy-deleted'),
             confirm: (modal) => {
                 modal.startLoading();
                 return policy.destroyRecord().then((policy) => {
-                    this.notifications.success(`Policy (${policy.name}) deleted.`);
+                    this.notifications.success(this.intl.t('iam.policies.index.policy-deleted', { policyName: policy.name }));
                     return this.hostRouter.refresh();
                 });
             },

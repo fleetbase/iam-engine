@@ -1,16 +1,16 @@
-<Layout::Section::Header @title="Roles" @searchQuery={{this.query}} @onSearch={{perform this.search}}>
+<Layout::Section::Header @title={{t "iam.common.role"}} @searchQuery={{this.query}} @onSearch={{perform this.search}}>
    {{#if (safe-has this.table "selectedRows")}}
-        <DropdownButton @icon="layer-group" @text="Bulk Action" @type="magic" @size="sm" @buttonWrapperClass="mr-2" @contentClass="dropdown-menu" as |dd|>
+        <DropdownButton @icon="layer-group" @text={{t "iam.common.bulk-action"}} @type="magic" @size="sm" @buttonWrapperClass="mr-2" @contentClass="dropdown-menu" as |dd|>
             <div class="next-dd-menu mt-2 mx-0">
                 <div class="px-1">
                     <a href="#" class="text-red-500 next-dd-item" {{on "click" (dropdown-fn dd this.bulkDeleteRoles)}}>
-                        Delete Roles
+                        {{t "iam.roles.index.delete-roles"}}
                     </a>
                 </div>
             </div>
         </DropdownButton>
     {{/if}}
-    <Button @icon="plus" @iconPrefix="fas" @type="primary" @text="New" class="mr-2" @onClick={{this.createRole}} />
+    <Button @icon="plus" @iconPrefix="fas" @type="primary" @text={{t "iam.common.new"}} class="mr-2" @onClick={{this.createRole}} />
 </Layout::Section::Header>
 
 <Layout::Section::Body>

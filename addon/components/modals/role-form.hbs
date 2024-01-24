@@ -2,19 +2,19 @@
     <div class="modal-body-container" ...attributes>
         <div class="input-group">
             <label>
-                Role Name
+                {{t "iam.components.modals.role-form.role-name"}}
             </label>
-            <Input @value={{@options.role.name}} @type="text" class="w-full form-input" placeholder="Enter a name for this role" />
+            <Input @value={{@options.role.name}} @type="text" class="w-full form-input" placeholder={{t "iam.components.modals.role-form.enter-name-for-this-role"}} />
         </div>
         <div class="input-group">
             <label>
-                Role Description
+                {{t "iam.components.modals.role-form.role-description"}}
             </label>
-            <Input @value={{@options.role.description}} @type="text" class="w-full form-input" placeholder="Enter a description for your role" />
+            <Input @value={{@options.role.description}} @type="text" class="w-full form-input" placeholder={{t "iam.components.modals.role-form.enter-description-your-role"}} />
         </div>
         <div class="input-group">
             <label>
-                Select Permissions
+                {{t "iam.components.modals.role-form.select-permission"}}
             </label>
             <PermissionPicker @selected={{@options.role.permissionsArray}} @onChange={{@options.setPermissions}} />
         </div>

@@ -3,36 +3,36 @@
         <div class="flex">
             <div class="w-32 mb-6 mr-6">
                 <Image src={{@options.user.avatar_url}} @fallbackSrc={{config "defaultValues.userImage"}} alt={{@options.user.name}} height="128" width="128" class="h-32 w-32 rounded-md" />
-                <UploadButton @name="photos" @accept="image/*" @onFileAdded={{@options.uploadNewPhoto}} class="w-32" />
+                <UploadButton @name={{t "iam.common.photo"}} @accept="image/*" @onFileAdded={{@options.uploadNewPhoto}} class="w-32" />
             </div>
             <div class="flex-1">
                 <div class="grid grid-cols-2 gap-3 text-xs dark:text-gray-100">
                     <div class="input-group">
                         <label>
-                            Name
+                            {{t "iam.common.name"}}
                         </label>
-                        <Input @value={{@options.user.name}} @type="text" class="w-full form-input" placeholder="Name" />
+                        <Input @value={{@options.user.name}} @type="text" class="w-full form-input" placeholder={{t "iam.common.name"}} />
                     </div>
 
                     <div class="input-group">
                         <label>
-                            Email
+                            {{t "iam.common.email"}}
                         </label>
-                        <Input @value={{@options.user.email}} @type="text" class="w-full form-input" placeholder="Email" />
+                        <Input @value={{@options.user.email}} @type="text" class="w-full form-input" placeholder={{t "iam.common.email"}} />
                     </div>
 
                     <div class="input-group">
                         <label>
-                            Phone
+                            {{t "iam.common.phone"}}
                         </label>
                         <PhoneInput @value={{@options.user.phone}} @onInput={{fn (mut @options.user.phone)}} class="form-input w-full" />
                     </div>
 
                     <div class="input-group">
                         <label>
-                            Country
+                            {{t "iam.common.country"}}
                         </label>
-                        <CountrySelect class="w-full form-input form-select form-datalist" @value={{@options.user.country}} @onChange={{fn (mut @options.user.country)}} placeholder="Country" />
+                        <CountrySelect class="w-full form-input form-select form-datalist" @value={{@options.user.country}} @onChange={{fn (mut @options.user.country)}} placeholder={{t "iam.common.country"}} />
                     </div>
                 </div>
             </div>
