@@ -5,11 +5,11 @@ dependencies:
     specifier: ^7.23.2
     version: 7.23.2
   '@fleetbase/ember-core':
-    specifier: ^0.2.8
-    version: 0.2.8(@ember/test-helpers@3.2.0)(ember-source@5.4.0)(webpack@5.89.0)
+    specifier: ^0.2.9
+    version: 0.2.9(@ember/test-helpers@3.2.0)(ember-source@5.4.0)(webpack@5.89.0)
   '@fleetbase/ember-ui':
-    specifier: ^0.2.12
-    version: 0.2.12(@ember/test-helpers@3.2.0)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(ember-source@5.4.0)(postcss@8.4.35)(rollup@4.12.0)(tracked-built-ins@3.3.0)(webpack@5.89.0)
+    specifier: ^0.2.14
+    version: 0.2.14(@ember/test-helpers@3.2.0)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(ember-source@5.4.0)(postcss@8.4.35)(rollup@4.12.0)(tracked-built-ins@3.3.0)(webpack@5.89.0)
   '@fortawesome/ember-fontawesome':
     specifier: ^0.4.1
     version: 0.4.1(rollup@4.12.0)
@@ -2343,8 +2343,8 @@ packages:
       - supports-color
     dev: false
 
-  /@fleetbase/ember-core@0.2.8(@ember/test-helpers@3.2.0)(ember-source@5.4.0)(webpack@5.89.0):
-    resolution: {integrity: sha512-9GGwjkp038UuMX4IHjw4NUqSinCOQWMisFG6XhQT8iyGlcOfSXJX8CxMyNutKpdwQ21VPbRoylVw0q4CmwjaNw==}
+  /@fleetbase/ember-core@0.2.9(@ember/test-helpers@3.2.0)(ember-source@5.4.0)(webpack@5.89.0):
+    resolution: {integrity: sha512-Z4XU5QydqP4dqzyncYW1vKxsUn9VjPiJ/R7l/L+jHuJTMr2AbbkZV5LtoQ0nP+Ib2euhlLMgLuxwlVRWUv/C+g==}
     engines: {node: '>= 18'}
     dependencies:
       '@babel/core': 7.23.2
@@ -2376,8 +2376,8 @@ packages:
       - webpack
     dev: false
 
-  /@fleetbase/ember-ui@0.2.12(@ember/test-helpers@3.2.0)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(ember-source@5.4.0)(postcss@8.4.35)(rollup@4.12.0)(tracked-built-ins@3.3.0)(webpack@5.89.0):
-    resolution: {integrity: sha512-F1jqOAH8ACEW5QWyFgQrVvZB/jTMtK8pJG8MghSpLqo0zh+NKFs70PNGg18fKAljfL50Ld2wuP5c4rxhGxgX8A==}
+  /@fleetbase/ember-ui@0.2.14(@ember/test-helpers@3.2.0)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(ember-source@5.4.0)(postcss@8.4.35)(rollup@4.12.0)(tracked-built-ins@3.3.0)(webpack@5.89.0):
+    resolution: {integrity: sha512-31FAddlqt9M4Gcnzsgot/2I+/yWg+iWOuRef0zKTOh58BBKE5mrPP9UaK+er6SShgPRyLDAirIwttha1AMXuNg==}
     engines: {node: '>= 18'}
     dependencies:
       '@babel/core': 7.23.2
@@ -2432,7 +2432,7 @@ packages:
       ember-window-mock: 0.9.0(ember-source@5.4.0)
       ember-wormhole: 0.6.0
       imask: 6.6.3
-      intl-tel-input: 18.5.3
+      intl-tel-input: 22.0.2
       postcss-at-rules-variables: 0.3.0(postcss@8.4.35)
       postcss-conditionals-renewed: 1.0.0(postcss@8.4.35)
       postcss-each: 1.1.0(postcss@8.4.35)
@@ -10297,8 +10297,8 @@ packages:
       tslib: 2.6.2
     dev: false
 
-  /intl-tel-input@18.5.3:
-    resolution: {integrity: sha512-ncFqSpkdGf2YC/FvAiwBH44KAeRG8L7aqDODEpOvMAT3ZpBtvc/WtwaQ/6X4+HKDTlGkobdBjr6P3nAMwO8jtA==}
+  /intl-tel-input@22.0.2:
+    resolution: {integrity: sha512-FYDLp56aCVE+G7TJGmKCeU8LlfSztINiv54TALquMhMJumlUP1d48I6fEssbcq325vcXOrqdOO7Bbi1U/WRCcw==}
     dev: false
 
   /invariant@2.2.4:
