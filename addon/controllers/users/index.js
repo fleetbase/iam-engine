@@ -107,7 +107,7 @@ export default class UsersIndexController extends Controller {
         {
             label: this.intl.t('iam.common.name'),
             valuePath: 'name',
-            width: '170px',
+            width: '160px',
             cellComponent: 'table/cell/user-name',
             mediaPath: 'avatar_url',
             action: this.editUser,
@@ -156,7 +156,7 @@ export default class UsersIndexController extends Controller {
             label: this.intl.t('iam.users.index.created-at'),
             valuePath: 'createdAt',
             sortParam: 'created_at',
-            width: '130px',
+            width: '140px',
             resizable: true,
             sortable: false,
             filterable: false,
