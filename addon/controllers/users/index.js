@@ -266,7 +266,8 @@ export default class UsersIndexController extends Controller {
      * @void
      */
     @action exportUsers() {
-        this.crud.export('user');
+        const selections = this.table.selectedRows.map((_) => _.id);
+        this.crud.export('users', { params: { selections } });
     }
 
     /**
