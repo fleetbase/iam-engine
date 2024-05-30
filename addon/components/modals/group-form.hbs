@@ -16,10 +16,24 @@
 
             <div class="input-group">
                 <div class="mb-4">
-                    <InputLabel class="mb-2" @labelText={{t "iam.components.modals.group-form.select-users-add-group"}} @helpText={{t "iam.components.modals.group-form.search-select-users-add-group"}} />
+                    <InputLabel
+                        class="mb-2"
+                        @labelText={{t "iam.components.modals.group-form.select-users-add-group"}}
+                        @helpText={{t "iam.components.modals.group-form.search-select-users-add-group"}}
+                    />
 
                     <div class="flex items-start justify-between">
-                        <ModelSelect @modelName="user" @selectedModel={{@options.lastSelectedUser}} @placeholder={{t "iam.components.modals.group-form.select-user-add-group"}} class="w-64" @triggerClass="form-select form-input" @infiniteScroll={{false}} @renderInPlace={{true}} @onChange={{@options.addUser}} as |model|>
+                        <ModelSelect
+                            @modelName="user"
+                            @selectedModel={{@options.lastSelectedUser}}
+                            @placeholder={{t "iam.components.modals.group-form.select-user-add-group"}}
+                            class="w-64"
+                            @triggerClass="form-select form-input"
+                            @infiniteScroll={{false}}
+                            @renderInPlace={{true}}
+                            @onChange={{@options.addUser}}
+                            as |model|
+                        >
                             {{model.name}}
                         </ModelSelect>
                     </div>
@@ -32,8 +46,7 @@
                                     {{user.name}}
                                 </span>
                                 <span>
-                                    <a href="javascript:;" class="text-blue-300 no-underline hover:text-blue-500" {{on "click" (fn
-                                        @options.removeUser user)}}>
+                                    <a href="javascript:;" class="text-blue-300 no-underline hover:text-blue-500" {{on "click" (fn @options.removeUser user)}}>
                                         <FaIcon @icon="times" @prefix="fas" />
                                     </a>
                                 </span>
