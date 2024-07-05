@@ -8,8 +8,8 @@ dependencies:
     specifier: ^0.2.11
     version: 0.2.11(@ember/test-helpers@3.2.0)(ember-source@5.4.0)(webpack@5.89.0)
   '@fleetbase/ember-ui':
-    specifier: ^0.2.16
-    version: 0.2.16(@ember/test-helpers@3.2.0)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(ember-source@5.4.0)(postcss@8.4.35)(rollup@4.12.0)(tracked-built-ins@3.3.0)(webpack@5.89.0)
+    specifier: ^0.2.17
+    version: 0.2.17(@ember/test-helpers@3.2.0)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(ember-source@5.4.0)(postcss@8.4.35)(rollup@4.12.0)(tracked-built-ins@3.3.0)(webpack@5.89.0)
   '@fortawesome/ember-fontawesome':
     specifier: ^0.4.1
     version: 0.4.1(rollup@4.12.0)
@@ -1528,9 +1528,9 @@ packages:
     peerDependencies:
       postcss: ^8.4
     dependencies:
-      '@csstools/selector-specificity': 3.1.1(postcss-selector-parser@6.0.15)
+      '@csstools/selector-specificity': 3.1.1(postcss-selector-parser@6.1.0)
       postcss: 8.4.35
-      postcss-selector-parser: 6.0.15
+      postcss-selector-parser: 6.1.0
     dev: false
 
   /@csstools/postcss-color-function@3.0.16(postcss@8.4.35):
@@ -1651,9 +1651,9 @@ packages:
     peerDependencies:
       postcss: ^8.4
     dependencies:
-      '@csstools/selector-specificity': 3.1.1(postcss-selector-parser@6.0.15)
+      '@csstools/selector-specificity': 3.1.1(postcss-selector-parser@6.1.0)
       postcss: 8.4.35
-      postcss-selector-parser: 6.0.15
+      postcss-selector-parser: 6.1.0
     dev: false
 
   /@csstools/postcss-light-dark-function@1.0.5(postcss@8.4.35):
@@ -1808,7 +1808,7 @@ packages:
       postcss: ^8.4
     dependencies:
       postcss: 8.4.35
-      postcss-selector-parser: 6.0.15
+      postcss-selector-parser: 6.1.0
     dev: false
 
   /@csstools/postcss-stepped-value-functions@3.0.8(postcss@8.4.35):
@@ -1872,15 +1872,6 @@ packages:
     dependencies:
       postcss-selector-parser: 6.0.15
     dev: true
-
-  /@csstools/selector-specificity@3.1.1(postcss-selector-parser@6.0.15):
-    resolution: {integrity: sha512-a7cxGcJ2wIlMFLlh8z2ONm+715QkPHiyJcxwQlKOz/03GPw1COpfhcmC9wm4xlZfp//jWHNNMwzjtqHXVWU9KA==}
-    engines: {node: ^14 || ^16 || >=18}
-    peerDependencies:
-      postcss-selector-parser: ^6.0.13
-    dependencies:
-      postcss-selector-parser: 6.0.15
-    dev: false
 
   /@csstools/selector-specificity@3.1.1(postcss-selector-parser@6.1.0):
     resolution: {integrity: sha512-a7cxGcJ2wIlMFLlh8z2ONm+715QkPHiyJcxwQlKOz/03GPw1COpfhcmC9wm4xlZfp//jWHNNMwzjtqHXVWU9KA==}
@@ -2216,7 +2207,7 @@ packages:
       '@glint/template':
         optional: true
     dependencies:
-      '@embroider/macros': 1.13.5
+      '@embroider/macros': 1.16.2
       ember-cli-babel: 7.26.11
       ember-modifier-manager-polyfill: 1.2.0(@babel/core@7.23.2)
       ember-source: 5.4.0(@babel/core@7.23.2)(@glimmer/component@1.1.2)(rsvp@4.8.5)(webpack@5.89.0)
@@ -2494,15 +2485,15 @@ packages:
       - webpack
     dev: false
 
-  /@fleetbase/ember-ui@0.2.16(@ember/test-helpers@3.2.0)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(ember-source@5.4.0)(postcss@8.4.35)(rollup@4.12.0)(tracked-built-ins@3.3.0)(webpack@5.89.0):
-    resolution: {integrity: sha512-RLdqzTDAEbOyIfSrNb3JsS/i9wZ5hy0/CnfK68ccIpC6AePImxBrmqUUYDiTzN3afUFjBGpg7P+uwNT8FwM2nw==}
+  /@fleetbase/ember-ui@0.2.17(@ember/test-helpers@3.2.0)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(ember-source@5.4.0)(postcss@8.4.35)(rollup@4.12.0)(tracked-built-ins@3.3.0)(webpack@5.89.0):
+    resolution: {integrity: sha512-eJLMBZfIotEeGH7QjlAA2Ns/K83QQztVlnWzvLBjD5YxvQflw2dAJE6EPxPWxbjeCi8B9hOoyIP4ZmtSdcz6mQ==}
     engines: {node: '>= 18'}
     dependencies:
       '@babel/core': 7.23.2
       '@ember/render-modifiers': 2.1.0(@babel/core@7.23.2)(ember-source@5.4.0)
       '@ember/string': 3.1.1
       '@embroider/addon': 0.30.0
-      '@embroider/macros': 1.13.5
+      '@embroider/macros': 1.16.2
       '@fleetbase/ember-accounting': 0.0.1(ember-source@5.4.0)
       '@floating-ui/dom': 1.6.5
       '@fortawesome/ember-fontawesome': 1.0.3(rollup@4.12.0)(webpack@5.89.0)
@@ -6359,7 +6350,7 @@ packages:
       postcss: ^8.4
     dependencies:
       postcss: 8.4.35
-      postcss-selector-parser: 6.0.15
+      postcss-selector-parser: 6.1.0
     dev: false
 
   /css-color-converter@2.0.0:
@@ -6381,9 +6372,9 @@ packages:
     peerDependencies:
       postcss: ^8.4
     dependencies:
-      '@csstools/selector-specificity': 3.1.1(postcss-selector-parser@6.0.15)
+      '@csstools/selector-specificity': 3.1.1(postcss-selector-parser@6.1.0)
       postcss: 8.4.35
-      postcss-selector-parser: 6.0.15
+      postcss-selector-parser: 6.1.0
       postcss-value-parser: 4.2.0
     dev: false
 
@@ -6737,7 +6728,7 @@ packages:
     dependencies:
       '@ember/test-helpers': 3.2.0(ember-source@5.4.0)(webpack@5.89.0)
       '@embroider/addon-shim': 1.8.7
-      '@embroider/macros': 1.13.5
+      '@embroider/macros': 1.16.2
       '@embroider/util': 1.13.1(ember-source@5.4.0)
       assert-never: 1.2.1
       ember-element-helper: 0.8.6(ember-source@5.4.0)
@@ -6869,8 +6860,8 @@ packages:
       '@babel/plugin-proposal-private-methods': 7.18.6(@babel/core@7.23.2)
       '@babel/plugin-transform-class-static-block': 7.23.4(@babel/core@7.23.2)
       '@babel/preset-env': 7.23.9(@babel/core@7.23.2)
-      '@embroider/macros': 1.13.5
-      '@embroider/shared-internals': 2.5.2
+      '@embroider/macros': 1.16.2
+      '@embroider/shared-internals': 2.6.1
       babel-loader: 8.3.0(@babel/core@7.23.2)(webpack@5.89.0)
       babel-plugin-ember-modules-api-polyfill: 3.5.0
       babel-plugin-ember-template-compilation: 2.2.1
@@ -6908,7 +6899,7 @@ packages:
     peerDependencies:
       ember-source: ^3.28.0 || ^4.0.0 || >=5.0.0
     dependencies:
-      '@embroider/macros': 1.13.5
+      '@embroider/macros': 1.16.2
       '@embroider/util': 1.13.1(ember-source@5.4.0)
       '@glimmer/component': 1.1.2(@babel/core@7.23.2)
       '@glimmer/tracking': 1.1.2
@@ -7832,7 +7823,7 @@ packages:
       '@ember/test-helpers': 3.2.0(ember-source@5.4.0)(webpack@5.89.0)
       '@ember/test-waiters': 3.1.0
       '@embroider/addon-shim': 1.8.7
-      '@embroider/macros': 1.13.5
+      '@embroider/macros': 1.16.2
       '@glimmer/component': 1.1.2(@babel/core@7.23.2)
       '@glimmer/tracking': 1.1.2
       ember-auto-import: 2.7.2(webpack@5.89.0)
@@ -7875,7 +7866,7 @@ packages:
     resolution: {integrity: sha512-uNmv1cPG/4qsac8oIf5txJ2FZ8p88LEpG4P3dNcjsJS98Y8hd0GPMFwVqpnzI78Lz7VYRGQWY4jnE4qm5R3j4g==}
     engines: {node: 12.* || 14.* || >= 16}
     dependencies:
-      '@embroider/macros': 1.13.5
+      '@embroider/macros': 1.16.2
       ember-cli-babel: 7.26.11
     transitivePeerDependencies:
       - '@glint/template'
@@ -8193,7 +8184,7 @@ packages:
       '@ember/test-helpers': 3.2.0(ember-source@5.4.0)(webpack@5.89.0)
       '@ember/test-waiters': 3.1.0
       '@embroider/addon-shim': 1.8.7
-      '@embroider/macros': 1.13.5
+      '@embroider/macros': 1.16.2
       ember-cli-is-package-missing: 1.0.0
       ember-cookies: 1.1.2
       silent-error: 1.1.1
@@ -9814,6 +9805,7 @@ packages:
 
   /glob@5.0.15:
     resolution: {integrity: sha512-c9IPMazfRITpmAAKi22dK1VKxGDX9ehhqfABDriL/lzO92xcUKEJPQHrVA/2YHSNFB4iFlykVmWvwo48nr3OxA==}
+    deprecated: Glob versions prior to v9 are no longer supported
     dependencies:
       inflight: 1.0.6
       inherits: 2.0.4
@@ -12418,7 +12410,7 @@ packages:
       postcss: ^8.4
     dependencies:
       postcss: 8.4.35
-      postcss-selector-parser: 6.0.15
+      postcss-selector-parser: 6.1.0
     dev: false
 
   /postcss-clamp@4.1.0(postcss@8.4.35):
@@ -12514,7 +12506,7 @@ packages:
       '@csstools/css-parser-algorithms': 2.6.3(@csstools/css-tokenizer@2.3.1)
       '@csstools/css-tokenizer': 2.3.1
       postcss: 8.4.35
-      postcss-selector-parser: 6.0.15
+      postcss-selector-parser: 6.1.0
     dev: false
 
   /postcss-dir-pseudo-class@8.0.1(postcss@8.4.35):
@@ -12524,7 +12516,7 @@ packages:
       postcss: ^8.4
     dependencies:
       postcss: 8.4.35
-      postcss-selector-parser: 6.0.15
+      postcss-selector-parser: 6.1.0
     dev: false
 
   /postcss-double-position-gradients@5.0.6(postcss@8.4.35):
@@ -12555,7 +12547,7 @@ packages:
       postcss: ^8.4
     dependencies:
       postcss: 8.4.35
-      postcss-selector-parser: 6.0.15
+      postcss-selector-parser: 6.1.0
     dev: false
 
   /postcss-focus-within@8.0.1(postcss@8.4.35):
@@ -12565,7 +12557,7 @@ packages:
       postcss: ^8.4
     dependencies:
       postcss: 8.4.35
-      postcss-selector-parser: 6.0.15
+      postcss-selector-parser: 6.1.0
     dev: false
 
   /postcss-font-variant@5.0.0(postcss@8.4.35):
@@ -12716,7 +12708,7 @@ packages:
       postcss: ^8.2.14
     dependencies:
       postcss: 8.4.35
-      postcss-selector-parser: 6.0.15
+      postcss-selector-parser: 6.1.0
     dev: false
 
   /postcss-nesting@12.1.5(postcss@8.4.35):
@@ -12844,7 +12836,7 @@ packages:
       postcss: ^8.4
     dependencies:
       postcss: 8.4.35
-      postcss-selector-parser: 6.0.15
+      postcss-selector-parser: 6.1.0
     dev: false
 
   /postcss-replace-overflow-wrap@4.0.0(postcss@8.4.35):
@@ -12875,7 +12867,7 @@ packages:
       postcss: ^8.4
     dependencies:
       postcss: 8.4.35
-      postcss-selector-parser: 6.0.15
+      postcss-selector-parser: 6.1.0
     dev: false
 
   /postcss-selector-parser@6.0.15:
@@ -14617,7 +14609,7 @@ packages:
       postcss-js: 4.0.1(postcss@8.4.35)
       postcss-load-config: 4.0.2(postcss@8.4.35)
       postcss-nested: 6.0.1(postcss@8.4.35)
-      postcss-selector-parser: 6.0.15
+      postcss-selector-parser: 6.1.0
       resolve: 1.22.8
       sucrase: 3.35.0
     transitivePeerDependencies:
