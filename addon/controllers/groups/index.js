@@ -229,6 +229,8 @@ export default class GroupsIndexController extends Controller {
 
         this.editGroup(group, {
             title: this.intl.t('iam.groups.index.new-group'),
+            acceptButtonText: this.intl.t('common.confirm'),
+            acceptButtonIcon: 'check',
             group,
             confirm: (modal) => {
                 modal.startLoading();
@@ -248,6 +250,8 @@ export default class GroupsIndexController extends Controller {
     @action editGroup(group, options = {}) {
         this.modalsManager.show('modals/group-form', {
             title: this.intl.t('iam.groups.index.edit-group-title'),
+            acceptButtonText: this.intl.t('common.save-changes'),
+            acceptButtonIcon: 'save',
             group,
             lastSelectedUser: null,
             removeUser: (user) => {
@@ -257,12 +261,16 @@ export default class GroupsIndexController extends Controller {
                 group.users.pushObject(user);
                 this.modalsManager.setOption('lastSelectedUser', null);
             },
-            confirm: (modal) => {
+            confirm: async (modal) => {
                 modal.startLoading();
-                return group.save().then(() => {
+                try {
+                    await group.save();
                     this.notifications.success(this.intl.t('iam.groups.index.changes-group-save'));
                     return this.hostRouter.refresh();
-                });
+                } catch (error) {
+                    this.notifications.serverError(error);
+                    modal.stopLoading();
+                }
             },
             ...options,
         });
@@ -279,12 +287,16 @@ export default class GroupsIndexController extends Controller {
         this.modalsManager.confirm({
             title: this.intl.t('iam.groups.index.delete-group-title', { groupName }),
             body: this.intl.t('iam.groups.index.data-assosciated-this-group-deleted'),
-            confirm: (modal) => {
+            confirm: async (modal) => {
                 modal.startLoading();
-                return group.destroyRecord().then((group) => {
+                try {
+                    await group.destroyRecord();
                     this.notifications.success(this.intl.t('iam.groups.index.delete-group-success-message', { name: group.name }));
-                    this.hostRouter.refresh();
-                });
+                    return this.hostRouter.refresh();
+                } catch (error) {
+                    this.notifications.serverError(error);
+                    modal.stopLoading();
+                }
             },
         });
     }

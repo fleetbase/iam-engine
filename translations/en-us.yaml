@@ -15,10 +15,17 @@ iam:
     new: New
     permission: Permission
     phone: Phone
-    photo: photos
-    policie: Policies
-    primary: primary
-    role: Roles
+    photo: Photo
+    policy: Policy
+    policies: Policies
+    attach-policies: Attach Policies
+    select-policy: Select Policy
+    attach-permissions: Attach Permissions
+    attach-inline-permissions: Attach Inline Permissions
+    select-permissions: Select Permissions
+    primary: Primary
+    role: Role
+    roles: Roles
     status: Status
     type: Type
     user: Users
@@ -39,6 +46,9 @@ iam:
         policy-description: Policy Description
         enter-description-your-policy: Enter a description for your policy
         select-permissions: Select Permissions
+      view-policy-permissions:
+        view-permissions: >-
+          Policy: {policyName} Permissions
       role-form:
         role-name: Role Name
         enter-name-for-this-role: Enter a name for this role

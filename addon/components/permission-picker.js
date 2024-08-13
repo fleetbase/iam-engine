@@ -90,7 +90,7 @@ export default class PermissionPickerComponent extends Component {
         super(...arguments);
 
         this.selected = isArray(this.args.selected) ? this.args.selected : [];
-        this.guard = this.args.guard ?? 'web';
+        this.guard = this.args.guard ?? 'sanctum';
         this.queryPermissions();
     }
 

@@ -131,10 +131,10 @@ export default class UsersIndexController extends Controller {
             width: '12%',
         },
         {
-            label: this.intl.t('iam.common.type'),
-            valuePath: 'typesList',
+            label: this.intl.t('iam.common.role'),
+            valuePath: 'role.name',
             sortable: false,
-            width: '12%',
+            width: '10%',
         },
         {
             label: this.intl.t('iam.common.status'),
@@ -283,6 +283,8 @@ export default class UsersIndexController extends Controller {
 
         this.editUser(user, {
             title: this.intl.t('iam.users.index.new-user'),
+            acceptButtonText: this.intl.t('common.confirm'),
+            acceptButtonIcon: 'check',
             confirm: (modal) => {
                 modal.startLoading();
 
@@ -308,6 +310,9 @@ export default class UsersIndexController extends Controller {
     @action editUser(user, options = {}) {
         this.modalsManager.show('modals/user-form', {
             title: this.intl.t('iam.users.index.edit-user-title'),
+            modalClass: 'modal-lg',
+            acceptButtonText: this.intl.t('common.save-changes'),
+            acceptButtonIcon: 'save',
             user,
             uploadNewPhoto: (file) => {
                 this.fetch.uploadFile.perform(
@@ -327,19 +332,16 @@ export default class UsersIndexController extends Controller {
                     }
                 );
             },
-            confirm: (modal) => {
+            confirm: async (modal) => {
                 modal.startLoading();
-
-                user.save()
-                    .then(() => {
-                        modal.done();
-                        this.notifications.success(this.intl.t('iam.users.index.user-changes-saved-success'));
-                        return this.hostRouter.refresh();
-                    })
-                    .catch((error) => {
-                        this.notifications.serverError(error);
-                        modal.stopLoading();
-                    });
+                try {
+                    await user.save();
+                    this.notifications.success(this.intl.t('iam.users.index.user-changes-saved-success'));
+                    return this.hostRouter.refresh();
+                } catch (error) {
+                    this.notifications.serverError(error);
+                    modal.stopLoading();
+                }
             },
             ...options,
         });
@@ -358,12 +360,16 @@ export default class UsersIndexController extends Controller {
         this.modalsManager.confirm({
             title: this.intl.t('iam.users.index.delete-user-title', { userName: user.get('name') }),
             body: this.intl.t('iam.users.index.data-assosciated-user-delete'),
-            confirm: (modal) => {
+            confirm: async (modal) => {
                 modal.startLoading();
-                return user.removeFromCurrentCompany().then(() => {
+                try {
+                    await user.removeFromCurrentCompany();
                     this.notifications.success(this.intl.t('iam.users.index.delete-user-success-message', { userName: user.get('name') }));
                     this.hostRouter.refresh();
-                });
+                } catch (error) {
+                    this.notifications.serverError(error);
+                    modal.stopLoading();
+                }
             },
         });
     }
@@ -377,12 +383,16 @@ export default class UsersIndexController extends Controller {
         this.modalsManager.confirm({
             title: this.intl.t('iam.users.index.deactivate-user-title', { userName: user.get('name') }),
             body: this.intl.t('iam.users.index.access-account-or-resources-unless-re-activated'),
-            confirm: (modal) => {
+            confirm: async (modal) => {
                 modal.startLoading();
-                return user.deactivate().then(() => {
+                try {
+                    await user.deactivate();
                     this.notifications.success(this.intl.t('iam.users.index.deactivate-user-success-message', { userName: user.get('name') }));
                     this.hostRouter.refresh();
-                });
+                } catch (error) {
+                    this.notifications.serverError(error);
+                    modal.stopLoading();
+                }
             },
         });
     }
@@ -396,12 +406,16 @@ export default class UsersIndexController extends Controller {
         this.modalsManager.confirm({
             title: this.intl.t('iam.users.index.re-activate-user-title', { userName: user.get('name') }),
             body: this.intl.t('iam.users.index.this-user-will-regain-access-to-your-organization'),
-            confirm: (modal) => {
+            confirm: async (modal) => {
                 modal.startLoading();
-                return user.activate().then(() => {
+                try {
+                    await user.activate();
                     this.notifications.success(this.intl.t('iam.users.index.re-activate-user-success-message', { userName: user.get('name') }));
                     this.hostRouter.refresh();
-                });
+                } catch (error) {
+                    this.notifications.serverError(error);
+                    modal.stopLoading();
+                }
             },
         });
     }
@@ -415,12 +429,16 @@ export default class UsersIndexController extends Controller {
         this.modalsManager.confirm({
             title: this.intl.t('iam.users.index.resend-invitation-to-join-organization'),
             body: this.intl.t('iam.users.index.confirming-fleetbase-will-re-send-invitation-for-user-to-join-your-organization'),
-            confirm: (modal) => {
+            confirm: async (modal) => {
                 modal.startLoading();
-                return user.resendInvite().then(() => {
+                try {
+                    await user.resendInvite();
                     this.notifications.success(this.intl.t('iam.users.index.invitation-resent'));
                     this.hostRouter.refresh();
-                });
+                } catch (error) {
+                    this.notifications.serverError(error);
+                    modal.stopLoading();
+                }
             },
         });
     }

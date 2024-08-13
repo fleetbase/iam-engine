@@ -6,39 +6,39 @@
                 <UploadButton @name={{t "iam.common.photo"}} @accept="image/*" @onFileAdded={{@options.uploadNewPhoto}} class="w-32" />
             </div>
             <div class="flex-1">
-                <div class="grid grid-cols-2 gap-3 text-xs dark:text-gray-100">
-                    <div class="input-group">
-                        <label>
-                            {{t "iam.common.name"}}
-                        </label>
-                        <Input @value={{@options.user.name}} @type="text" class="w-full form-input" placeholder={{t "iam.common.name"}} />
-                    </div>
-
-                    <div class="input-group">
-                        <label>
-                            {{t "iam.common.email"}}
-                        </label>
-                        <Input @value={{@options.user.email}} @type="text" class="w-full form-input" placeholder={{t "iam.common.email"}} />
-                    </div>
-
-                    <div class="input-group">
-                        <label>
-                            {{t "iam.common.phone"}}
-                        </label>
+                <div class="grid grid-cols-2 gap-2 text-xs dark:text-gray-100 mb-2">
+                    <InputGroup @name={{t "iam.common.name"}} @value={{@options.user.name}} />
+                    <InputGroup @name={{t "iam.common.email"}} @type="email" @value={{@options.user.email}} />
+                    <InputGroup @name={{t "iam.common.phone"}}>
                         <PhoneInput @value={{@options.user.phone}} @onInput={{fn (mut @options.user.phone)}} class="form-input w-full" />
-                    </div>
-
-                    <div class="input-group">
-                        <label>
-                            {{t "iam.common.country"}}
-                        </label>
+                    </InputGroup>
+                    <InputGroup @name={{t "iam.common.country"}}>
                         <CountrySelect
                             class="w-full form-input form-select form-datalist"
                             @value={{@options.user.country}}
                             @onChange={{fn (mut @options.user.country)}}
                             placeholder={{t "iam.common.country"}}
                         />
-                    </div>
+                    </InputGroup>
+                    <InputGroup @name={{t "iam.common.role"}}>
+                        <ModelSelect
+                            @modelName="role"
+                            @selectedModel={{@options.user.role}}
+                            @placeholder={{t "iam.common.role"}}
+                            @triggerClass="form-select form-input truncate max-w-300px"
+                            @infiniteScroll={{false}}
+                            @renderInPlace={{true}}
+                            @onChange={{fn (mut @options.user.role)}}
+                            as |model|
+                        >
+                            {{model.name}}
+                        </ModelSelect>
+                    </InputGroup>
+                </div>
+                <div>
+                    <InputGroup @name={{t "iam.common.select-permissions"}}>
+                        <PermissionPicker @selected={{@options.user.permissions}} @onChange={{fn (mut @options.user.permissions)}} />
+                    </InputGroup>
                 </div>
             </div>
         </div>

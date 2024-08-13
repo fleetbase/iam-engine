@@ -202,6 +202,8 @@ export default class RolesIndexController extends Controller {
 
         this.editRole(role, {
             title: this.intl.t('iam.roles.index.new-role'),
+            acceptButtonText: this.intl.t('common.confirm'),
+            acceptButtonIcon: 'check',
             confirm: (modal) => {
                 modal.startLoading();
                 return role.save().then(() => {
@@ -220,16 +222,22 @@ export default class RolesIndexController extends Controller {
     @action editRole(role, options = {}) {
         this.modalsManager.show('modals/role-form', {
             title: this.intl.t('iam.roles.index.edit-role-title'),
+            acceptButtonText: this.intl.t('common.save-changes'),
+            acceptButtonIcon: 'save',
             role,
             setPermissions: (permissions) => {
                 role.permissions = permissions;
             },
-            confirm: (modal) => {
+            confirm: async (modal) => {
                 modal.startLoading();
-                return role.save().then(() => {
-                    this.notifications.success(this.intl.t('iam.roles.index.changes-role-saved'));
+                try {
+                    await role.save();
+                    this.notifications.success(this.intl.t('iam.roles.index.changes-role-save'));
                     return this.hostRouter.refresh();
-                });
+                } catch (error) {
+                    this.notifications.serverError(error);
+                    modal.stopLoading();
+                }
             },
             ...options,
         });
@@ -244,12 +252,16 @@ export default class RolesIndexController extends Controller {
         this.modalsManager.confirm({
             title: `Delete (${role.name || 'Untitled'}) role`,
             body: this.intl.t('iam.roles.index.data-assosciated-this-role-deleted'),
-            confirm: (modal) => {
+            confirm: async (modal) => {
                 modal.startLoading();
-                return role.destroyRecord().then((role) => {
+                try {
+                    await role.destroyRecord();
                     this.notifications.success(this.intl.t('iam.roles.index.role-deleted', { roleName: role.name }));
                     return this.hostRouter.refresh();
-                });
+                } catch (error) {
+                    this.notifications.serverError(error);
+                    modal.stopLoading();
+                }
             },
         });
     }

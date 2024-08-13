@@ -96,7 +96,7 @@ export default class PoliciesIndexController extends Controller {
      *
      * @var {String}
      */
-    @tracked sort = '-created_at';
+    @tracked sort = 'name';
 
     /**
      * All columns applicable for roles
@@ -211,6 +211,8 @@ export default class PoliciesIndexController extends Controller {
 
         this.editPolicy(policy, {
             title: this.intl.t('iam.policies.index.new-policy'),
+            acceptButtonText: this.intl.t('common.confirm'),
+            acceptButtonIcon: 'check',
             confirm: (modal) => {
                 modal.startLoading();
                 return policy.save().then(() => {
@@ -224,30 +226,56 @@ export default class PoliciesIndexController extends Controller {
     /**
      * Toggles modal to create a new API key
      *
+     * @param {PolicyModel} policy
+     * @memberof PoliciesIndexController
      * @void
      */
     @action editPolicy(policy, options = {}) {
         if (!policy.is_mutable) {
-            return this.notifications.warning(this.intl.t('iam.policies.index.unable-changes-policy-warning', { policyType: policy.type }));
+            return this.viewPolicyPermissions(policy);
+            // return this.notifications.warning(this.intl.t('iam.policies.index.unable-changes-policy-warning', { policyType: policy.type }));
         }
 
         this.modalsManager.show('modals/policy-form', {
             title: this.intl.t('iam.policies.index.edit-policy-title'),
+            acceptButtonText: this.intl.t('common.save-changes'),
+            acceptButtonIcon: 'save',
             policy,
-            confirm: (modal) => {
+            confirm: async (modal) => {
                 modal.startLoading();
-                return policy.save().then(() => {
+                try {
+                    await policy.save();
                     this.notifications.success(this.intl.t('iam.policies.index.changes-policy-saved-success'));
                     return this.hostRouter.refresh();
-                });
+                } catch (error) {
+                    this.notifications.serverError(error);
+                    modal.stopLoading();
+                }
             },
             ...options,
         });
     }
 
     /**
+     * View policy permissions
+     *
+     * @param {PolicyModel} policy
+     * @memberof PoliciesIndexController
+     */
+    @action viewPolicyPermissions(policy) {
+        this.modalsManager.show('modals/view-policy-permissions', {
+            title: this.intl.t('iam.components.modals.view-policy-permissions.view-permissions', { policyName: policy.name }),
+            hideDeclineButton: true,
+            acceptButtonText: this.intl.t('common.done'),
+            policy,
+        });
+    }
+
+    /**
      * Toggles dialog to delete API key
      *
+     * @param {PolicyModel} policy
+     * @memberof PoliciesIndexController
      * @void
      */
     @action deletePolicy(policy) {
@@ -258,12 +286,16 @@ export default class PoliciesIndexController extends Controller {
         this.modalsManager.confirm({
             title: `Delete (${policy.name || 'Untitled'}) policy`,
             body: this.intl.t('iam.policies.index.data-assosciated-this-policy-deleted'),
-            confirm: (modal) => {
+            confirm: async (modal) => {
                 modal.startLoading();
-                return policy.destroyRecord().then((policy) => {
+                try {
+                    await policy.destroyRecord();
                     this.notifications.success(this.intl.t('iam.policies.index.policy-deleted', { policyName: policy.name }));
                     return this.hostRouter.refresh();
-                });
+                } catch (error) {
+                    this.notifications.serverError(error);
+                    modal.stopLoading();
+                }
             },
         });
     }
