@@ -73,6 +73,13 @@ export default class PermissionPickerComponent extends Component {
     @tracked isPermissionsLoaded = false;
 
     /**
+     * Only show selected permissions.
+     *
+     * @memberof PermissionPickerComponent
+     */
+    @tracked showSelectedOnly = false;
+
+    /**
      * The ID of each permission loaded.
      *
      * @readonly
@@ -86,12 +93,31 @@ export default class PermissionPickerComponent extends Component {
      * Creates an instance of PermissionPickerComponent.
      * @memberof PermissionPickerComponent
      */
-    constructor() {
+    constructor(owner, { selected = [], guard = 'sanctum' }) {
         super(...arguments);
 
-        this.selected = isArray(this.args.selected) ? this.args.selected : [];
-        this.guard = this.args.guard ?? 'sanctum';
+        this.selected = this.getDefaultSelected(selected);
+        this.guard = guard ?? 'sanctum';
         this.queryPermissions();
+    }
+
+    /**
+     * Get the default selected.
+     *
+     * @param {Array} [selected=[]]
+     * @return {Array}
+     * @memberof PermissionPickerComponent
+     */
+    getDefaultSelected(selected = []) {
+        if (typeof selected.toArray === 'function') {
+            return selected.toArray();
+        }
+
+        if (isArray(selected)) {
+            return selected;
+        }
+
+        return [];
     }
 
     /**
@@ -181,6 +207,15 @@ export default class PermissionPickerComponent extends Component {
             permission.set('selected', this.ids.includes(permission.id));
             return permission;
         });
+    }
+
+    /**
+     * Toggles to only show selected or all.
+     *
+     * @memberof PermissionPickerComponent
+     */
+    @action toggleSelected() {
+        this.showSelectedOnly = !this.showSelectedOnly;
     }
 
     /**

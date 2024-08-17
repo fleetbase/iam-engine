@@ -17,6 +17,9 @@
                     </div>
                 {{/if}}
             </div>
+            <div>
+                <a href="javascript:;" class="ml-2 text-xs text-blue-500 hover:opacity-50" {{on "click" this.toggleSelected}}>Toggle Selected</a>
+            </div>
         </div>
         <div class="text-sm dark:text-gray-100">
             {{t "iam.components.permission-picker.selected"}}
@@ -43,7 +46,11 @@
                 </div>
             {{/unless}}
             {{#each this.permissions as |permission|}}
-                <div class="grid grid-cols-12 text-xs py-2 px-3 text-gray-800 border-b border-gray-200 dark:border-gray-900 dark:text-gray-100 {{if @disabled 'opacity-50'}}">
+                <div
+                    class="grid grid-cols-12 text-xs py-2 px-3 text-gray-800 border-b border-gray-200 dark:border-gray-900 dark:text-gray-100
+                        {{if @disabled 'opacity-50'}}
+                        {{if (and this.showSelectedOnly (not permission.selected)) 'hidden'}}"
+                >
                     <div class="flex items-center">
                         <Checkbox @value={{permission.selected}} @onToggle={{fn this.selectPermission permission}} @disabled={{@disabled}} />
                     </div>
