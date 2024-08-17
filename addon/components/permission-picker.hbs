@@ -7,6 +7,7 @@
                     {{on "input" (perform this.search)}}
                     placeholder={{t "iam.components.permission-picker.search-permissions-keyword"}}
                     class="w-64 form-input form-input-sm"
+                    disabled={{@disabled}}
                 />
             </div>
             <div>
@@ -26,7 +27,7 @@
         <div class="w-full dark:bg-gray-800">
             <div class="grid grid-cols-12 text-xs px-3 py-1.5 font-bold text-sm text-gray-800 dark:text-gray-100 border-b border-gray-200 dark:border-gray-900 shadow">
                 <div class="flex items-center">
-                    <Checkbox @value={{this.allSelected}} @onToggle={{this.selectAll}} @disabled={{not this.permissions}} />
+                    <Checkbox @value={{this.allSelected}} @onToggle={{this.selectAll}} @disabled={{or @disabled (not this.permissions)}} />
                 </div>
                 <div class="col-span-5 flex items-center">{{t "iam.common.permission"}}</div>
                 <div class="col-span-6 flex items-center">{{t "iam.common.description"}}</div>
@@ -42,9 +43,9 @@
                 </div>
             {{/unless}}
             {{#each this.permissions as |permission|}}
-                <div class="grid grid-cols-12 text-xs py-2 px-3 text-gray-800 border-b border-gray-200 dark:border-gray-900 dark:text-gray-100">
+                <div class="grid grid-cols-12 text-xs py-2 px-3 text-gray-800 border-b border-gray-200 dark:border-gray-900 dark:text-gray-100 {{if @disabled 'opacity-50'}}">
                     <div class="flex items-center">
-                        <Checkbox @value={{permission.selected}} @onToggle={{fn this.selectPermission permission}} />
+                        <Checkbox @value={{permission.selected}} @onToggle={{fn this.selectPermission permission}} @disabled={{@disabled}} />
                     </div>
                     <div class="col-span-5 flex items-center truncate">{{permission.name}}</div>
                     <div class="col-span-6 flex items-center truncate text-xs">{{permission.description}}</div>

@@ -3,65 +3,18 @@ import { inject as service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { isBlank } from '@ember/utils';
-import { timeout } from 'ember-concurrency';
-import { task } from 'ember-concurrency-decorators';
+import { timeout, task } from 'ember-concurrency';
 
 export default class PoliciesIndexController extends Controller {
-    /**
-     * Inject the `store` service
-     *
-     * @var {Service}
-     */
     @service store;
-
-    /**
-     * Inject the `intl` service
-     *
-     * @var {Service}
-     */
     @service intl;
-
-    /**
-     * Inject the `notifications` service
-     *
-     * @var {Service}
-     */
     @service notifications;
-
-    /**
-     * Inject the `currentUser` service
-     *
-     * @var {Service}
-     */
     @service currentUser;
-
-    /**
-     * Inject the `modalsManager` service
-     *
-     * @var {Service}
-     */
     @service modalsManager;
-
-    /**
-     * Inject the `hostRouter` service
-     *
-     * @var {Service}
-     */
     @service hostRouter;
-
-    /**
-     * Inject the `crud` service
-     *
-     * @var {Service}
-     */
     @service crud;
-
-    /**
-     * Inject the `fetch` service
-     *
-     * @var {Service}
-     */
     @service fetch;
+    @service abilities;
 
     /**
      * Queryable parameters for this controller's model
@@ -108,6 +61,7 @@ export default class PoliciesIndexController extends Controller {
             label: this.intl.t('iam.common.name'),
             valuePath: 'name',
             cellComponent: 'table/cell/anchor',
+            permission: 'iam view policy',
             onClick: this.editPolicy,
             width: '20%',
             sortable: false,
@@ -138,7 +92,7 @@ export default class PoliciesIndexController extends Controller {
             ddButtonText: false,
             ddButtonIcon: 'ellipsis-h',
             ddButtonIconPrefix: 'fas',
-            ddMenuLabel: this.intl.t('iam.policies.index.contact-action'),
+            ddMenuLabel: this.intl.t('iam.policies.index.policy-actions'),
             cellClassNames: 'overflow-visible',
             wrapperClass: 'flex items-center justify-end mx-2',
             width: '10%',
@@ -146,11 +100,13 @@ export default class PoliciesIndexController extends Controller {
                 {
                     label: this.intl.t('iam.policies.index.edit-policy'),
                     fn: this.editPolicy,
+                    permission: 'iam view policy',
                 },
                 {
                     label: this.intl.t('iam.policies.index.delete-policy'),
                     fn: this.deletePolicy,
                     className: 'text-red-700 hover:text-red-800',
+                    permission: 'iam delete policy',
                 },
             ],
         },
@@ -204,6 +160,7 @@ export default class PoliciesIndexController extends Controller {
      * @void
      */
     @action createPolicy() {
+        const formPermission = 'iam create policy';
         const policy = this.store.createRecord('policy', {
             is_mutable: true,
             is_deletable: true,
@@ -213,12 +170,24 @@ export default class PoliciesIndexController extends Controller {
             title: this.intl.t('iam.policies.index.new-policy'),
             acceptButtonText: this.intl.t('common.confirm'),
             acceptButtonIcon: 'check',
-            confirm: (modal) => {
+            acceptButtonDisabled: this.abilities.cannot(formPermission),
+            acceptButtonHelpText: this.abilities.cannot(formPermission) ? this.intl.t('common.unauthorized') : null,
+            formPermission,
+            confirm: async (modal) => {
                 modal.startLoading();
-                return policy.save().then(() => {
+
+                if (this.abilities.cannot(formPermission)) {
+                    return this.notifications.warning(this.intl.t('common.permissions-required-for-changes'));
+                }
+
+                try {
+                    await policy.save();
                     this.notifications.success(this.intl.t('iam.policies.index.new-policy-created'));
                     return this.hostRouter.refresh();
-                });
+                } catch (error) {
+                    this.notifications.serverError(error);
+                    modal.stopLoading();
+                }
             },
         });
     }
@@ -233,16 +202,24 @@ export default class PoliciesIndexController extends Controller {
     @action editPolicy(policy, options = {}) {
         if (!policy.is_mutable) {
             return this.viewPolicyPermissions(policy);
-            // return this.notifications.warning(this.intl.t('iam.policies.index.unable-changes-policy-warning', { policyType: policy.type }));
         }
 
+        const formPermission = 'iam update policy';
         this.modalsManager.show('modals/policy-form', {
             title: this.intl.t('iam.policies.index.edit-policy-title'),
             acceptButtonText: this.intl.t('common.save-changes'),
             acceptButtonIcon: 'save',
+            acceptButtonDisabled: this.abilities.cannot(formPermission),
+            acceptButtonHelpText: this.abilities.cannot(formPermission) ? this.intl.t('common.unauthorized') : null,
+            formPermission,
             policy,
             confirm: async (modal) => {
                 modal.startLoading();
+
+                if (this.abilities.cannot(formPermission)) {
+                    return this.notifications.warning(this.intl.t('common.permissions-required-for-changes'));
+                }
+
                 try {
                     await policy.save();
                     this.notifications.success(this.intl.t('iam.policies.index.changes-policy-saved-success'));

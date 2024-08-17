@@ -5,13 +5,13 @@
                 <label>
                     {{t "iam.components.modals.group-form.group-name"}}
                 </label>
-                <Input @value={{@options.group.name}} @type="text" class="w-full form-input" placeholder={{t "iam.components.modals.group-form.group-name"}} />
+                <Input @value={{@options.group.name}} @type="text" class="w-full form-input" placeholder={{t "iam.components.modals.group-form.group-name"}} disabled={{cannot @options.formPermission}} />
             </div>
             <div class="input-group">
                 <label>
                     {{t "iam.components.modals.group-form.group-description"}}
                 </label>
-                <Textarea @value={{@options.group.description}} rows="5" class="w-full form-input" placeholder={{t "iam.components.modals.group-form.group-description"}} />
+                <Textarea @value={{@options.group.description}} rows="5" class="w-full form-input" placeholder={{t "iam.components.modals.group-form.group-description"}} disabled={{cannot @options.formPermission}} />
             </div>
 
             <div class="input-group">
@@ -32,6 +32,7 @@
                             @infiniteScroll={{false}}
                             @renderInPlace={{true}}
                             @onChange={{@options.addUser}}
+                            @disabled={{cannot @options.formPermission}}
                             as |model|
                         >
                             {{model.name}}
@@ -46,7 +47,7 @@
                                     {{user.name}}
                                 </span>
                                 <span>
-                                    <a href="javascript:;" class="text-blue-300 no-underline hover:text-blue-500" {{on "click" (fn @options.removeUser user)}}>
+                                    <a href="javascript:;" class="text-blue-300 no-underline hover:text-blue-500" {{on "click" (fn @options.removeUser user)}} disabled={{cannot @options.formPermission}}>
                                         <FaIcon @icon="times" @prefix="fas" />
                                     </a>
                                 </span>

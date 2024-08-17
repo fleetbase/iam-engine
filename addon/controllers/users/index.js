@@ -3,65 +3,18 @@ import { inject as service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { isBlank } from '@ember/utils';
-import { timeout } from 'ember-concurrency';
-import { task } from 'ember-concurrency-decorators';
+import { timeout, task } from 'ember-concurrency';
 
 export default class UsersIndexController extends Controller {
-    /**
-     * Inject the `store` service
-     *
-     * @var {Service}
-     */
     @service store;
-
-    /**
-     * Inject the `intl` service
-     *
-     * @var {Service}
-     */
     @service intl;
-
-    /**
-     * Inject the `notifications` service
-     *
-     * @var {Service}
-     */
     @service notifications;
-
-    /**
-     * Inject the `currentUser` service
-     *
-     * @var {Service}
-     */
     @service currentUser;
-
-    /**
-     * Inject the `modalsManager` service
-     *
-     * @var {Service}
-     */
     @service modalsManager;
-
-    /**
-     * Inject the `hostRouter` service
-     *
-     * @var {Service}
-     */
     @service hostRouter;
-
-    /**
-     * Inject the `crud` service
-     *
-     * @var {Service}
-     */
     @service crud;
-
-    /**
-     * Inject the `fetch` service
-     *
-     * @var {Service}
-     */
     @service fetch;
+    @service abilities;
 
     /**
      * Queryable parameters for this controller's model
@@ -109,6 +62,7 @@ export default class UsersIndexController extends Controller {
             valuePath: 'name',
             width: '160px',
             cellComponent: 'table/cell/user-name',
+            permission: 'iam view user',
             mediaPath: 'avatar_url',
             action: this.editUser,
             resizable: true,
@@ -179,7 +133,7 @@ export default class UsersIndexController extends Controller {
             ddButtonText: false,
             ddButtonIcon: 'ellipsis-h',
             ddButtonIconPrefix: 'fas',
-            ddMenuLabel: this.intl.t('iam.users.index.contact-action'),
+            ddMenuLabel: this.intl.t('iam.users.index.user-actions'),
             cellClassNames: 'overflow-visible',
             wrapperClass: 'flex items-center justify-end mx-2',
             width: '10%',
@@ -187,28 +141,33 @@ export default class UsersIndexController extends Controller {
                 {
                     label: this.intl.t('iam.users.index.edit-user'),
                     fn: this.editUser,
+                    permission: 'iam view user',
                 },
                 {
                     label: this.intl.t('iam.users.index.re-send-invitation'),
                     fn: this.resendInvitation,
+                    permission: 'iam update user',
                     isVisible: (user) => user.get('session_status') === 'pending',
                 },
                 {
                     label: this.intl.t('iam.users.index.deactivate-user'),
                     fn: this.deactivateUser,
                     className: 'text-danger',
+                    permission: 'iam deactivate user',
                     isVisible: (user) => user.get('session_status') === 'active',
                 },
                 {
                     label: this.intl.t('iam.users.index.activate-user'),
                     fn: this.activateUser,
                     className: 'text-danger',
+                    permission: 'iam activate user',
                     isVisible: (user) => user.get('session_status') === 'inactive' || (this.currentUser.user.is_admin && user.get('session_status') === 'pending'),
                 },
                 {
                     label: this.intl.t('iam.users.index.delete-user'),
                     fn: this.deleteUser,
                     className: 'text-danger',
+                    permission: 'iam delete user',
                 },
             ],
             sortable: false,
@@ -276,6 +235,7 @@ export default class UsersIndexController extends Controller {
      * @void
      */
     @action createUser() {
+        const formPermission = 'iam create user';
         const user = this.store.createRecord('user', {
             status: 'pending',
             type: 'user',
@@ -285,19 +245,24 @@ export default class UsersIndexController extends Controller {
             title: this.intl.t('iam.users.index.new-user'),
             acceptButtonText: this.intl.t('common.confirm'),
             acceptButtonIcon: 'check',
-            confirm: (modal) => {
+            acceptButtonDisabled: this.abilities.cannot(formPermission),
+            acceptButtonHelpText: this.abilities.cannot(formPermission) ? this.intl.t('common.unauthorized') : null,
+            formPermission,
+            confirm: async (modal) => {
                 modal.startLoading();
 
-                user.save()
-                    .then(() => {
-                        modal.done();
-                        this.notifications.success(this.intl.t('iam.users.index.user-invited-join-your-organization-success'));
-                        return this.hostRouter.refresh();
-                    })
-                    .catch((error) => {
-                        this.notifications.serverError(error);
-                        modal.stopLoading();
-                    });
+                if (this.abilities.cannot(formPermission)) {
+                    return this.notifications.warning(this.intl.t('common.permissions-required-for-changes'));
+                }
+
+                try {
+                    await user.save();
+                    this.notifications.success(this.intl.t('iam.users.index.user-changes-saved-success'));
+                    return this.hostRouter.refresh();
+                } catch (error) {
+                    this.notifications.serverError(error);
+                    modal.stopLoading();
+                }
             },
         });
     }
@@ -308,11 +273,15 @@ export default class UsersIndexController extends Controller {
      * @void
      */
     @action editUser(user, options = {}) {
+        const formPermission = 'iam update user';
         this.modalsManager.show('modals/user-form', {
             title: this.intl.t('iam.users.index.edit-user-title'),
             modalClass: 'modal-lg',
             acceptButtonText: this.intl.t('common.save-changes'),
             acceptButtonIcon: 'save',
+            acceptButtonDisabled: this.abilities.cannot(formPermission),
+            acceptButtonHelpText: this.abilities.cannot(formPermission) ? this.intl.t('common.unauthorized') : null,
+            formPermission,
             user,
             uploadNewPhoto: (file) => {
                 this.fetch.uploadFile.perform(
@@ -334,6 +303,11 @@ export default class UsersIndexController extends Controller {
             },
             confirm: async (modal) => {
                 modal.startLoading();
+
+                if (this.abilities.cannot(formPermission)) {
+                    return this.notifications.warning(this.intl.t('common.permissions-required-for-changes'));
+                }
+
                 try {
                     await user.save();
                     this.notifications.success(this.intl.t('iam.users.index.user-changes-saved-success'));
