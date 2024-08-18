@@ -4,11 +4,6 @@ import { inject as service } from '@ember/service';
 export default class UsersIndexRoute extends Route {
     @service store;
 
-    /**
-     * Queryable parameters
-     *
-     * @var {Object}
-     */
     queryParams = {
         page: { refreshModel: true },
         limit: { refreshModel: true },
