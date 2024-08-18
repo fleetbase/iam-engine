@@ -210,7 +210,7 @@ export default class RolesIndexController extends Controller {
 
                 try {
                     await role.save();
-                    this.notifications.success(this.intl.t('iam.roles.index.changes-role-save'));
+                    this.notifications.success(this.intl.t('iam.roles.index.changes-role-saved'));
                     return this.hostRouter.refresh();
                 } catch (error) {
                     this.notifications.serverError(error);
