@@ -41,7 +41,7 @@
         "publish:github": "npm config set '@fleetbase:registry' https://npm.pkg.github.com/ && npm publish"
     },
     "dependencies": {
-        "@fleetbase/ember-core": "^0.2.15",
+        "@fleetbase/ember-core": "^0.2.16",
         "@fleetbase/ember-ui": "^0.2.22",
         "@babel/core": "^7.23.2",
         "ember-cli-babel": "^8.2.0",
