@@ -38,11 +38,12 @@
                     </InputGroup>
                 </div>
                 {{#if (can @options.formPermission)}}
-                    <div>
-                        <InputGroup @name={{t "iam.common.select-permissions"}}>
-                            <PermissionPicker @selected={{@options.user.permissions}} @onChange={{fn (mut @options.user.permissions)}} />
-                        </InputGroup>
-                    </div>
+                    <InputGroup @name={{t "iam.common.attach-policies"}}>
+                        <PolicyAttacher @onChange={{fn (mut @options.user.policies)}} @value={{@options.user.policies}} @disabled={{cannot @options.formPermission}} />
+                    </InputGroup>
+                    <InputGroup @name={{t "iam.common.select-permissions"}}>
+                        <PermissionPicker @selected={{@options.user.permissions}} @onChange={{fn (mut @options.user.permissions)}} />
+                    </InputGroup>
                 {{/if}}
             </div>
         </div>
