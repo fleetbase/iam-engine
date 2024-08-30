@@ -3,73 +3,20 @@ import { inject as service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { isBlank } from '@ember/utils';
-import { timeout } from 'ember-concurrency';
-import { task } from 'ember-concurrency-decorators';
+import { timeout, task } from 'ember-concurrency';
 import getWithDefault from '@fleetbase/ember-core/utils/get-with-default';
 
 export default class GroupsIndexController extends Controller {
-    /**
-     * Inject the `UsersIndexController` controller
-     *
-     * @memberof GroupsIndexController
-     */
     @controller('users.index') usersIndexController;
-
-    /**
-     * Inject the `store` service
-     *
-     * @var {Service}
-     */
     @service store;
-
-    /**
-     * Inject the `intl` service
-     *
-     * @var {Service}
-     */
     @service intl;
-
-    /**
-     * Inject the `notifications` service
-     *
-     * @var {Service}
-     */
     @service notifications;
-
-    /**
-     * Inject the `currentUser` service
-     *
-     * @var {Service}
-     */
     @service currentUser;
-
-    /**
-     * Inject the `modalsManager` service
-     *
-     * @var {Service}
-     */
     @service modalsManager;
-
-    /**
-     * Inject the `hostRouter` service
-     *
-     * @var {Service}
-     */
     @service hostRouter;
-
-    /**
-     * Inject the `crud` service
-     *
-     * @var {Service}
-     */
     @service crud;
-
-    /**
-     * Inject the `fetch` service
-     *
-     * @var {Service}
-     */
     @service fetch;
+    @service abilities;
 
     /**
      * Queryable parameters for this controller's model
@@ -116,6 +63,7 @@ export default class GroupsIndexController extends Controller {
             label: this.intl.t('iam.common.name'),
             valuePath: 'name',
             cellComponent: 'table/cell/anchor',
+            permission: 'iam view group',
             onClick: this.editGroup,
             width: '20%',
             sortable: false,
@@ -150,7 +98,7 @@ export default class GroupsIndexController extends Controller {
             ddButtonText: false,
             ddButtonIcon: 'ellipsis-h',
             ddButtonIconPrefix: 'fas',
-            ddMenuLabel: 'Contact Actions',
+            ddMenuLabel: this.intl.t('iam.groups.index.group-actions'),
             cellClassNames: 'overflow-visible',
             wrapperClass: 'flex items-center justify-end mx-2',
             width: '10%',
@@ -158,11 +106,13 @@ export default class GroupsIndexController extends Controller {
                 {
                     label: this.intl.t('iam.groups.index.edit-group'),
                     fn: this.editGroup,
+                    permission: 'iam view group',
                 },
                 {
                     label: this.intl.t('iam.groups.index.delete-group-label'),
                     fn: this.deleteGroup,
                     className: 'text-red-700 hover:text-red-800',
+                    permission: 'iam delete group',
                 },
             ],
         },
@@ -225,17 +175,31 @@ export default class GroupsIndexController extends Controller {
      * @void
      */
     @action createGroup() {
+        const formPermission = 'iam create group';
         const group = this.store.createRecord('group', { users: [] });
 
         this.editGroup(group, {
             title: this.intl.t('iam.groups.index.new-group'),
+            acceptButtonText: this.intl.t('common.confirm'),
+            acceptButtonIcon: 'check',
+            acceptButtonDisabled: this.abilities.cannot(formPermission),
+            acceptButtonHelpText: this.abilities.cannot(formPermission) ? this.intl.t('common.unauthorized') : null,
+            formPermission,
             group,
-            confirm: (modal) => {
+            confirm: async (modal) => {
                 modal.startLoading();
-                return group.save().then(() => {
+
+                if (this.abilities.cannot(formPermission)) {
+                    return this.notifications.warning(this.intl.t('common.permissions-required-for-changes'));
+                }
+                try {
+                    await group.save();
                     this.notifications.success(this.intl.t('iam.groups.index.new-group-created'));
                     return this.hostRouter.refresh();
-                });
+                } catch (error) {
+                    this.notifications.serverError(error);
+                    modal.stopLoading();
+                }
             },
         });
     }
@@ -246,8 +210,14 @@ export default class GroupsIndexController extends Controller {
      * @void
      */
     @action editGroup(group, options = {}) {
+        const formPermission = 'iam update group';
         this.modalsManager.show('modals/group-form', {
             title: this.intl.t('iam.groups.index.edit-group-title'),
+            acceptButtonText: this.intl.t('common.save-changes'),
+            acceptButtonIcon: 'save',
+            acceptButtonDisabled: this.abilities.cannot(formPermission),
+            acceptButtonHelpText: this.abilities.cannot(formPermission) ? this.intl.t('common.unauthorized') : null,
+            formPermission,
             group,
             lastSelectedUser: null,
             removeUser: (user) => {
@@ -257,12 +227,21 @@ export default class GroupsIndexController extends Controller {
                 group.users.pushObject(user);
                 this.modalsManager.setOption('lastSelectedUser', null);
             },
-            confirm: (modal) => {
+            confirm: async (modal) => {
                 modal.startLoading();
-                return group.save().then(() => {
+
+                if (this.abilities.cannot(formPermission)) {
+                    return this.notifications.warning(this.intl.t('common.permissions-required-for-changes'));
+                }
+
+                try {
+                    await group.save();
                     this.notifications.success(this.intl.t('iam.groups.index.changes-group-save'));
                     return this.hostRouter.refresh();
-                });
+                } catch (error) {
+                    this.notifications.serverError(error);
+                    modal.stopLoading();
+                }
             },
             ...options,
         });
@@ -279,12 +258,16 @@ export default class GroupsIndexController extends Controller {
         this.modalsManager.confirm({
             title: this.intl.t('iam.groups.index.delete-group-title', { groupName }),
             body: this.intl.t('iam.groups.index.data-assosciated-this-group-deleted'),
-            confirm: (modal) => {
+            confirm: async (modal) => {
                 modal.startLoading();
-                return group.destroyRecord().then((group) => {
+                try {
+                    await group.destroyRecord();
                     this.notifications.success(this.intl.t('iam.groups.index.delete-group-success-message', { name: group.name }));
-                    this.hostRouter.refresh();
-                });
+                    return this.hostRouter.refresh();
+                } catch (error) {
+                    this.notifications.serverError(error);
+                    modal.stopLoading();
+                }
             },
         });
     }

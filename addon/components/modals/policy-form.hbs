@@ -1,22 +1,19 @@
 <Modal::Default @modalIsOpened={{@modalIsOpened}} @options={{@options}} @confirm={{@onConfirm}} @decline={{@onDecline}}>
     <div class="modal-body-container" ...attributes>
-        <div class="input-group">
-            <label>
-                {{t "iam.components.modals.policy-form.policy-name"}}
-            </label>
-            <Input @value={{@options.policy.name}} @type="text" class="w-full form-input" placeholder={{t "iam.components.modals.policy-form.enter-name-your-policy"}} />
-        </div>
-        <div class="input-group">
-            <label>
-                {{t "iam.components.modals.policy-form.policy-description"}}
-            </label>
-            <Input @value={{@options.policy.description}} @type="text" class="w-full form-input" placeholder={{t "iam.components.modals.policy-form.enter-description-your-policy"}} />
-        </div>
-        <div class="input-group">
-            <label>
-                {{t "iam.components.modals.policy-form.select-permissions"}}
-            </label>
-            <PermissionPicker @selected={{@options.policy.permissions}} @onChange={{fn (mut @options.policy.permissions)}} />
-        </div>
+        <InputGroup
+            @value={{@options.policy.name}}
+            @name={{t "iam.components.modals.policy-form.policy-name"}}
+            @placeholder={{t "iam.components.modals.policy-form.enter-name-your-policy"}}
+            @disabled={{cannot @options.formPermission}}
+        />
+        <InputGroup
+            @value={{@options.policy.description}}
+            @name={{t "iam.components.modals.policy-form.policy-description"}}
+            @placeholder={{t "iam.components.modals.policy-form.enter-description-your-policy"}}
+            @disabled={{cannot @options.formPermission}}
+        />
+        <InputGroup @name={{t "iam.components.modals.policy-form.select-permissions"}}>
+            <PermissionPicker @selected={{@options.policy.permissions}} @onChange={{fn (mut @options.policy.permissions)}} @disabled={{cannot @options.formPermission}} />
+        </InputGroup>
     </div>
 </Modal::Default>
