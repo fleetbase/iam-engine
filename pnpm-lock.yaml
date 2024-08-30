@@ -15,11 +15,11 @@ importers:
         specifier: ^7.23.2
         version: 7.23.2
       '@fleetbase/ember-core':
-        specifier: ^0.2.16
-        version: 0.2.16(@ember/string@3.1.1)(@ember/test-helpers@3.2.0(ember-source@5.4.0(@babel/core@7.23.2)(@glimmer/component@1.1.2(@babel/core@7.23.2))(rsvp@4.8.5)(webpack@5.89.0))(webpack@5.89.0))(ember-resolver@11.0.1(ember-source@5.4.0(@babel/core@7.23.2)(@glimmer/component@1.1.2(@babel/core@7.23.2))(rsvp@4.8.5)(webpack@5.89.0)))(ember-source@5.4.0(@babel/core@7.23.2)(@glimmer/component@1.1.2(@babel/core@7.23.2))(rsvp@4.8.5)(webpack@5.89.0))(webpack@5.89.0)
+        specifier: ^0.2.17
+        version: 0.2.17(@ember/string@3.1.1)(@ember/test-helpers@3.2.0(ember-source@5.4.0(@babel/core@7.23.2)(@glimmer/component@1.1.2(@babel/core@7.23.2))(rsvp@4.8.5)(webpack@5.89.0))(webpack@5.89.0))(ember-resolver@11.0.1(ember-source@5.4.0(@babel/core@7.23.2)(@glimmer/component@1.1.2(@babel/core@7.23.2))(rsvp@4.8.5)(webpack@5.89.0)))(ember-source@5.4.0(@babel/core@7.23.2)(@glimmer/component@1.1.2(@babel/core@7.23.2))(rsvp@4.8.5)(webpack@5.89.0))(webpack@5.89.0)
       '@fleetbase/ember-ui':
-        specifier: ^0.2.22
-        version: 0.2.22(@ember/test-helpers@3.2.0(ember-source@5.4.0(@babel/core@7.23.2)(@glimmer/component@1.1.2(@babel/core@7.23.2))(rsvp@4.8.5)(webpack@5.89.0))(webpack@5.89.0))(@glimmer/component@1.1.2(@babel/core@7.23.2))(@glimmer/tracking@1.1.2)(ember-resolver@11.0.1(ember-source@5.4.0(@babel/core@7.23.2)(@glimmer/component@1.1.2(@babel/core@7.23.2))(rsvp@4.8.5)(webpack@5.89.0)))(ember-source@5.4.0(@babel/core@7.23.2)(@glimmer/component@1.1.2(@babel/core@7.23.2))(rsvp@4.8.5)(webpack@5.89.0))(postcss@8.4.35)(rollup@2.79.1)(tracked-built-ins@3.3.0)(webpack@5.89.0)
+        specifier: ^0.2.24
+        version: 0.2.24(@ember/test-helpers@3.2.0(ember-source@5.4.0(@babel/core@7.23.2)(@glimmer/component@1.1.2(@babel/core@7.23.2))(rsvp@4.8.5)(webpack@5.89.0))(webpack@5.89.0))(@glimmer/component@1.1.2(@babel/core@7.23.2))(@glimmer/tracking@1.1.2)(ember-resolver@11.0.1(ember-source@5.4.0(@babel/core@7.23.2)(@glimmer/component@1.1.2(@babel/core@7.23.2))(rsvp@4.8.5)(webpack@5.89.0)))(ember-source@5.4.0(@babel/core@7.23.2)(@glimmer/component@1.1.2(@babel/core@7.23.2))(rsvp@4.8.5)(webpack@5.89.0))(postcss@8.4.35)(rollup@2.79.1)(tracked-built-ins@3.3.0)(webpack@5.89.0)
       '@fortawesome/ember-fontawesome':
         specifier: ^2.0.0
         version: 2.0.0(ember-source@5.4.0(@babel/core@7.23.2)(@glimmer/component@1.1.2(@babel/core@7.23.2))(rsvp@4.8.5)(webpack@5.89.0))(rollup@2.79.1)(webpack@5.89.0)
@@ -1450,12 +1450,12 @@ packages:
     peerDependencies:
       ember-source: '>= 4.0.0'
 
-  '@fleetbase/ember-core@0.2.16':
-    resolution: {integrity: sha512-9IrOvmh5C3ZLuQB8WX5BHtGBiMqrTNArsxQ7AGK/unHwwcXKHSKBMqxI4ZjqzBLIp5x/G3Y/ext/qJywiBaxRg==}
+  '@fleetbase/ember-core@0.2.17':
+    resolution: {integrity: sha512-4xtkBYDOmLUD2kIFl90Rg+G4BS7BdTXB2jf654VzsWxtV6vhjiFOeMBn/BErT8wnx0Re/7jdcQ3sdrJjBf1gBg==}
     engines: {node: '>= 18'}
 
-  '@fleetbase/ember-ui@0.2.22':
-    resolution: {integrity: sha512-uPsd0lluupjZ0YoknH0aJ7Pfhmfqd3+y1K8w/Q2K+VAA6rCLQ+VQQrugsbikH0jP4OnoiGKQWFyexQVGNZm1ew==}
+  '@fleetbase/ember-ui@0.2.24':
+    resolution: {integrity: sha512-EAPdgz3SDgLVqEn165lfdamS7xI3rszVO6P1EwLgLdzpOFleI6rzVX4WfhGhB/CXJTtjVlr74RSbV0gPDMp/tQ==}
     engines: {node: '>= 18'}
 
   '@fleetbase/intl-lint@0.0.1':
@@ -9901,9 +9901,9 @@ snapshots:
 
   '@csstools/postcss-cascade-layers@4.0.6(postcss@8.4.35)':
     dependencies:
-      '@csstools/selector-specificity': 3.1.1(postcss-selector-parser@6.1.0)
+      '@csstools/selector-specificity': 3.1.1(postcss-selector-parser@6.1.2)
       postcss: 8.4.35
-      postcss-selector-parser: 6.1.0
+      postcss-selector-parser: 6.1.2
 
   '@csstools/postcss-color-function@3.0.19(postcss@8.4.35)':
     dependencies:
@@ -9982,9 +9982,9 @@ snapshots:
 
   '@csstools/postcss-is-pseudo-class@4.0.8(postcss@8.4.35)':
     dependencies:
-      '@csstools/selector-specificity': 3.1.1(postcss-selector-parser@6.1.0)
+      '@csstools/selector-specificity': 3.1.1(postcss-selector-parser@6.1.2)
       postcss: 8.4.35
-      postcss-selector-parser: 6.1.0
+      postcss-selector-parser: 6.1.2
 
   '@csstools/postcss-light-dark-function@1.0.8(postcss@8.4.35)':
     dependencies:
@@ -10069,7 +10069,7 @@ snapshots:
   '@csstools/postcss-scope-pseudo-class@3.0.1(postcss@8.4.35)':
     dependencies:
       postcss: 8.4.35
-      postcss-selector-parser: 6.1.0
+      postcss-selector-parser: 6.1.2
 
   '@csstools/postcss-stepped-value-functions@3.0.10(postcss@8.4.35)':
     dependencies:
@@ -10095,17 +10095,17 @@ snapshots:
     dependencies:
       postcss: 8.4.35
 
-  '@csstools/selector-resolve-nested@1.1.0(postcss-selector-parser@6.1.0)':
+  '@csstools/selector-resolve-nested@1.1.0(postcss-selector-parser@6.1.2)':
     dependencies:
-      postcss-selector-parser: 6.1.0
+      postcss-selector-parser: 6.1.2
 
   '@csstools/selector-specificity@3.0.1(postcss-selector-parser@6.0.15)':
     dependencies:
       postcss-selector-parser: 6.0.15
 
-  '@csstools/selector-specificity@3.1.1(postcss-selector-parser@6.1.0)':
+  '@csstools/selector-specificity@3.1.1(postcss-selector-parser@6.1.2)':
     dependencies:
-      postcss-selector-parser: 6.1.0
+      postcss-selector-parser: 6.1.2
 
   '@csstools/utilities@1.0.0(postcss@8.4.35)':
     dependencies:
@@ -10318,7 +10318,7 @@ snapshots:
 
   '@ember/render-modifiers@2.1.0(@babel/core@7.25.2)(ember-source@5.4.0(@babel/core@7.23.2)(@glimmer/component@1.1.2(@babel/core@7.23.2))(rsvp@4.8.5)(webpack@5.89.0))':
     dependencies:
-      '@embroider/macros': 1.16.2
+      '@embroider/macros': 1.16.5
       ember-cli-babel: 7.26.11
       ember-modifier-manager-polyfill: 1.2.0(@babel/core@7.25.2)
       ember-source: 5.4.0(@babel/core@7.23.2)(@glimmer/component@1.1.2(@babel/core@7.23.2))(rsvp@4.8.5)(webpack@5.89.0)
@@ -10367,7 +10367,7 @@ snapshots:
 
   '@embroider/addon-shim@1.8.9':
     dependencies:
-      '@embroider/shared-internals': 2.6.1
+      '@embroider/shared-internals': 2.6.2
       broccoli-funnel: 3.0.8
       common-ancestor-path: 1.0.1
       semver: 7.6.0
@@ -10520,7 +10520,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@fleetbase/ember-core@0.2.16(@ember/string@3.1.1)(@ember/test-helpers@3.2.0(ember-source@5.4.0(@babel/core@7.23.2)(@glimmer/component@1.1.2(@babel/core@7.23.2))(rsvp@4.8.5)(webpack@5.89.0))(webpack@5.89.0))(ember-resolver@11.0.1(ember-source@5.4.0(@babel/core@7.23.2)(@glimmer/component@1.1.2(@babel/core@7.23.2))(rsvp@4.8.5)(webpack@5.89.0)))(ember-source@5.4.0(@babel/core@7.23.2)(@glimmer/component@1.1.2(@babel/core@7.23.2))(rsvp@4.8.5)(webpack@5.89.0))(webpack@5.89.0)':
+  '@fleetbase/ember-core@0.2.17(@ember/string@3.1.1)(@ember/test-helpers@3.2.0(ember-source@5.4.0(@babel/core@7.23.2)(@glimmer/component@1.1.2(@babel/core@7.23.2))(rsvp@4.8.5)(webpack@5.89.0))(webpack@5.89.0))(ember-resolver@11.0.1(ember-source@5.4.0(@babel/core@7.23.2)(@glimmer/component@1.1.2(@babel/core@7.23.2))(rsvp@4.8.5)(webpack@5.89.0)))(ember-source@5.4.0(@babel/core@7.23.2)(@glimmer/component@1.1.2(@babel/core@7.23.2))(rsvp@4.8.5)(webpack@5.89.0))(webpack@5.89.0)':
     dependencies:
       '@babel/core': 7.25.2
       compress-json: 3.1.0
@@ -10553,13 +10553,13 @@ snapshots:
       - utf-8-validate
       - webpack
 
-  '@fleetbase/ember-ui@0.2.22(@ember/test-helpers@3.2.0(ember-source@5.4.0(@babel/core@7.23.2)(@glimmer/component@1.1.2(@babel/core@7.23.2))(rsvp@4.8.5)(webpack@5.89.0))(webpack@5.89.0))(@glimmer/component@1.1.2(@babel/core@7.23.2))(@glimmer/tracking@1.1.2)(ember-resolver@11.0.1(ember-source@5.4.0(@babel/core@7.23.2)(@glimmer/component@1.1.2(@babel/core@7.23.2))(rsvp@4.8.5)(webpack@5.89.0)))(ember-source@5.4.0(@babel/core@7.23.2)(@glimmer/component@1.1.2(@babel/core@7.23.2))(rsvp@4.8.5)(webpack@5.89.0))(postcss@8.4.35)(rollup@2.79.1)(tracked-built-ins@3.3.0)(webpack@5.89.0)':
+  '@fleetbase/ember-ui@0.2.24(@ember/test-helpers@3.2.0(ember-source@5.4.0(@babel/core@7.23.2)(@glimmer/component@1.1.2(@babel/core@7.23.2))(rsvp@4.8.5)(webpack@5.89.0))(webpack@5.89.0))(@glimmer/component@1.1.2(@babel/core@7.23.2))(@glimmer/tracking@1.1.2)(ember-resolver@11.0.1(ember-source@5.4.0(@babel/core@7.23.2)(@glimmer/component@1.1.2(@babel/core@7.23.2))(rsvp@4.8.5)(webpack@5.89.0)))(ember-source@5.4.0(@babel/core@7.23.2)(@glimmer/component@1.1.2(@babel/core@7.23.2))(rsvp@4.8.5)(webpack@5.89.0))(postcss@8.4.35)(rollup@2.79.1)(tracked-built-ins@3.3.0)(webpack@5.89.0)':
     dependencies:
       '@babel/core': 7.25.2
       '@ember/render-modifiers': 2.1.0(@babel/core@7.25.2)(ember-source@5.4.0(@babel/core@7.23.2)(@glimmer/component@1.1.2(@babel/core@7.23.2))(rsvp@4.8.5)(webpack@5.89.0))
       '@ember/string': 3.1.1
       '@embroider/addon': 0.30.0
-      '@embroider/macros': 1.16.2
+      '@embroider/macros': 1.16.5
       '@fleetbase/ember-accounting': 0.0.1(ember-source@5.4.0(@babel/core@7.23.2)(@glimmer/component@1.1.2(@babel/core@7.23.2))(rsvp@4.8.5)(webpack@5.89.0))
       '@floating-ui/dom': 1.6.10
       '@fortawesome/ember-fontawesome': 2.0.0(ember-source@5.4.0(@babel/core@7.23.2)(@glimmer/component@1.1.2(@babel/core@7.23.2))(rsvp@4.8.5)(webpack@5.89.0))(rollup@2.79.1)(webpack@5.89.0)
@@ -13310,7 +13310,7 @@ snapshots:
   css-blank-pseudo@6.0.2(postcss@8.4.35):
     dependencies:
       postcss: 8.4.35
-      postcss-selector-parser: 6.1.0
+      postcss-selector-parser: 6.1.2
 
   css-color-converter@2.0.0:
     dependencies:
@@ -13322,9 +13322,9 @@ snapshots:
 
   css-has-pseudo@6.0.5(postcss@8.4.35):
     dependencies:
-      '@csstools/selector-specificity': 3.1.1(postcss-selector-parser@6.1.0)
+      '@csstools/selector-specificity': 3.1.1(postcss-selector-parser@6.1.2)
       postcss: 8.4.35
-      postcss-selector-parser: 6.1.0
+      postcss-selector-parser: 6.1.2
       postcss-value-parser: 4.2.0
 
   css-loader@5.2.7(webpack@5.89.0):
@@ -13529,8 +13529,8 @@ snapshots:
 
   ember-animated@1.1.4(@ember/test-helpers@3.2.0(ember-source@5.4.0(@babel/core@7.23.2)(@glimmer/component@1.1.2(@babel/core@7.23.2))(rsvp@4.8.5)(webpack@5.89.0))(webpack@5.89.0))(ember-source@5.4.0(@babel/core@7.23.2)(@glimmer/component@1.1.2(@babel/core@7.23.2))(rsvp@4.8.5)(webpack@5.89.0)):
     dependencies:
-      '@embroider/addon-shim': 1.8.7
-      '@embroider/macros': 1.16.2
+      '@embroider/addon-shim': 1.8.9
+      '@embroider/macros': 1.16.5
       '@embroider/util': 1.13.2(ember-source@5.4.0(@babel/core@7.23.2)(@glimmer/component@1.1.2(@babel/core@7.23.2))(rsvp@4.8.5)(webpack@5.89.0))
       assert-never: 1.2.1
       ember-element-helper: 0.8.6(ember-source@5.4.0(@babel/core@7.23.2)(@glimmer/component@1.1.2(@babel/core@7.23.2))(rsvp@4.8.5)(webpack@5.89.0))
@@ -13641,7 +13641,7 @@ snapshots:
 
   ember-basic-dropdown@7.3.0(@babel/core@7.25.2)(@ember/string@3.1.1)(ember-source@5.4.0(@babel/core@7.23.2)(@glimmer/component@1.1.2(@babel/core@7.23.2))(rsvp@4.8.5)(webpack@5.89.0))(webpack@5.89.0):
     dependencies:
-      '@embroider/macros': 1.16.2
+      '@embroider/macros': 1.16.5
       '@embroider/util': 1.13.2(ember-source@5.4.0(@babel/core@7.23.2)(@glimmer/component@1.1.2(@babel/core@7.23.2))(rsvp@4.8.5)(webpack@5.89.0))
       '@glimmer/component': 1.1.2(@babel/core@7.25.2)
       '@glimmer/tracking': 1.1.2
@@ -14419,7 +14419,7 @@ snapshots:
 
   ember-element-helper@0.8.6(ember-source@5.4.0(@babel/core@7.23.2)(@glimmer/component@1.1.2(@babel/core@7.23.2))(rsvp@4.8.5)(webpack@5.89.0)):
     dependencies:
-      '@embroider/addon-shim': 1.8.7
+      '@embroider/addon-shim': 1.8.9
       '@embroider/util': 1.13.2(ember-source@5.4.0(@babel/core@7.23.2)(@glimmer/component@1.1.2(@babel/core@7.23.2))(rsvp@4.8.5)(webpack@5.89.0))
       ember-source: 5.4.0(@babel/core@7.23.2)(@glimmer/component@1.1.2(@babel/core@7.23.2))(rsvp@4.8.5)(webpack@5.89.0)
     transitivePeerDependencies:
@@ -14455,8 +14455,8 @@ snapshots:
     dependencies:
       '@ember/test-helpers': 3.2.0(ember-source@5.4.0(@babel/core@7.23.2)(@glimmer/component@1.1.2(@babel/core@7.23.2))(rsvp@4.8.5)(webpack@5.89.0))(webpack@5.89.0)
       '@ember/test-waiters': 3.1.0
-      '@embroider/addon-shim': 1.8.7
-      '@embroider/macros': 1.16.2
+      '@embroider/addon-shim': 1.8.9
+      '@embroider/macros': 1.16.5
       '@glimmer/component': 1.1.2(@babel/core@7.23.2)
       '@glimmer/tracking': 1.1.2
       ember-auto-import: 2.7.4(webpack@5.89.0)
@@ -14469,7 +14469,7 @@ snapshots:
 
   ember-focus-trap@1.1.0(ember-source@5.4.0(@babel/core@7.23.2)(@glimmer/component@1.1.2(@babel/core@7.23.2))(rsvp@4.8.5)(webpack@5.89.0)):
     dependencies:
-      '@embroider/addon-shim': 1.8.7
+      '@embroider/addon-shim': 1.8.9
       ember-source: 5.4.0(@babel/core@7.23.2)(@glimmer/component@1.1.2(@babel/core@7.23.2))(rsvp@4.8.5)(webpack@5.89.0)
       focus-trap: 6.9.4
     transitivePeerDependencies:
@@ -14591,7 +14591,7 @@ snapshots:
 
   ember-math-helpers@4.0.0(ember-source@5.4.0(@babel/core@7.23.2)(@glimmer/component@1.1.2(@babel/core@7.23.2))(rsvp@4.8.5)(webpack@5.89.0)):
     dependencies:
-      '@embroider/addon-shim': 1.8.7
+      '@embroider/addon-shim': 1.8.9
       ember-source: 5.4.0(@babel/core@7.23.2)(@glimmer/component@1.1.2(@babel/core@7.23.2))(rsvp@4.8.5)(webpack@5.89.0)
     transitivePeerDependencies:
       - supports-color
@@ -14626,7 +14626,7 @@ snapshots:
 
   ember-modifier@4.2.0(@babel/core@7.23.2)(ember-source@5.4.0(@babel/core@7.23.2)(@glimmer/component@1.1.2(@babel/core@7.23.2))(rsvp@4.8.5)(webpack@5.89.0)):
     dependencies:
-      '@embroider/addon-shim': 1.8.7
+      '@embroider/addon-shim': 1.8.9
       decorator-transforms: 2.0.0(@babel/core@7.25.2)
       ember-cli-normalize-entity-name: 1.0.0
       ember-cli-string-utils: 1.1.0
@@ -14909,7 +14909,7 @@ snapshots:
 
   ember-truth-helpers@4.0.3(ember-source@5.4.0(@babel/core@7.23.2)(@glimmer/component@1.1.2(@babel/core@7.23.2))(rsvp@4.8.5)(webpack@5.89.0)):
     dependencies:
-      '@embroider/addon-shim': 1.8.7
+      '@embroider/addon-shim': 1.8.9
       ember-functions-as-helper-polyfill: 2.1.2(ember-source@5.4.0(@babel/core@7.23.2)(@glimmer/component@1.1.2(@babel/core@7.23.2))(rsvp@4.8.5)(webpack@5.89.0))
       ember-source: 5.4.0(@babel/core@7.23.2)(@glimmer/component@1.1.2(@babel/core@7.23.2))(rsvp@4.8.5)(webpack@5.89.0)
     transitivePeerDependencies:
@@ -15790,7 +15790,7 @@ snapshots:
       graceful-fs: 4.2.11
       iferr: 0.1.5
       imurmurhash: 0.1.4
-      readable-stream: 1.0.34
+      readable-stream: 2.3.8
 
   fs.realpath@1.0.0: {}
 
@@ -17540,7 +17540,7 @@ snapshots:
   postcss-attribute-case-insensitive@6.0.3(postcss@8.4.35):
     dependencies:
       postcss: 8.4.35
-      postcss-selector-parser: 6.1.0
+      postcss-selector-parser: 6.1.2
 
   postcss-clamp@4.1.0(postcss@8.4.35):
     dependencies:
@@ -17597,12 +17597,12 @@ snapshots:
       '@csstools/css-parser-algorithms': 2.7.1(@csstools/css-tokenizer@2.4.1)
       '@csstools/css-tokenizer': 2.4.1
       postcss: 8.4.35
-      postcss-selector-parser: 6.1.0
+      postcss-selector-parser: 6.1.2
 
   postcss-dir-pseudo-class@8.0.1(postcss@8.4.35):
     dependencies:
       postcss: 8.4.35
-      postcss-selector-parser: 6.1.0
+      postcss-selector-parser: 6.1.2
 
   postcss-double-position-gradients@5.0.7(postcss@8.4.35):
     dependencies:
@@ -17619,12 +17619,12 @@ snapshots:
   postcss-focus-visible@9.0.1(postcss@8.4.35):
     dependencies:
       postcss: 8.4.35
-      postcss-selector-parser: 6.1.0
+      postcss-selector-parser: 6.1.2
 
   postcss-focus-within@8.0.1(postcss@8.4.35):
     dependencies:
       postcss: 8.4.35
-      postcss-selector-parser: 6.1.0
+      postcss-selector-parser: 6.1.2
 
   postcss-font-variant@5.0.0(postcss@8.4.35):
     dependencies:
@@ -17709,10 +17709,10 @@ snapshots:
 
   postcss-nesting@12.1.5(postcss@8.4.35):
     dependencies:
-      '@csstools/selector-resolve-nested': 1.1.0(postcss-selector-parser@6.1.0)
-      '@csstools/selector-specificity': 3.1.1(postcss-selector-parser@6.1.0)
+      '@csstools/selector-resolve-nested': 1.1.0(postcss-selector-parser@6.1.2)
+      '@csstools/selector-specificity': 3.1.1(postcss-selector-parser@6.1.2)
       postcss: 8.4.35
-      postcss-selector-parser: 6.1.0
+      postcss-selector-parser: 6.1.2
 
   postcss-opacity-percentage@2.0.0(postcss@8.4.35):
     dependencies:
@@ -17800,7 +17800,7 @@ snapshots:
   postcss-pseudo-class-any-link@9.0.2(postcss@8.4.35):
     dependencies:
       postcss: 8.4.35
-      postcss-selector-parser: 6.1.0
+      postcss-selector-parser: 6.1.2
 
   postcss-replace-overflow-wrap@4.0.0(postcss@8.4.35):
     dependencies:
@@ -17815,7 +17815,7 @@ snapshots:
   postcss-selector-not@7.0.2(postcss@8.4.35):
     dependencies:
       postcss: 8.4.35
-      postcss-selector-parser: 6.1.0
+      postcss-selector-parser: 6.1.2
 
   postcss-selector-parser@6.0.15:
     dependencies:
@@ -19053,7 +19053,7 @@ snapshots:
       postcss-js: 4.0.1(postcss@8.4.35)
       postcss-load-config: 4.0.2(postcss@8.4.35)
       postcss-nested: 6.2.0(postcss@8.4.35)
-      postcss-selector-parser: 6.1.0
+      postcss-selector-parser: 6.1.2
       resolve: 1.22.8
       sucrase: 3.35.0
     transitivePeerDependencies:

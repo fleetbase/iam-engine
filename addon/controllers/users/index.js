@@ -15,13 +15,14 @@ export default class UsersIndexController extends Controller {
     @service crud;
     @service fetch;
     @service abilities;
+    @service filters;
 
     /**
      * Queryable parameters for this controller's model
      *
      * @var {Array}
      */
-    queryParams = ['page', 'limit', 'sort', 'query', 'type', 'created_by', 'updated_by', 'status'];
+    queryParams = ['page', 'limit', 'sort', 'query', 'type', 'created_by', 'updated_by', 'status', 'role', 'name'];
 
     /**
      * The current page of data being viewed
@@ -89,6 +90,11 @@ export default class UsersIndexController extends Controller {
             valuePath: 'role.name',
             sortable: false,
             width: '10%',
+            filterable: true,
+            filterComponent: 'filter/model',
+            filterComponentPlaceholder: 'Select role',
+            filterParam: 'role',
+            model: 'role',
         },
         {
             label: this.intl.t('iam.common.status'),
@@ -96,6 +102,10 @@ export default class UsersIndexController extends Controller {
             sortable: false,
             width: '12%',
             cellComponent: 'table/cell/status',
+            filterable: true,
+            filterComponent: 'filter/select',
+            filterParam: 'status',
+            filterOptions: ['pending', 'active'],
         },
         {
             label: this.intl.t('iam.users.index.last-login'),
@@ -141,6 +151,11 @@ export default class UsersIndexController extends Controller {
                 {
                     label: this.intl.t('iam.users.index.edit-user'),
                     fn: this.editUser,
+                    permission: 'iam view user',
+                },
+                {
+                    label: this.intl.t('iam.users.index.view-user-permissions'),
+                    fn: this.viewUserPermissions,
                     permission: 'iam view user',
                 },
                 {
@@ -227,6 +242,21 @@ export default class UsersIndexController extends Controller {
     @action exportUsers() {
         const selections = this.table.selectedRows.map((_) => _.id);
         this.crud.export('users', { params: { selections } });
+    }
+
+    /**
+     * View user permissions.
+     *
+     * @param {UserModel} user
+     * @memberof UsersIndexController
+     */
+    @action viewUserPermissions(user) {
+        this.modalsManager.show('modals/view-user-permissions', {
+            title: this.intl.t('iam.components.modals.view-user-permissions.view-permissions', { userName: user.name }),
+            hideDeclineButton: true,
+            acceptButtonText: this.intl.t('common.done'),
+            user,
+        });
     }
 
     /**
@@ -415,5 +445,12 @@ export default class UsersIndexController extends Controller {
                 }
             },
         });
+    }
+
+    /**
+     * Reload data.
+     */
+    @action reload() {
+        return this.hostRouter.refresh();
     }
 }

@@ -10,6 +10,8 @@ export default class UsersIndexRoute extends Route {
         sort: { refreshModel: true },
         query: { refreshModel: true },
         status: { refreshModel: true },
+        role: { refreshModel: true },
+        name: { refreshModel: true },
     };
 
     model(params) {

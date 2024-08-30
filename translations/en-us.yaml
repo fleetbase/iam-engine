@@ -29,6 +29,9 @@ iam:
     status: Status
     type: Type
     user: Users
+    service: Service
+    reload: Reload
+    reload-data: Reload data
   components:
     widget:
       metrics:
@@ -52,6 +55,12 @@ iam:
       view-policy-permissions:
         view-permissions: >-
           Policy: {policyName} Permissions
+      view-role-permissions:
+        view-permissions: >-
+          Role: {roleName} Permissions
+      view-user-permissions:
+        view-permissions: >-
+          User: {userName} Permissions
       role-form:
         role-name: Role Name
         enter-name-for-this-role: Enter a name for this role
@@ -110,6 +119,8 @@ iam:
       changes-role-saved: Changes to role saved.
       data-assosciated-this-role-deleted: Are you sure you want to delete this role? All data assosciated with this role will also be deleted. This action cannot be undone.
       role-deleted: Role {roleName} deleted.
+      unable-changes-role-warning: Unable to make changes to a {roleType} role.
+      unable-delete-role-warning: Unable to delete a {roleType} role.
   users:
     index:
       delete-user-title: Delete {userName} user
@@ -124,6 +135,7 @@ iam:
       updated-at: Updated At
       user-actions: User Actions
       edit-user: Edit user...
+      view-user-permissions: View permissions...
       re-send-invitation: Re-send invitation...
       deactivate-user: Deactivate user...
       activate-user: Activate user...

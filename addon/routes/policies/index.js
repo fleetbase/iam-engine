@@ -10,6 +10,8 @@ export default class PoliciesIndexRoute extends Route {
         sort: { refreshModel: true },
         query: { refreshModel: true },
         status: { refreshModel: true },
+        service: { refreshModel: true },
+        type: { refreshModel: true },
     };
 
     model(params) {

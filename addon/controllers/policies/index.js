@@ -15,13 +15,15 @@ export default class PoliciesIndexController extends Controller {
     @service crud;
     @service fetch;
     @service abilities;
+    @service filters;
+    @service iam;
 
     /**
      * Queryable parameters for this controller's model
      *
      * @var {Array}
      */
-    queryParams = ['page', 'limit', 'sort', 'query', 'type', 'created_by', 'updated_by', 'status'];
+    queryParams = ['page', 'limit', 'sort', 'query', 'type', 'created_by', 'updated_by', 'status', 'service', 'type'];
 
     /**
      * The current page of data being viewed
@@ -52,6 +54,20 @@ export default class PoliciesIndexController extends Controller {
     @tracked sort = 'name';
 
     /**
+     * All services for policies.
+     *
+     * @memberof PoliciesIndexController
+     */
+    @tracked services = [];
+
+    /**
+     * All types of policies.
+     *
+     * @memberof PoliciesIndexController
+     */
+    @tracked types = this.iam.schemeTypes;
+
+    /**
      * All columns applicable for roles
      *
      * @var {Array}
@@ -70,13 +86,27 @@ export default class PoliciesIndexController extends Controller {
             label: this.intl.t('iam.common.description'),
             valuePath: 'description',
             sortable: false,
-            width: '40%',
+            width: '35%',
+        },
+        {
+            label: this.intl.t('iam.common.service'),
+            valuePath: 'service',
+            sortable: false,
+            width: '10%',
+            filterable: true,
+            filterComponent: 'filter/select',
+            filterOptions: this.services,
         },
         {
             label: this.intl.t('iam.common.type'),
             valuePath: 'type',
             sortable: false,
-            width: '20%',
+            width: '10%',
+            filterable: true,
+            filterComponent: 'filter/select',
+            filterOptionLabel: 'name',
+            filterOptionValue: 'id',
+            filterOptions: this.types,
         },
         {
             label: this.intl.t('iam.common.create'),
@@ -95,7 +125,7 @@ export default class PoliciesIndexController extends Controller {
             ddMenuLabel: this.intl.t('iam.policies.index.policy-actions'),
             cellClassNames: 'overflow-visible',
             wrapperClass: 'flex items-center justify-end mx-2',
-            width: '10%',
+            width: '15%',
             actions: [
                 {
                     label: this.intl.t('iam.policies.index.edit-policy'),
@@ -111,6 +141,19 @@ export default class PoliciesIndexController extends Controller {
             ],
         },
     ];
+
+    /**
+     * Creates an instance of PoliciesIndexController.
+     * @memberof PoliciesIndexController
+     */
+    constructor() {
+        super(...arguments);
+        this.iam.getServices.perform({
+            onSuccess: (services) => {
+                this.services = services;
+            },
+        });
+    }
 
     /**
      * The search task.
@@ -284,5 +327,12 @@ export default class PoliciesIndexController extends Controller {
      */
     @action exportPolicies() {
         this.crud.export('policy');
+    }
+
+    /**
+     * Reload data.
+     */
+    @action reload() {
+        return this.hostRouter.refresh();
     }
 }

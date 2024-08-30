@@ -12,16 +12,18 @@ export default class RolesIndexController extends Controller {
     @service currentUser;
     @service modalsManager;
     @service hostRouter;
+    @service filters;
     @service crud;
     @service fetch;
     @service abilities;
+    @service iam;
 
     /**
      * Queryable parameters for this controller's model
      *
      * @var {Array}
      */
-    queryParams = ['page', 'limit', 'sort', 'query'];
+    queryParams = ['page', 'limit', 'sort', 'query', 'service', 'type'];
 
     /**
      * The current page of data being viewed
@@ -52,6 +54,20 @@ export default class RolesIndexController extends Controller {
     @tracked sort = '-created_at';
 
     /**
+     * All services for roles.
+     *
+     * @memberof RolesIndexController
+     */
+    @tracked services = [];
+
+    /**
+     * All types of roles.
+     *
+     * @memberof RolesIndexController
+     */
+    @tracked types = this.iam.schemeTypes;
+
+    /**
      * All columns applicable for roles
      *
      * @var {Array}
@@ -63,20 +79,40 @@ export default class RolesIndexController extends Controller {
             cellComponent: 'table/cell/anchor',
             permission: 'iam view role',
             onClick: this.editRole,
-            width: '30%',
+            width: '20%',
             sortable: false,
         },
         {
             label: this.intl.t('iam.common.description'),
             valuePath: 'description',
             sortable: false,
-            width: '50%',
+            width: '28%',
+        },
+        {
+            label: this.intl.t('iam.common.service'),
+            valuePath: 'service',
+            sortable: false,
+            width: '12%',
+            filterable: true,
+            filterComponent: 'filter/select',
+            filterOptions: this.services,
+        },
+        {
+            label: this.intl.t('iam.common.type'),
+            valuePath: 'type',
+            sortable: false,
+            width: '13%',
+            filterable: true,
+            filterComponent: 'filter/select',
+            filterOptionLabel: 'name',
+            filterOptionValue: 'id',
+            filterOptions: this.types,
         },
         {
             label: this.intl.t('iam.common.create'),
             valuePath: 'createdAt',
             sortable: false,
-            width: '10%',
+            width: '12%',
             tooltip: true,
             cellClassNames: 'overflow-visible',
         },
@@ -89,7 +125,7 @@ export default class RolesIndexController extends Controller {
             ddMenuLabel: this.intl.t('iam.roles.index.role-actions'),
             cellClassNames: 'overflow-visible',
             wrapperClass: 'flex items-center justify-end mx-2',
-            width: '10%',
+            width: '15%',
             actions: [
                 {
                     label: this.intl.t('iam.roles.index.edit-role'),
@@ -105,6 +141,19 @@ export default class RolesIndexController extends Controller {
             ],
         },
     ];
+
+    /**
+     * Creates an instance of RolesIndexController.
+     * @memberof RolesIndexController
+     */
+    constructor() {
+        super(...arguments);
+        this.iam.getServices.perform({
+            onSuccess: (services) => {
+                this.services = services;
+            },
+        });
+    }
 
     /**
      * The search task.
@@ -189,6 +238,10 @@ export default class RolesIndexController extends Controller {
      * @void
      */
     @action editRole(role, options = {}) {
+        if (!role.is_mutable) {
+            return this.viewRolePermissions(role);
+        }
+
         const formPermission = 'iam update role';
         this.modalsManager.show('modals/role-form', {
             title: this.intl.t('iam.roles.index.edit-role-title'),
@@ -227,6 +280,10 @@ export default class RolesIndexController extends Controller {
      * @void
      */
     @action deleteRole(role) {
+        if (!role.is_deletable) {
+            return this.notifications.warning(this.intl.t('iam.roles.index.unable-delete-role-warning', { roleType: role.type }));
+        }
+
         this.modalsManager.confirm({
             title: `Delete (${role.name || 'Untitled'}) role`,
             body: this.intl.t('iam.roles.index.data-assosciated-this-role-deleted'),
@@ -245,11 +302,33 @@ export default class RolesIndexController extends Controller {
     }
 
     /**
+     * View role permissions
+     *
+     * @param {RoleModel} role
+     * @memberof RolesIndexController
+     */
+    @action viewRolePermissions(role) {
+        this.modalsManager.show('modals/view-role-permissions', {
+            title: this.intl.t('iam.components.modals.view-role-permissions.view-permissions', { roleName: role.name }),
+            hideDeclineButton: true,
+            acceptButtonText: this.intl.t('common.done'),
+            role,
+        });
+    }
+
+    /**
      * Toggles dialog to export roles
      *
      * @void
      */
     @action exportRoles() {
         this.crud.export('role');
+    }
+
+    /**
+     * Reload data.
+     */
+    @action reload() {
+        return this.hostRouter.refresh();
     }
 }

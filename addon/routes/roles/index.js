@@ -9,6 +9,8 @@ export default class RolesIndexRoute extends Route {
         limit: { refreshModel: true },
         sort: { refreshModel: true },
         query: { refreshModel: true },
+        service: { refreshModel: true },
+        type: { refreshModel: true },
     };
 
     model(params) {
