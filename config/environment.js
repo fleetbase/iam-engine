@@ -6,6 +6,12 @@ module.exports = function (environment) {
         modulePrefix: name,
         environment,
         mountedEngineRoutePrefix: getMountedEngineRoutePrefix(),
+
+        'ember-leaflet': {
+            excludeCSS: true,
+            excludeJS: true,
+            excludeImages: true,
+        },
     };
 
     return ENV;
