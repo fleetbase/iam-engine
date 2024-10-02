@@ -42,7 +42,7 @@
     },
     "dependencies": {
         "@fleetbase/ember-core": "^0.2.19",
-        "@fleetbase/ember-ui": "^0.2.31",
+        "@fleetbase/ember-ui": "^0.2.32",
         "@babel/core": "^7.23.2",
         "ember-cli-babel": "^8.2.0",
         "ember-cli-htmlbars": "^6.3.0",
