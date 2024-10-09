@@ -179,6 +179,13 @@ export default class UsersIndexController extends Controller {
                     isVisible: (user) => user.get('session_status') === 'inactive' || (this.currentUser.user.is_admin && user.get('session_status') === 'pending'),
                 },
                 {
+                    label: this.intl.t('iam.users.index.verify-user'),
+                    fn: this.verifyUser,
+                    className: 'text-danger',
+                    permission: 'iam verify user',
+                    isVisible: (user) => !user.get('email_verified_at'),
+                },
+                {
                     label: this.intl.t('iam.users.index.delete-user'),
                     fn: this.deleteUser,
                     className: 'text-danger',
@@ -402,7 +409,7 @@ export default class UsersIndexController extends Controller {
     }
 
     /**
-     * Deactivates a user
+     * Activate a user
      *
      * @void
      */
@@ -415,6 +422,29 @@ export default class UsersIndexController extends Controller {
                 try {
                     await user.activate();
                     this.notifications.success(this.intl.t('iam.users.index.re-activate-user-success-message', { userName: user.get('name') }));
+                    this.hostRouter.refresh();
+                } catch (error) {
+                    this.notifications.serverError(error);
+                    modal.stopLoading();
+                }
+            },
+        });
+    }
+
+    /**
+     * Verify a user
+     *
+     * @void
+     */
+    @action verifyUser(user) {
+        this.modalsManager.confirm({
+            title: this.intl.t('iam.users.index.verify-user-title', { userName: user.get('name') }),
+            body: this.intl.t('iam.users.index.verify-user-manually-prompt'),
+            confirm: async (modal) => {
+                modal.startLoading();
+                try {
+                    await user.verify();
+                    this.notifications.success(this.intl.t('iam.users.index.user-verified-success-message', { userName: user.get('name') }));
                     this.hostRouter.refresh();
                 } catch (error) {
                     this.notifications.serverError(error);

@@ -129,6 +129,9 @@ iam:
       deactivate-user-success-message: User {userName} deactivated.
       re-activate-user-title: Re-activate {userName} user's account
       re-activate-user-success-message: User {userName} activated.
+      verify-user-title: Manually Verify user {userName} account
+      verify-user-manually-prompt: By clicking confirm this action will manually verify the users email address. Are you sure you want to bypass verification for this user?
+      user-verified-success-message: User {userName} verified.
       delete-users: Delete Users
       last-login: Last Login
       created-at: Created At
@@ -140,6 +143,7 @@ iam:
       deactivate-user: Deactivate user...
       activate-user: Activate user...
       delete-user: Delete user...
+      verify-user: Verify user...
       new-user: New User
       user-invited-join-your-organization-success: User has been invited to join your organization.
       edit-user-title: Edit User
