@@ -186,6 +186,12 @@ export default class UsersIndexController extends Controller {
                     isVisible: (user) => !user.get('email_verified_at'),
                 },
                 {
+                    label: this.intl.t('iam.users.index.change-user-password'),
+                    fn: this.changeUserPassword,
+                    className: 'text-danger',
+                    isVisible: (user) => this.abilities.can('iam change-password-for user') || user.role_name === 'Administrator' || user.is_admin === true,
+                },
+                {
                     label: this.intl.t('iam.users.index.delete-user'),
                     fn: this.deleteUser,
                     className: 'text-danger',
@@ -451,6 +457,18 @@ export default class UsersIndexController extends Controller {
                     modal.stopLoading();
                 }
             },
+        });
+    }
+
+    /**
+     * Change password for a user
+     *
+     * @void
+     */
+    @action changeUserPassword(user) {
+        this.modalsManager.show('modals/change-user-password', {
+            keepOpen: true,
+            user,
         });
     }
 

@@ -204,7 +204,7 @@ export default class RolesIndexController extends Controller {
      */
     @action createRole() {
         const formPermission = 'iam create role';
-        const role = this.store.createRecord('role');
+        const role = this.store.createRecord('role', { is_mutable: true });
 
         this.editRole(role, {
             title: this.intl.t('iam.roles.index.new-role'),
@@ -213,16 +213,30 @@ export default class RolesIndexController extends Controller {
             acceptButtonDisabled: this.abilities.cannot(formPermission),
             acceptButtonHelpText: this.abilities.cannot(formPermission) ? this.intl.t('common.unauthorized') : null,
             formPermission,
+            keepOpen: true,
             confirm: async (modal) => {
                 modal.startLoading();
 
+                if (!role.name || typeof role.name !== 'string') {
+                    modal.stopLoading();
+                    return this.notifications.warning('Role name is required.');
+                }
+
+                const roleName = role.name.toLowerCase();
+                if (roleName === 'administrator' || roleName.startsWith('admin')) {
+                    modal.stopLoading();
+                    return this.notifications.error('Creating a role with name "Administrator" or a role name that starts with "Admin" is prohibited, as the name is system reserved.');
+                }
+
                 if (this.abilities.cannot(formPermission)) {
+                    modal.stopLoading();
                     return this.notifications.warning(this.intl.t('common.permissions-required-for-changes'));
                 }
 
                 try {
                     await role.save();
                     this.notifications.success(this.intl.t('iam.roles.index.new-role-create'));
+                    modal.done();
                     return this.hostRouter.refresh();
                 } catch (error) {
                     this.notifications.serverError(error);
@@ -249,6 +263,7 @@ export default class RolesIndexController extends Controller {
             acceptButtonIcon: 'save',
             acceptButtonDisabled: this.abilities.cannot(formPermission),
             acceptButtonHelpText: this.abilities.cannot(formPermission) ? this.intl.t('common.unauthorized') : null,
+            keepOpen: true,
             formPermission,
             role,
             setPermissions: (permissions) => {
@@ -257,13 +272,26 @@ export default class RolesIndexController extends Controller {
             confirm: async (modal) => {
                 modal.startLoading();
 
+                if (!role.name || typeof role.name !== 'string') {
+                    modal.stopLoading();
+                    return this.notifications.warning('Role name is required.');
+                }
+
+                const roleName = role.name.toLowerCase();
+                if (roleName === 'administrator' || roleName.startsWith('admin')) {
+                    modal.stopLoading();
+                    return this.notifications.error('Creating a role with name "Administrator" or a role name that starts with "Admin" is prohibited, as the name is system reserved.');
+                }
+
                 if (this.abilities.cannot(formPermission)) {
+                    modal.stopLoading();
                     return this.notifications.warning(this.intl.t('common.permissions-required-for-changes'));
                 }
 
                 try {
                     await role.save();
                     this.notifications.success(this.intl.t('iam.roles.index.changes-role-saved'));
+                    modal.done();
                     return this.hostRouter.refresh();
                 } catch (error) {
                     this.notifications.serverError(error);
