@@ -1,0 +1,176 @@
+iam:
+  extension-name: IAM
+  common:
+    address: Хаяг
+    bulk-action: Бөөнөөр үйлдэл хийх
+    country: Улс
+    create: Үүсгэсэн
+    dashboard: Хяналтын самбар
+    description: Тайлбар
+    email: И-мэйл
+    export: Экспортлох
+    group: Бүлгүүд
+    member: Гишүүд
+    name: Нэр
+    new: Шинэ
+    permission: Зөвшөөрөл
+    phone: Утас
+    photo: Зураг
+    policy: Бодлого
+    policies: Бодлогууд
+    attach-policies: Бодлогуудыг хавсаргах
+    select-policy: Бодлого сонгох
+    attach-permissions: Зөвшөөрлүүдийг хавсаргах
+    attach-inline-permissions: Шугаман зөвшөөрлүүдийг хавсаргах
+    select-permissions: Зөвшөөрлүүдийг сонгох
+    primary: Үндсэн
+    role: Үүрэг
+    roles: Үүргүүд
+    status: Төлөв
+    type: Төрөл
+    user: Хэрэглэгчид
+    service: Үйлчилгээ
+    reload: Дахин ачааллах
+    reload-data: Өгөгдлийг дахин ачааллах
+  components:
+    widget:
+      metrics:
+        title: IAM хэмжүүрүүд
+    modals:
+      group-details:
+        group-name: Бүлгийн нэр
+      group-form:
+        group-name: Бүлгийн нэр
+        group-description: Бүлгийн тайлбар
+        select-users-add-group: Бүлэгт нэмэх хэрэглэгчдийг сонгоно уу
+        search-select-users-add-group: Энэ бүлэгт нэмэх хэрэглэгчдийг хайж сонгоно
+          уу.
+        select-user-add-group: Бүлэгт нэмэх хэрэглэгчийг сонгоно уу
+        no-user-add-group: Бүлэгт нэмэгдсэн хэрэглэгчгүй байна
+      policy-form:
+        policy-name: Бодлогын нэр
+        enter-name-your-policy: Бодлогын нэрээ оруулна уу
+        policy-description: Бодлогын тайлбар
+        enter-description-your-policy: Бодлогын тайлбараа оруулна уу
+        select-permissions: Зөвшөөрлүүдийг сонгох
+      view-policy-permissions:
+        view-permissions: 'Бодлого: {policyName} Зөвшөөрлүүд'
+      view-role-permissions:
+        view-permissions: 'Үүрэг: {roleName} Зөвшөөрлүүд'
+      view-user-permissions:
+        view-permissions: 'Хэрэглэгч: {userName} Зөвшөөрлүүд'
+      role-form:
+        role-name: Үүргийн нэр
+        enter-name-for-this-role: Энэхүү үүргийн нэрийг оруулна уу
+        role-description: Үүргийн тайлбар
+        enter-description-your-role: Үүргийнхээ тайлбарыг оруулна уу
+        select-permission: Зөвшөөрлийг сонгоно уу
+    table:
+      group-members:
+        no-member: Гишүүн байхгүй
+    permission-picker:
+      selected: 'Сонгогдсон: '
+      search-permissions-keyword: Зөвшөөрлийг түлхүүр үгээр хайх
+      loading-permission: Зөвшөөрлийг ачаалж байна...
+  groups:
+    index:
+      untitled: Гарчиггүй
+      delete-group-title: '{groupName} бүлгийг устгах'
+      delete-group-success-message: '{name} бүлэг устгагдлаа.'
+      delete-group: Бүлгүүдийг устгах
+      created: Бүтээсэн
+      edit-group: Бүлгийг засах...
+      delete-group-label: Бүлгийг устгах...
+      new-group: Шинэ бүлэг
+      new-group-created: Шинэ бүлэг үүслээ.
+      edit-group-title: Бүлгийг засах
+      group-actions: Бүлгийн үйлдлүүд
+      changes-group-save: Бүлгийн өөрчлөлтүүд хадгалагдлаа.
+      data-assosciated-this-group-deleted: Та энэ бүлгийг устгахдаа итгэлтэй байна
+        уу? Энэ бүлэгтэй холбоотой бүх өгөгдөл мөн устгагдана. Энэ үйлдлийг буцаах
+        боломжгүй.
+  policies:
+    index:
+      title: Бодлогууд
+      delete-policies: Бодлогуудыг устгах
+      contact-action: Холбоо барих үйлдлүүд
+      edit-policy: Бодлогыг засах...
+      delete-policy: Бодлогыг устгах...
+      new-policy: Шинэ бодлого
+      new-policy-created: Шинэ бодлого үүслээ.
+      unable-changes-policy-warning: '{policyType} бодлогод өөрчлөлт оруулах боломжгүй.'
+      edit-policy-title: Бодлогыг засах
+      policy-actions: Бодлогын үйлдлүүд
+      changes-policy-saved-success: Бодлогын өөрчлөлтүүд хадгалагдлаа.
+      unable-delete-policy-warning: '{policyType} бодлогыг устгах боломжгүй.'
+      data-assosciated-this-policy-deleted: Та энэ бодлогыг устгахдаа итгэлтэй байна
+        уу? Энэ бодлоготой холбоотой бүх өгөгдөл мөн устгагдана. Энэ үйлдлийг буцаах
+        боломжгүй.
+      policy-deleted: '{policyName} бодлого устгагдлаа.'
+  roles:
+    index:
+      delete-roles: Үүргүүдийг устгах
+      contact-action: Холбоо барих үйлдлүүд
+      edit-role: Үүргийг засах...
+      delete-role: Үүргийг устгах...
+      new-role: Шинэ үүрэг
+      new-role-create: Шинэ үүрэг үүслээ
+      edit-role-title: Үүргийг засах
+      role-actions: Үүргийн үйлдлүүд
+      changes-role-saved: Үүргийн өөрчлөлтүүд хадгалагдлаа.
+      data-assosciated-this-role-deleted: Та энэ үүргийг устгахдаа итгэлтэй байна
+        уу? Энэ үүрэгтэй холбоотой бүх өгөгдөл мөн устгагдана. Энэ үйлдлийг буцаах
+        боломжгүй.
+      role-deleted: '{roleName} үүрэг устгагдлаа.'
+      unable-changes-role-warning: '{roleType} үүрэгт өөрчлөлт оруулах боломжгүй.'
+      unable-delete-role-warning: '{roleType} үүргийг устгах боломжгүй.'
+  users:
+    index:
+      delete-user-title: '{userName} хэрэглэгчийг устгах'
+      delete-user-success-message: '{userName} хэрэглэгч устгагдлаа.'
+      deactivate-user-title: '{userName} хэрэглэгчийн бүртгэлийг идэвхгүй болгох'
+      deactivate-user-success-message: Хэрэглэгч {userName} идэвхгүй боллоо.
+      re-activate-user-title: '{userName} хэрэглэгчийн дансыг дахин идэвхжүүлэх'
+      re-activate-user-success-message: Хэрэглэгч {userName} идэвхжлээ.
+      verify-user-title: Гар аргаар {userName} хэрэглэгчийн дансыг баталгаажуулах
+      verify-user-manually-prompt: Баталгаажуулах товчийг дарснаар хэрэглэгчийн имэйл
+        хаягийг гар аргаар баталгаажуулна. Та энэ хэрэглэгчийн баталгаажуулалтыг алгасахыг
+        хүсч байна уу?
+      user-verified-success-message: Хэрэглэгч {userName} баталгаажлаа.
+      delete-users: Хэрэглэгчдийг устгах
+      last-login: Сүүлд нэвтэрсэн
+      created-at: Үүсгэсэн огноо
+      updated-at: Шинэчилсэн огноо
+      user-actions: Хэрэглэгчийн үйлдлүүд
+      edit-user: Хэрэглэгчийг засах...
+      view-user-permissions: Зөвшөөрлийг харах...
+      re-send-invitation: Урилгыг дахин илгээх...
+      deactivate-user: Хэрэглэгчийг идэвхгүй болгох...
+      activate-user: Хэрэглэгчийг идэвхжүүлэх...
+      delete-user: Хэрэглэгчийг устгах...
+      verify-user: Хэрэглэгчийг баталгаажуулах...
+      change-user-password: Хэрэглэгчийн нууц үгийг солих...
+      new-user: Шинэ хэрэглэгч
+      user-invited-join-your-organization-success: Хэрэглэгчийг танай байгууллагад
+        нэгдэх урилгаар илгээсэн.
+      edit-user-title: Хэрэглэгчийг засах
+      user-changes-saved-success: Хэрэглэгчийн өөрчлөлтүүд хадгалагдлаа.
+      error-you-cant-delete-yourself: Та өөрийгөө устгах боломжгүй
+      data-assosciated-user-delete: Та энэ хэрэглэгчийг устгахдаа итгэлтэй байна уу?
+        Энэ хэрэглэгчтэй холбоотой бүх өгөгдөл мөн устах болно. Энэ үйлдлийг буцаах
+        боломжгүй.
+      access-account-or-resources-unless-re-activated: Та энэ хэрэглэгчийг идэвхгүй
+        болгохдоо итгэлтэй байна уу? Энэ хэрэглэгч дахин идэвхжүүлэгдэхгүй бол данс
+        болон нөөцөд хандах боломжгүй болно.
+      this-user-will-regain-access-to-your-organization: Та энэ хэрэглэгчийг дахин
+        идэвхжүүлэхдээ итгэлтэй байна уу? Энэ хэрэглэгч танай байгууллагад дахин нэвтрэх
+        эрхтэй болно.
+      resend-invitation-to-join-organization: Байгууллагад нэгдэх урилгыг дахин илгээх
+      confirming-fleetbase-will-re-send-invitation-for-user-to-join-your-organization: Баталгаажуулснаар
+        Fleetbase энэ хэрэглэгчийг танай байгууллагад нэгдэх урилгыг дахин илгээх
+        болно.
+      invitation-resent: Урилгыг дахин илгээв.
+  application:
+    access-management: Хандах эрхийн удирдлага
+  home:
+    identity-access-management: Нэвтрэлт ба Хандах эрхийн удирдлага

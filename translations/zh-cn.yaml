@@ -1,0 +1,159 @@
+iam:
+  extension-name: IAM
+  common:
+    address: 地址
+    bulk-action: 批量操作
+    country: 国家
+    create: 创建时间
+    dashboard: 仪表盘
+    description: 描述
+    email: 电子邮件
+    export: 导出
+    group: 组
+    member: 成员
+    name: 名称
+    new: 新建
+    permission: 权限
+    phone: 电话
+    photo: 照片
+    policy: 策略
+    policies: 策略
+    attach-policies: 附加策略
+    select-policy: 选择策略
+    attach-permissions: 附加权限
+    attach-inline-permissions: 附加内联权限
+    select-permissions: 选择权限
+    primary: 主要
+    role: 角色
+    roles: 角色
+    status: 状态
+    type: 类型
+    user: 用户
+    service: 服务
+    reload: 重新加载
+    reload-data: 重新加载数据
+  components:
+    widget:
+      metrics:
+        title: 身份与访问管理指标
+    modals:
+      group-details:
+        group-name: 组名
+      group-form:
+        group-name: 组名
+        group-description: 组描述
+        select-users-add-group: 选择用户添加到组
+        search-select-users-add-group: 搜索并选择用户添加到此组。
+        select-user-add-group: 选择用户添加到组
+        no-user-add-group: 未添加用户到组
+      policy-form:
+        policy-name: 策略名称
+        enter-name-your-policy: 输入您的策略名称
+        policy-description: 策略描述
+        enter-description-your-policy: 输入您的策略描述
+        select-permissions: 选择权限
+      view-policy-permissions:
+        view-permissions: 策略：{policyName} 权限
+      view-role-permissions:
+        view-permissions: 角色：{roleName} 权限
+      view-user-permissions:
+        view-permissions: 用户：{userName} 权限
+      role-form:
+        role-name: 角色名称
+        enter-name-for-this-role: 为此角色输入名称
+        role-description: 角色描述
+        enter-description-your-role: 请输入您的角色描述
+        select-permission: 选择权限
+    table:
+      group-members:
+        no-member: 无成员
+    permission-picker:
+      selected: 已选择：
+      search-permissions-keyword: 按关键字搜索权限
+      loading-permission: 正在加载权限...
+  groups:
+    index:
+      untitled: 未命名
+      delete-group-title: 删除 {groupName} 组
+      delete-group-success-message: 组 {name} 已删除。
+      delete-group: 删除组
+      created: 创建时间
+      edit-group: 编辑组...
+      delete-group-label: 删除组...
+      new-group: 新建组
+      new-group-created: 新组已创建。
+      edit-group-title: 编辑组
+      group-actions: 组操作
+      changes-group-save: 组更改已保存。
+      data-assosciated-this-group-deleted: 您确定要删除此组吗？与此组相关的所有数据也将被删除。此操作无法撤销。
+  policies:
+    index:
+      title: 策略
+      delete-policies: 删除策略
+      contact-action: 联系操作
+      edit-policy: 编辑策略...
+      delete-policy: 删除策略...
+      new-policy: 新建策略
+      new-policy-created: 新策略已创建。
+      unable-changes-policy-warning: 无法更改 {policyType} 策略。
+      edit-policy-title: 编辑策略
+      policy-actions: 策略操作
+      changes-policy-saved-success: 策略更改已保存。
+      unable-delete-policy-warning: 无法删除 {policyType} 策略。
+      data-assosciated-this-policy-deleted: 您确定要删除此策略吗？与此策略相关的所有数据也将被删除。此操作无法撤销。
+      policy-deleted: 策略 {policyName} 已删除。
+  roles:
+    index:
+      delete-roles: 删除角色
+      contact-action: 联系操作
+      edit-role: 编辑角色...
+      delete-role: 删除角色...
+      new-role: 新建角色
+      new-role-create: 新角色已创建
+      edit-role-title: 编辑角色
+      role-actions: 角色操作
+      changes-role-saved: 角色更改已保存。
+      data-assosciated-this-role-deleted: 您确定要删除此角色吗？与此角色相关的所有数据也将被删除。此操作无法撤销。
+      role-deleted: 角色 {roleName} 已删除。
+      unable-changes-role-warning: 无法更改 {roleType} 角色。
+      unable-delete-role-warning: 无法删除 {roleType} 角色。
+  users:
+    index:
+      delete-user-title: 删除用户 {userName}
+      delete-user-success-message: 用户 {userName} 已删除。
+      deactivate-user-title: 停用用户 {userName} 的账户
+      deactivate-user-success-message: 用户 {userName} 已停用。
+      re-activate-user-title: 重新激活用户 {userName} 的账户
+      re-activate-user-success-message: 用户 {userName} 已激活。
+      verify-user-title: 手动验证用户 {userName} 账户
+      verify-user-manually-prompt: 点击确认将手动验证用户的电子邮件地址。您确定要绕过此用户的验证吗？
+      user-verified-success-message: 用户 {userName} 已验证。
+      delete-users: 删除用户
+      last-login: 最后登录
+      created-at: 创建时间
+      updated-at: 更新时间
+      user-actions: 用户操作
+      edit-user: 编辑用户...
+      view-user-permissions: 查看权限...
+      re-send-invitation: 重新发送邀请...
+      deactivate-user: 停用用户...
+      activate-user: 激活用户...
+      delete-user: 删除用户...
+      verify-user: 验证用户...
+      change-user-password: 更改用户密码...
+      new-user: 新用户
+      user-invited-join-your-organization-success: 用户已被邀请加入您的组织。
+      edit-user-title: 编辑用户
+      user-changes-saved-success: 用户更改已保存。
+      error-you-cant-delete-yourself: 您不能删除自己
+      data-assosciated-user-delete: 您确定要删除此用户吗？与此用户相关的所有数据也将被删除。此操作无法撤销。
+      access-account-or-resources-unless-re-activated: 您确定要停用此用户吗？除非重新激活，否则该用户将无法访问其账户或资源。
+      this-user-will-regain-access-to-your-organization: 您确定要重新激活此用户吗？该用户将重新获得访问您的组织的权限。
+      resend-invitation-to-join-organization: 重新发送加入组织的邀请
+      confirming-fleetbase-will-re-send-invitation-for-user-to-join-your-organization: 确认后，Fleetbase
+        将重新发送邀请，邀请此用户加入您的组织。
+      invitation-resent: 邀请已重新发送。
+  application:
+    access-management: 访问管理
+  home:
+    identity-access-management: 身份与访问管理
