@@ -5,7 +5,7 @@ iam:
     bulk-action: إجراء جماعي
     country: البلد
     create: تم الإنشاء
-    dashboard: لوحة القيادة
+    dashboard: لوحة التحكم
     description: الوصف
     email: البريد الإلكتروني
     export: تصدير
@@ -19,61 +19,57 @@ iam:
     policy: السياسة
     policies: السياسات
     attach-policies: إرفاق السياسات
-    select-policy: اختيار السياسة
+    select-policy: اختر سياسة
     attach-permissions: إرفاق الأذونات
     attach-inline-permissions: إرفاق الأذونات المضمنة
-    select-permissions: اختيار الأذونات
-    primary: الأساسي
+    select-permissions: اختر الأذونات
+    primary: أساسي
     role: الدور
     roles: الأدوار
     status: الحالة
     type: النوع
-    user: المستخدمين
+    user: المستخدمون
     service: الخدمة
     reload: إعادة تحميل
     reload-data: إعادة تحميل البيانات
   components:
     widget:
       metrics:
-        title: مقاييس IAM
+        title: مقاييس إدارة الهوية والوصول
     modals:
-      group-details:    
+      group-details:
         group-name: اسم المجموعة
       group-form:
         group-name: اسم المجموعة
         group-description: وصف المجموعة
-        select-users-add-group: اختيار المستخدمين لإضافتهم إلى المجموعة
-        search-select-users-add-group: البحث واختيار المستخدمين لإضافتهم إلى هذه المجموعة.
-        select-user-add-group: اختيار المستخدم لإضافته إلى المجموعة
-        no-user-add-group: لم تتم إضافة مستخدمين إلى المجموعة
+        select-users-add-group: اختر المستخدمين لإضافتهم إلى المجموعة
+        search-select-users-add-group: ابحث واختر المستخدمين لإضافتهم إلى هذه المجموعة.
+        select-user-add-group: اختر مستخدمًا لإضافته إلى المجموعة
+        no-user-add-group: لا يوجد مستخدمون مضافون إلى المجموعة
       policy-form:
         policy-name: اسم السياسة
         enter-name-your-policy: أدخل اسمًا لسياساتك
         policy-description: وصف السياسة
         enter-description-your-policy: أدخل وصفًا لسياساتك
-        select-permissions: اختيار الأذونات
+        select-permissions: اختر الأذونات
       view-policy-permissions:
-        view-permissions: >-
-          السياسة: {policyName} الأذونات
+        view-permissions: 'السياسة: {policyName} الأذونات'
       view-role-permissions:
-        view-permissions: >-
-          الدور: {roleName} الأذونات
+        view-permissions: 'الدور: {roleName} الأذونات'
       view-user-permissions:
-        view-permissions: >-
-          المستخدم: {userName} الأذونات
+        view-permissions: 'المستخدم: {userName} الأذونات'
       role-form:
         role-name: اسم الدور
         enter-name-for-this-role: أدخل اسمًا لهذا الدور
         role-description: وصف الدور
         enter-description-your-role: أدخل وصفًا لدورك
-        select-permission: اختيار الأذونات
+        select-permission: اختر الأذونات
     table:
       group-members:
         no-member: لا يوجد أعضاء
     permission-picker:
-      selected: >-
-        المختار: 
-      search-permissions-keyword: البحث عن الأذونات بالكلمات الرئيسية
+      selected: 'المحدد: '
+      search-permissions-keyword: ابحث عن الأذونات باستخدام الكلمات المفتاحية
       loading-permission: جارٍ تحميل الأذونات...
   groups:
     index:
@@ -82,42 +78,47 @@ iam:
       delete-group-success-message: تم حذف المجموعة {name}.
       delete-group: حذف المجموعات
       created: تم الإنشاء
-      edit-group: تحرير المجموعة...
+      edit-group: تعديل المجموعة...
       delete-group-label: حذف المجموعة...
       new-group: مجموعة جديدة
       new-group-created: تم إنشاء مجموعة جديدة.
-      edit-group-title: تحرير المجموعة
+      edit-group-title: تعديل المجموعة
       group-actions: إجراءات المجموعة
-      changes-group-save: تم حفظ التغييرات في المجموعة.
-      data-assosciated-this-group-deleted: هل أنت متأكد أنك تريد حذف هذه المجموعة؟ سيتم أيضًا حذف جميع البيانات المرتبطة بهذه المجموعة. لا يمكن التراجع عن هذا الإجراء.
+      changes-group-save: تم حفظ التغييرات على المجموعة.
+      data-assosciated-this-group-deleted: هل أنت متأكد أنك تريد حذف هذه المجموعة؟
+        سيتم حذف جميع البيانات المرتبطة بهذه المجموعة أيضًا. لا يمكن التراجع عن هذا
+        الإجراء.
   policies:
     index:
       title: السياسات
       delete-policies: حذف السياسات
       contact-action: إجراءات الاتصال
-      edit-policy: تحرير السياسة...
+      edit-policy: تعديل السياسة...
       delete-policy: حذف السياسة...
       new-policy: سياسة جديدة
       new-policy-created: تم إنشاء سياسة جديدة.
       unable-changes-policy-warning: غير قادر على إجراء تغييرات على سياسة {policyType}.
-      edit-policy-title: تحرير السياسة
+      edit-policy-title: تعديل السياسة
       policy-actions: إجراءات السياسة
-      changes-policy-saved-success: تم حفظ التغييرات في السياسة.
+      changes-policy-saved-success: تم حفظ التغييرات على السياسة.
       unable-delete-policy-warning: غير قادر على حذف سياسة {policyType}.
-      data-assosciated-this-policy-deleted: هل أنت متأكد أنك تريد حذف هذه السياسة؟ سيتم أيضًا حذف جميع البيانات المرتبطة بهذه السياسة. لا يمكن التراجع عن هذا الإجراء.
+      data-assosciated-this-policy-deleted: هل أنت متأكد أنك تريد حذف هذه السياسة؟
+        سيتم حذف جميع البيانات المرتبطة بهذه السياسة أيضًا. لا يمكن التراجع عن هذا
+        الإجراء.
       policy-deleted: تم حذف السياسة {policyName}.
   roles:
     index:
       delete-roles: حذف الأدوار
       contact-action: إجراءات الاتصال
-      edit-role: تحرير الدور...
+      edit-role: تعديل الدور...
       delete-role: حذف الدور...
       new-role: دور جديد
       new-role-create: تم إنشاء دور جديد
-      edit-role-title: تحرير الدور
+      edit-role-title: تعديل الدور
       role-actions: إجراءات الدور
-      changes-role-saved: تم حفظ التغييرات في الدور.
-      data-assosciated-this-role-deleted: هل أنت متأكد أنك تريد حذف هذا الدور؟ سيتم أيضًا حذف جميع البيانات المرتبطة بهذا الدور. لا يمكن التراجع عن هذا الإجراء.
+      changes-role-saved: تم حفظ التغييرات على الدور.
+      data-assosciated-this-role-deleted: هل أنت متأكد أنك تريد حذف هذا الدور؟ سيتم
+        حذف جميع البيانات المرتبطة بهذا الدور أيضًا. لا يمكن التراجع عن هذا الإجراء.
       role-deleted: تم حذف الدور {roleName}.
       unable-changes-role-warning: غير قادر على إجراء تغييرات على دور {roleType}.
       unable-delete-role-warning: غير قادر على حذف دور {roleType}.
@@ -129,33 +130,41 @@ iam:
       deactivate-user-success-message: تم تعطيل المستخدم {userName}.
       re-activate-user-title: إعادة تفعيل حساب المستخدم {userName}
       re-activate-user-success-message: تم تفعيل المستخدم {userName}.
+      verify-user-title: التحقق يدويًا من حساب المستخدم {userName}
+      verify-user-manually-prompt: بالنقر على تأكيد، سيتم التحقق يدويًا من عنوان البريد
+        الإلكتروني للمستخدم. هل أنت متأكد أنك تريد تجاوز التحقق لهذا المستخدم؟
+      user-verified-success-message: تم التحقق من المستخدم {userName}.
       delete-users: حذف المستخدمين
       last-login: آخر تسجيل دخول
-      created-at: تم الإنشاء في
-      updated-at: تم التحديث في
+      created-at: تاريخ الإنشاء
+      updated-at: تاريخ التحديث
       user-actions: إجراءات المستخدم
-      edit-user: تحرير المستخدم...
+      edit-user: تعديل المستخدم...
       view-user-permissions: عرض الأذونات...
       re-send-invitation: إعادة إرسال الدعوة...
       deactivate-user: تعطيل المستخدم...
       activate-user: تفعيل المستخدم...
       delete-user: حذف المستخدم...
+      verify-user: التحقق من المستخدم...
+      change-user-password: تغيير كلمة مرور المستخدم...
       new-user: مستخدم جديد
-      user-invited-join-your-organization-success: تم دعوة المستخدم للانضمام إلى مؤسستك.
-      edit-user-title: تحرير المستخدم
+      user-invited-join-your-organization-success: تمت دعوة المستخدم للانضمام إلى
+        مؤسستك.
+      edit-user-title: تعديل المستخدم
       user-changes-saved-success: تم حفظ تغييرات المستخدم.
       error-you-cant-delete-yourself: لا يمكنك حذف نفسك
-      data-assosciated-user-delete: هل أنت متأكد أنك تريد حذف هذا المستخدم؟ سيتم أيضًا حذف جميع البيانات المرتبطة بهذا المستخدم. لا يمكن التراجع عن هذا الإجراء.
-      access-account-or-resources-unless-re-activated: هل أنت متأكد أنك تريد تعطيل هذا المستخدم؟ لن يتمكن هذا المستخدم من الوصول إلى حسابه أو موارده ما لم يتم إعادة تفعيله.
-      this-user-will-regain-access-to-your-organization: هل أنت متأكد أنك تريد إعادة تفعيل هذا المستخدم؟ سيستعيد هذا المستخدم الوصول إلى مؤسستك.
-      resend-invitation-to-join-organization: إعادة إرسال الدعوة للانضمام إلى المنظمة
-      confirming-fleetbase-will-re-send-invitation-for-user-to-join-your-organization: بالتأكيد، ستعيد Fleetbase إرسال الدعوة لهذا المستخدم للانضمام إلى مؤسستك.
+      data-assosciated-user-delete: هل أنت متأكد أنك تريد حذف هذا المستخدم؟ سيتم أيضًا
+        حذف جميع البيانات المرتبطة بهذا المستخدم. لا يمكن التراجع عن هذا الإجراء.
+      access-account-or-resources-unless-re-activated: هل أنت متأكد أنك تريد تعطيل
+        هذا المستخدم؟ لن يتمكن هذا المستخدم من الوصول إلى حسابه أو الموارد إلا إذا
+        تم إعادة تفعيله.
+      this-user-will-regain-access-to-your-organization: هل أنت متأكد أنك تريد إعادة
+        تفعيل هذا المستخدم؟ سيستعيد هذا المستخدم الوصول إلى مؤسستك.
+      resend-invitation-to-join-organization: إعادة إرسال الدعوة للانضمام إلى المؤسسة
+      confirming-fleetbase-will-re-send-invitation-for-user-to-join-your-organization: بالتأكيد،
+        ستقوم Fleetbase بإعادة إرسال الدعوة لهذا المستخدم للانضمام إلى مؤسستك.
       invitation-resent: تمت إعادة إرسال الدعوة.
   application:
     access-management: إدارة الوصول
   home:
-    identity-access-management: إدارة الهوية والوصول      
-
-
-
-      
+    identity-access-management: إدارة الهوية والوصول
