@@ -1,0 +1,178 @@
+iam:
+  extension-name: IAM
+  common:
+    address: Адрес
+    bulk-action: Масово действие
+    country: Държава
+    create: Създадено
+    dashboard: Табло
+    description: Описание
+    email: Имейл
+    export: Експорт
+    group: Групи
+    member: Членове
+    name: Име
+    new: Нов
+    permission: Разрешение
+    phone: Телефон
+    photo: Снимка
+    policy: Политика
+    policies: Политики
+    attach-policies: Прикачи политики
+    select-policy: Избери политика
+    attach-permissions: Прикачи разрешения
+    attach-inline-permissions: Прикачи вградени разрешения
+    select-permissions: Избери разрешения
+    primary: Основен
+    role: Роля
+    roles: Роли
+    status: Статус
+    type: Тип
+    user: Потребители
+    service: Услуга
+    reload: Презареди
+    reload-data: Презареди данни
+  components:
+    widget:
+      metrics:
+        title: IAM Метрики
+    modals:
+      group-details:
+        group-name: Име на групата
+      group-form:
+        group-name: Име на групата
+        group-description: Описание на групата
+        select-users-add-group: Изберете потребители за добавяне в групата
+        search-select-users-add-group: Търсете и изберете потребители за добавяне
+          в тази група.
+        select-user-add-group: Изберете потребител за добавяне в групата
+        no-user-add-group: Няма добавени потребители в групата
+      policy-form:
+        policy-name: Име на политиката
+        enter-name-your-policy: Въведете име за вашата политика
+        policy-description: Описание на политиката
+        enter-description-your-policy: Въведете описание за вашата политика
+        select-permissions: Изберете разрешения
+      view-policy-permissions:
+        view-permissions: 'Политика: {policyName} Разрешения'
+      view-role-permissions:
+        view-permissions: 'Роля: {roleName} Разрешения'
+      view-user-permissions:
+        view-permissions: 'Потребител: {userName} Разрешения'
+      role-form:
+        role-name: Име на ролята
+        enter-name-for-this-role: Въведете име за тази роля
+        role-description: Описание на ролята
+        enter-description-your-role: Въведете описание за вашата роля
+        select-permission: Изберете разрешения
+    table:
+      group-members:
+        no-member: Няма членове
+    permission-picker:
+      selected: 'Избрани: '
+      search-permissions-keyword: Търсене на разрешения по ключови думи
+      loading-permission: Зареждане на разрешения...
+  groups:
+    index:
+      untitled: Без заглавие
+      delete-group-title: Изтриване на група {groupName}
+      delete-group-success-message: Група {name} изтрита.
+      delete-group: Изтриване на групи
+      created: Създадено
+      edit-group: Редактиране на група...
+      delete-group-label: Изтриване на група...
+      new-group: Нова група
+      new-group-created: Нова група създадена.
+      edit-group-title: Редактиране на група
+      group-actions: Действия с групата
+      changes-group-save: Промените в групата са запазени.
+      data-assosciated-this-group-deleted: Сигурни ли сте, че искате да изтриете тази
+        група? Всички данни, свързани с тази група, също ще бъдат изтрити. Това действие
+        не може да бъде отменено.
+  policies:
+    index:
+      title: Политики
+      delete-policies: Изтриване на политики
+      contact-action: Действия с контакти
+      edit-policy: Редактиране на политика...
+      delete-policy: Изтриване на политика...
+      new-policy: Нова политика
+      new-policy-created: Нова политика създадена.
+      unable-changes-policy-warning: Не може да се правят промени в политика от тип
+        {policyType}.
+      edit-policy-title: Редактиране на политика
+      policy-actions: Действия с политика
+      changes-policy-saved-success: Промените в политиката са запазени.
+      unable-delete-policy-warning: Не може да се изтрие политика от тип {policyType}.
+      data-assosciated-this-policy-deleted: Сигурни ли сте, че искате да изтриете
+        тази политика? Всички данни, свързани с тази политика, също ще бъдат изтрити.
+        Това действие не може да бъде отменено.
+      policy-deleted: Политика {policyName} изтрита.
+  roles:
+    index:
+      delete-roles: Изтриване на роли
+      contact-action: Действия с контакти
+      edit-role: Редактиране на роля...
+      delete-role: Изтриване на роля...
+      new-role: Нова роля
+      new-role-create: Нова роля създадена
+      edit-role-title: Редактиране на роля
+      role-actions: Действия с роля
+      changes-role-saved: Промените в ролята са запазени.
+      data-assosciated-this-role-deleted: Сигурни ли сте, че искате да изтриете тази
+        роля? Всички данни, свързани с тази роля, също ще бъдат изтрити. Това действие
+        не може да бъде отменено.
+      role-deleted: Роля {roleName} изтрита.
+      unable-changes-role-warning: Не може да се правят промени в роля от тип {roleType}.
+      unable-delete-role-warning: Не може да се изтрие роля от тип {roleType}.
+  users:
+    index:
+      delete-user-title: Изтриване на потребител {userName}
+      delete-user-success-message: Потребител {userName} изтрит.
+      deactivate-user-title: Деактивиране на акаунта на потребител {userName}
+      deactivate-user-success-message: Потребителят {userName} е деактивиран.
+      re-activate-user-title: Активиране на акаунта на потребителя {userName}
+      re-activate-user-success-message: Потребителят {userName} е активиран.
+      verify-user-title: Ръчно потвърждаване на акаунта на потребителя {userName}
+      verify-user-manually-prompt: С натискане на потвърждение това действие ще потвърди
+        ръчно имейл адреса на потребителя. Сигурни ли сте, че искате да заобиколите
+        проверката за този потребител?
+      user-verified-success-message: Потребителят {userName} е потвърден.
+      delete-users: Изтриване на потребители
+      last-login: Последно влизане
+      created-at: Създаден на
+      updated-at: Актуализиран на
+      user-actions: Действия с потребителя
+      edit-user: Редактиране на потребител...
+      view-user-permissions: Преглед на разрешения...
+      re-send-invitation: Изпращане на покана отново...
+      deactivate-user: Деактивиране на потребител...
+      activate-user: Активиране на потребител...
+      delete-user: Изтриване на потребител...
+      verify-user: Потвърждаване на потребител...
+      change-user-password: Смяна на парола на потребител...
+      new-user: Нов потребител
+      user-invited-join-your-organization-success: Потребителят е поканен да се присъедини
+        към вашата организация.
+      edit-user-title: Редактиране на потребител
+      user-changes-saved-success: Промените по потребителя са запазени.
+      error-you-cant-delete-yourself: Не можете да изтриете себе си
+      data-assosciated-user-delete: Сигурни ли сте, че искате да изтриете този потребител?
+        Всички данни, свързани с този потребител, също ще бъдат изтрити. Това действие
+        не може да бъде отменено.
+      access-account-or-resources-unless-re-activated: Сигурни ли сте, че искате да
+        деактивирате този потребител? Този потребител няма да може да получи достъп
+        до своя акаунт или ресурси, освен ако не бъде реактивиран.
+      this-user-will-regain-access-to-your-organization: Сигурни ли сте, че искате
+        да реактивирате този потребител? Този потребител ще възстанови достъпа си
+        до вашата организация.
+      resend-invitation-to-join-organization: Изпрати покана за присъединяване към
+        организацията отново
+      confirming-fleetbase-will-re-send-invitation-for-user-to-join-your-organization: С
+        потвърждението Fleetbase ще изпрати отново поканата за този потребител да
+        се присъедини към вашата организация.
+      invitation-resent: Поканата е изпратена отново.
+  application:
+    access-management: Управление на достъпа
+  home:
+    identity-access-management: Управление на идентичността и достъпа

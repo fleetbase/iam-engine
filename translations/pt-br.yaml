@@ -1,0 +1,176 @@
+iam:
+  extension-name: IAM
+  common:
+    address: Endereço
+    bulk-action: Ação em Massa
+    country: País
+    create: Criado
+    dashboard: Painel
+    description: Descrição
+    email: Email
+    export: Exportar
+    group: Grupos
+    member: Membros
+    name: Nome
+    new: Novo
+    permission: Permissão
+    phone: Telefone
+    photo: Foto
+    policy: Política
+    policies: Políticas
+    attach-policies: Anexar Políticas
+    select-policy: Selecionar Política
+    attach-permissions: Anexar Permissões
+    attach-inline-permissions: Anexar Permissões Inline
+    select-permissions: Selecionar Permissões
+    primary: Primário
+    role: Função
+    roles: Funções
+    status: Status
+    type: Tipo
+    user: Usuários
+    service: Serviço
+    reload: Recarregar
+    reload-data: Recarregar dados
+  components:
+    widget:
+      metrics:
+        title: Métricas IAM
+    modals:
+      group-details:
+        group-name: Nome do Grupo
+      group-form:
+        group-name: Nome do Grupo
+        group-description: Descrição do Grupo
+        select-users-add-group: Selecione usuários para adicionar ao grupo
+        search-select-users-add-group: Pesquise e selecione usuários para adicionar
+          a este grupo.
+        select-user-add-group: Selecione usuário para adicionar ao grupo
+        no-user-add-group: Nenhum usuário adicionado ao grupo
+      policy-form:
+        policy-name: Nome da Política
+        enter-name-your-policy: Digite um nome para sua política
+        policy-description: Descrição da Política
+        enter-description-your-policy: Digite uma descrição para sua política
+        select-permissions: Selecionar Permissões
+      view-policy-permissions:
+        view-permissions: 'Política: {policyName} Permissões'
+      view-role-permissions:
+        view-permissions: 'Função: {roleName} Permissões'
+      view-user-permissions:
+        view-permissions: 'Usuário: {userName} Permissões'
+      role-form:
+        role-name: Nome da Função
+        enter-name-for-this-role: Digite um nome para esta função
+        role-description: Descrição da Função
+        enter-description-your-role: Digite uma descrição para sua função
+        select-permission: Selecionar Permissões
+    table:
+      group-members:
+        no-member: Sem Membros
+    permission-picker:
+      selected: 'Selecionado: '
+      search-permissions-keyword: Pesquisar permissões por palavras-chave
+      loading-permission: Carregando permissões...
+  groups:
+    index:
+      untitled: Sem título
+      delete-group-title: Excluir grupo {groupName}
+      delete-group-success-message: Grupo {name} excluído.
+      delete-group: Excluir Grupos
+      created: Criado
+      edit-group: Editar grupo...
+      delete-group-label: Excluir grupo...
+      new-group: Novo Grupo
+      new-group-created: Novo grupo criado.
+      edit-group-title: Editar Grupo
+      group-actions: Ações do Grupo
+      changes-group-save: Alterações no grupo salvas.
+      data-assosciated-this-group-deleted: Tem certeza de que deseja excluir este
+        grupo? Todos os dados associados a este grupo também serão excluídos. Esta
+        ação não pode ser desfeita.
+  policies:
+    index:
+      title: Políticas
+      delete-policies: Excluir Políticas
+      contact-action: Ações de Contato
+      edit-policy: Editar política...
+      delete-policy: Excluir política...
+      new-policy: Nova Política
+      new-policy-created: Nova política criada.
+      unable-changes-policy-warning: Não é possível fazer alterações em uma política
+        {policyType}.
+      edit-policy-title: Editar Política
+      policy-actions: Ações da Política
+      changes-policy-saved-success: Alterações na política salvas.
+      unable-delete-policy-warning: Não é possível excluir uma política {policyType}.
+      data-assosciated-this-policy-deleted: Tem certeza de que deseja excluir esta
+        política? Todos os dados associados a esta política também serão excluídos.
+        Esta ação não pode ser desfeita.
+      policy-deleted: Política {policyName} excluída.
+  roles:
+    index:
+      delete-roles: Excluir Funções
+      contact-action: Ações de Contato
+      edit-role: Editar função...
+      delete-role: Excluir função...
+      new-role: Nova Função
+      new-role-create: Nova função criada
+      edit-role-title: Editar Função
+      role-actions: Ações da Função
+      changes-role-saved: Alterações na função salvas.
+      data-assosciated-this-role-deleted: Tem certeza de que deseja excluir esta função?
+        Todos os dados associados a esta função também serão excluídos. Esta ação
+        não pode ser desfeita.
+      role-deleted: Função {roleName} excluída.
+      unable-changes-role-warning: Não é possível fazer alterações em uma função {roleType}.
+      unable-delete-role-warning: Não é possível excluir uma função {roleType}.
+  users:
+    index:
+      delete-user-title: Excluir usuário {userName}
+      delete-user-success-message: Usuário {userName} excluído.
+      deactivate-user-title: Desativar conta do usuário {userName}
+      deactivate-user-success-message: Usuário {userName} desativado.
+      re-activate-user-title: Reativar conta do usuário {userName}
+      re-activate-user-success-message: Usuário {userName} ativado.
+      verify-user-title: Verificar manualmente a conta do usuário {userName}
+      verify-user-manually-prompt: Ao clicar em confirmar, esta ação verificará manualmente
+        o endereço de e-mail do usuário. Tem certeza de que deseja ignorar a verificação
+        para este usuário?
+      user-verified-success-message: Usuário {userName} verificado.
+      delete-users: Excluir Usuários
+      last-login: Último Login
+      created-at: Criado Em
+      updated-at: Atualizado Em
+      user-actions: Ações do Usuário
+      edit-user: Editar usuário...
+      view-user-permissions: Ver permissões...
+      re-send-invitation: Reenviar convite...
+      deactivate-user: Desativar usuário...
+      activate-user: Ativar usuário...
+      delete-user: Excluir usuário...
+      verify-user: Verificar usuário...
+      change-user-password: Alterar senha do usuário...
+      new-user: Novo Usuário
+      user-invited-join-your-organization-success: Usuário foi convidado para entrar
+        na sua organização.
+      edit-user-title: Editar Usuário
+      user-changes-saved-success: Alterações do usuário salvas.
+      error-you-cant-delete-yourself: Você não pode se excluir
+      data-assosciated-user-delete: Tem certeza de que deseja excluir este usuário?
+        Todos os dados associados a este usuário também serão excluídos. Esta ação
+        não pode ser desfeita.
+      access-account-or-resources-unless-re-activated: Tem certeza de que deseja desativar
+        este usuário? Este usuário não poderá mais acessar sua conta ou recursos,
+        a menos que seja reativado.
+      this-user-will-regain-access-to-your-organization: Tem certeza de que deseja
+        reativar este usuário? Este usuário recuperará o acesso à sua organização.
+      resend-invitation-to-join-organization: Reenviar convite para entrar na organização
+      confirming-fleetbase-will-re-send-invitation-for-user-to-join-your-organization: Ao
+        confirmar, o Fleetbase reenviará o convite para este usuário entrar na sua
+        organização.
+      invitation-resent: Convite reenviado.
+  application:
+    access-management: Gerenciamento de Acesso
+  home:
+    identity-access-management: Gerenciamento de Identidade e Acesso

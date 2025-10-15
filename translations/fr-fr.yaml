@@ -1,0 +1,178 @@
+iam:
+  extension-name: IAM
+  common:
+    address: Adresse
+    bulk-action: Action en masse
+    country: Pays
+    create: Créé
+    dashboard: Tableau de bord
+    description: Description
+    email: Email
+    export: Exporter
+    group: Groupes
+    member: Membres
+    name: Nom
+    new: Nouveau
+    permission: Permission
+    phone: Téléphone
+    photo: Photo
+    policy: Politique
+    policies: Politiques
+    attach-policies: Joindre des politiques
+    select-policy: Sélectionner une politique
+    attach-permissions: Joindre des permissions
+    attach-inline-permissions: Joindre des permissions en ligne
+    select-permissions: Sélectionner des permissions
+    primary: Principal
+    role: Rôle
+    roles: Rôles
+    status: Statut
+    type: Type
+    user: Utilisateurs
+    service: Service
+    reload: Recharger
+    reload-data: Recharger les données
+  components:
+    widget:
+      metrics:
+        title: Métriques IAM
+    modals:
+      group-details:
+        group-name: Nom du groupe
+      group-form:
+        group-name: Nom du groupe
+        group-description: Description du groupe
+        select-users-add-group: Sélectionnez les utilisateurs à ajouter au groupe
+        search-select-users-add-group: Recherchez et sélectionnez les utilisateurs
+          à ajouter à ce groupe.
+        select-user-add-group: Sélectionnez un utilisateur à ajouter au groupe
+        no-user-add-group: Aucun utilisateur ajouté au groupe
+      policy-form:
+        policy-name: Nom de la politique
+        enter-name-your-policy: Entrez un nom pour votre politique
+        policy-description: Description de la politique
+        enter-description-your-policy: Entrez une description pour votre politique
+        select-permissions: Sélectionner des permissions
+      view-policy-permissions:
+        view-permissions: 'Politique : {policyName} Permissions'
+      view-role-permissions:
+        view-permissions: 'Rôle : {roleName} Permissions'
+      view-user-permissions:
+        view-permissions: 'Utilisateur : {userName} Permissions'
+      role-form:
+        role-name: Nom du rôle
+        enter-name-for-this-role: Entrez un nom pour ce rôle
+        role-description: Description du rôle
+        enter-description-your-role: Entrez une description pour votre rôle
+        select-permission: Sélectionner les permissions
+    table:
+      group-members:
+        no-member: Aucun membre
+    permission-picker:
+      selected: 'Sélectionné : '
+      search-permissions-keyword: Rechercher des permissions par mots-clés
+      loading-permission: Chargement des permissions...
+  groups:
+    index:
+      untitled: Sans titre
+      delete-group-title: Supprimer le groupe {groupName}
+      delete-group-success-message: Groupe {name} supprimé.
+      delete-group: Supprimer les groupes
+      created: Créé
+      edit-group: Modifier le groupe...
+      delete-group-label: Supprimer le groupe...
+      new-group: Nouveau groupe
+      new-group-created: Nouveau groupe créé.
+      edit-group-title: Modifier le groupe
+      group-actions: Actions du groupe
+      changes-group-save: Modifications du groupe enregistrées.
+      data-assosciated-this-group-deleted: Êtes-vous sûr de vouloir supprimer ce groupe
+        ? Toutes les données associées à ce groupe seront également supprimées. Cette
+        action est irréversible.
+  policies:
+    index:
+      title: Politiques
+      delete-policies: Supprimer les politiques
+      contact-action: Actions de contact
+      edit-policy: Modifier la politique...
+      delete-policy: Supprimer la politique...
+      new-policy: Nouvelle politique
+      new-policy-created: Nouvelle politique créée.
+      unable-changes-policy-warning: Impossible d'apporter des modifications à une
+        politique {policyType}.
+      edit-policy-title: Modifier la politique
+      policy-actions: Actions de la politique
+      changes-policy-saved-success: Modifications de la politique enregistrées.
+      unable-delete-policy-warning: Impossible de supprimer une politique {policyType}.
+      data-assosciated-this-policy-deleted: Êtes-vous sûr de vouloir supprimer cette
+        politique ? Toutes les données associées à cette politique seront également
+        supprimées. Cette action est irréversible.
+      policy-deleted: Politique {policyName} supprimée.
+  roles:
+    index:
+      delete-roles: Supprimer les rôles
+      contact-action: Actions de contact
+      edit-role: Modifier le rôle...
+      delete-role: Supprimer le rôle...
+      new-role: Nouveau rôle
+      new-role-create: Nouveau rôle créé
+      edit-role-title: Modifier le rôle
+      role-actions: Actions du rôle
+      changes-role-saved: Modifications du rôle enregistrées.
+      data-assosciated-this-role-deleted: Êtes-vous sûr de vouloir supprimer ce rôle
+        ? Toutes les données associées à ce rôle seront également supprimées. Cette
+        action est irréversible.
+      role-deleted: Rôle {roleName} supprimé.
+      unable-changes-role-warning: Impossible d'apporter des modifications à un rôle
+        {roleType}.
+      unable-delete-role-warning: Impossible de supprimer un rôle {roleType}.
+  users:
+    index:
+      delete-user-title: Supprimer l'utilisateur {userName}
+      delete-user-success-message: Utilisateur {userName} supprimé.
+      deactivate-user-title: Désactiver le compte de l'utilisateur {userName}
+      deactivate-user-success-message: Utilisateur {userName} désactivé.
+      re-activate-user-title: Réactiver le compte de l'utilisateur {userName}
+      re-activate-user-success-message: Utilisateur {userName} activé.
+      verify-user-title: Vérifier manuellement le compte utilisateur {userName}
+      verify-user-manually-prompt: En cliquant sur confirmer, cette action vérifiera
+        manuellement l'adresse e-mail de l'utilisateur. Êtes-vous sûr de vouloir contourner
+        la vérification pour cet utilisateur ?
+      user-verified-success-message: Utilisateur {userName} vérifié.
+      delete-users: Supprimer les utilisateurs
+      last-login: Dernière connexion
+      created-at: Créé le
+      updated-at: Mis à jour le
+      user-actions: Actions utilisateur
+      edit-user: Modifier l'utilisateur...
+      view-user-permissions: Voir les permissions...
+      re-send-invitation: Renvoyer l'invitation...
+      deactivate-user: Désactiver l'utilisateur...
+      activate-user: Activer l'utilisateur...
+      delete-user: Supprimer l'utilisateur...
+      verify-user: Vérifier l'utilisateur...
+      change-user-password: Changer le mot de passe de l'utilisateur...
+      new-user: Nouvel utilisateur
+      user-invited-join-your-organization-success: L'utilisateur a été invité à rejoindre
+        votre organisation.
+      edit-user-title: Modifier l'utilisateur
+      user-changes-saved-success: Modifications de l'utilisateur enregistrées.
+      error-you-cant-delete-yourself: Vous ne pouvez pas vous supprimer vous-même
+      data-assosciated-user-delete: Êtes-vous sûr de vouloir supprimer cet utilisateur
+        ? Toutes les données associées à cet utilisateur seront également supprimées.
+        Cette action est irréversible.
+      access-account-or-resources-unless-re-activated: Êtes-vous sûr de vouloir désactiver
+        cet utilisateur ? Cet utilisateur ne pourra plus accéder à son compte ou à
+        ses ressources sauf s'il est réactivé.
+      this-user-will-regain-access-to-your-organization: Êtes-vous sûr de vouloir
+        réactiver cet utilisateur ? Cet utilisateur retrouvera l'accès à votre organisation.
+      resend-invitation-to-join-organization: Renvoyer l'invitation pour rejoindre
+        l'organisation
+      confirming-fleetbase-will-re-send-invitation-for-user-to-join-your-organization: En
+        confirmant, Fleetbase renverra l'invitation pour que cet utilisateur rejoigne
+        votre organisation.
+      invitation-resent: Invitation renvoyée.
+  application:
+    access-management: Gestion des accès
+  home:
+    identity-access-management: Gestion des identités et des accès
