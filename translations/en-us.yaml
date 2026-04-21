@@ -156,6 +156,21 @@ iam:
       resend-invitation-to-join-organization: Resend invitation to join organization
       confirming-fleetbase-will-re-send-invitation-for-user-to-join-your-organization: By confirming Fleetbase will re-send the invitation for this user to join your organization.
       invitation-resent: Invitation resent.
+      invite-user: Invite User
+    invite:
+      title: Invite User
+      description: >-
+        Enter the email address of the person you want to invite. If they already
+        have a Fleetbase account they will receive an invitation to join your
+        organisation. If they are new, a pending account will be created and they
+        will be asked to set a password on acceptance.
+      email-placeholder: colleague@example.com
+      name-placeholder: Full name (required for new users)
+      name-help: Required only if the person does not yet have a Fleetbase account.
+      send-invitation: Send Invitation
+      email-required: Please enter an email address.
+      invitation-sent-existing: Invitation sent. The user will receive an email to join your organisation.
+      invitation-sent-new: Invitation sent. A pending account has been created and the user will be asked to set a password.
   application:
       access-management: Access Management
   home:
