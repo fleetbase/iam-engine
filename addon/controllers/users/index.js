@@ -338,11 +338,7 @@ export default class UsersIndexController extends Controller {
                     });
 
                     const wasExistingUser = response && response.invited === true;
-                    this.notifications.success(
-                        wasExistingUser
-                            ? this.intl.t('iam.users.invite.invitation-sent-existing')
-                            : this.intl.t('iam.users.invite.invitation-sent-new')
-                    );
+                    this.notifications.success(wasExistingUser ? this.intl.t('iam.users.invite.invitation-sent-existing') : this.intl.t('iam.users.invite.invitation-sent-new'));
 
                     modal.done();
                     return this.hostRouter.refresh();
@@ -382,8 +378,9 @@ export default class UsersIndexController extends Controller {
 
                 try {
                     await user.save();
-                    this.notifications.success(this.intl.t('iam.users.index.user-changes-saved-success'));
-                    return this.hostRouter.refresh();
+                    this.notifications.success(this.intl.t('iam.users.index.new-user-created'));
+                    this.hostRouter.refresh();
+                    modal.done();
                 } catch (error) {
                     this.notifications.serverError(error);
                     modal.stopLoading();
