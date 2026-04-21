@@ -27,6 +27,13 @@ export default class UsersIndexController extends Controller {
                 helpText: this.intl.t('common.refresh'),
             },
             {
+                text: this.intl.t('iam.users.index.invite-user'),
+                type: 'default',
+                icon: 'paper-plane',
+                permission: 'iam create user',
+                onClick: this.inviteUser,
+            },
+            {
                 text: this.intl.t('common.new'),
                 type: 'primary',
                 icon: 'plus',
@@ -289,6 +296,61 @@ export default class UsersIndexController extends Controller {
     }
 
     /**
+     * Opens the Invite User dialog.
+     *
+     * Sends only an email (and optional name / role) to POST users/invite-user.
+     * The backend handles both cases transparently:
+     *   - Email already in the system → cross-organisation invite issued.
+     *   - Brand-new email → pending user created and invite email sent.
+     *
+     * The response includes `invited: true` when an existing user was invited,
+     * allowing the frontend to display the appropriate success message.
+     *
+     * @void
+     */
+    @action inviteUser() {
+        this.modalsManager.show('modals/invite-user', {
+            title: this.intl.t('iam.users.invite.title'),
+            acceptButtonText: this.intl.t('iam.users.invite.send-invitation'),
+            acceptButtonIcon: 'paper-plane',
+            email: '',
+            name: '',
+            role: null,
+            confirm: async (modal) => {
+                modal.startLoading();
+
+                const email = modal.getOption('email');
+                const name = modal.getOption('name');
+                const role = modal.getOption('role');
+
+                if (!email) {
+                    this.notifications.warning(this.intl.t('iam.users.invite.email-required'));
+                    return modal.stopLoading();
+                }
+
+                try {
+                    const response = await this.fetch.post('users/invite-user', {
+                        user: {
+                            email,
+                            name,
+                            role_uuid: role ? role.id : undefined,
+                        },
+                    });
+
+                    const wasExistingUser = response && response.invited === true;
+                    this.notifications.success(wasExistingUser ? this.intl.t('iam.users.invite.invitation-sent-existing') : this.intl.t('iam.users.invite.invitation-sent-new'));
+
+                    modal.done();
+                    return this.hostRouter.refresh();
+                } catch (error) {
+                    this.notifications.serverError(error);
+                    modal.stopLoading();
+                }
+            },
+        });
+    }
+
+    /**
      * Toggles modal to create a new API key
      *
      * @void
@@ -316,8 +378,9 @@ export default class UsersIndexController extends Controller {
 
                 try {
                     await user.save();
-                    this.notifications.success(this.intl.t('iam.users.index.user-changes-saved-success'));
-                    return this.hostRouter.refresh();
+                    this.notifications.success(this.intl.t('iam.users.index.new-user-created'));
+                    this.hostRouter.refresh();
+                    modal.done();
                 } catch (error) {
                     this.notifications.serverError(error);
                     modal.stopLoading();

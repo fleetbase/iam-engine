@@ -1,0 +1,25 @@
+<Modal::Default @modalIsOpened={{@modalIsOpened}} @options={{@options}} @confirm={{@onConfirm}} @decline={{@onDecline}}>
+    <div class="modal-body-container">
+        <InfoBlock class="mb-4">
+            {{t "iam.users.invite.description"}}
+        </InfoBlock>
+        <div class="grid grid-cols-1">
+            <InputGroup @name={{t "iam.common.email"}} @type="email" @value={{@options.email}} @placeholder={{t "iam.users.invite.email-placeholder"}} />
+            <InputGroup @name={{t "iam.common.name"}} @value={{@options.name}} @placeholder={{t "iam.users.invite.name-placeholder"}} @helpText={{t "iam.users.invite.name-help"}} />
+            <InputGroup @name={{t "iam.common.role"}}>
+                <ModelSelect
+                    @modelName="role"
+                    @selectedModel={{@options.role}}
+                    @placeholder={{t "iam.common.role"}}
+                    @triggerClass="form-select form-input truncate w-full"
+                    @infiniteScroll={{false}}
+                    @renderInPlace={{true}}
+                    @onChange={{fn (mut @options.role)}}
+                    as |model|
+                >
+                    {{model.name}}
+                </ModelSelect>
+            </InputGroup>
+        </div>
+    </div>
+</Modal::Default>
