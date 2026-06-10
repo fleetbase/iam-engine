@@ -1,0 +1,17 @@
+<Widget::IamDashboardWidget @endpoint="policy-surface" @title="Policy Surface" @subtitle="Policies by service" @icon="diagram-project" as |data|>
+    <div class="iam-stat-grid iam-stat-grid-3">
+        <div class="iam-stat-card"><span>{{data.total}}</span><small>Total</small></div>
+        <div class="iam-stat-card"><span>{{data.organization_managed}}</span><small>Org managed</small></div>
+        <div class="iam-stat-card"><span>{{data.fleetbase_managed}}</span><small>Fleetbase</small></div>
+    </div>
+    <div class="iam-scroll-list mt-3">
+        {{#each data.by_service as |service|}}
+            <div class="iam-list-row">
+                <span class="iam-list-title">{{service.label}}</span>
+                <strong>{{service.value}}</strong>
+            </div>
+        {{else}}
+            <div class="iam-widget-empty">No policies available</div>
+        {{/each}}
+    </div>
+</Widget::IamDashboardWidget>

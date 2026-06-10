@@ -1,0 +1,13 @@
+<Widget::IamDashboardWidget @endpoint="access-coverage" @title="Access Coverage" @subtitle="Assignment coverage by user" @icon="shield-user" as |data|>
+    <div class="iam-coverage-hero">
+        <span>{{data.coverage}}%</span>
+        <small>Users with access assignments</small>
+    </div>
+    <div class="iam-row-list mt-3">
+        <div class="iam-row"><span>With roles</span><strong>{{data.with_roles}}</strong></div>
+        <div class="iam-row"><span>With groups</span><strong>{{data.with_groups}}</strong></div>
+        <div class="iam-row"><span>With policies</span><strong>{{data.with_policies}}</strong></div>
+        <div class="iam-row"><span>Direct permissions</span><strong>{{data.with_direct_permissions}}</strong></div>
+        <div class="iam-row iam-row-warning"><span>No assignments</span><strong>{{data.without_assignments}}</strong></div>
+    </div>
+</Widget::IamDashboardWidget>

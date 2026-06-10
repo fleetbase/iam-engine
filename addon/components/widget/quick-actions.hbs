@@ -1,0 +1,17 @@
+<div class="iam-dashboard-widget flex h-full min-h-0 flex-col overflow-hidden rounded-md border shadow-sm" ...attributes>
+    <div class="iam-widget-header">
+        <div class="min-w-0">
+            <div class="iam-widget-title">IAM Quick Actions</div>
+            <div class="iam-widget-subtitle">Jump into common access workflows</div>
+        </div>
+        <div class="iam-widget-icon"><FaIcon @icon="bolt" /></div>
+    </div>
+    <div class="iam-widget-body iam-report-body">
+        <div class="iam-action-grid">
+            <LinkTo @route="users" class="iam-action-link"><FaIcon @icon="user-plus" /><span>Invite user</span></LinkTo>
+            <LinkTo @route="groups" class="iam-action-link"><FaIcon @icon="people-group" /><span>Create group</span></LinkTo>
+            <LinkTo @route="roles" class="iam-action-link"><FaIcon @icon="user-tag" /><span>Create role</span></LinkTo>
+            <LinkTo @route="policies" class="iam-action-link"><FaIcon @icon="file-shield" /><span>Create policy</span></LinkTo>
+        </div>
+    </div>
+</div>

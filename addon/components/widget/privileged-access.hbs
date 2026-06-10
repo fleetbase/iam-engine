@@ -1,0 +1,20 @@
+<Widget::IamDashboardWidget @endpoint="privileged-access" @title="Privileged Access" @subtitle="High access exposure" @icon="user-lock" as |data|>
+    <div class="iam-stat-grid iam-stat-grid-3">
+        <div class="iam-stat-card"><span>{{data.privileged_roles_count}}</span><small>Admin roles</small></div>
+        <div class="iam-stat-card"><span>{{data.wildcard_policies_count}}</span><small>Wildcard policies</small></div>
+        <div class="iam-stat-card"><span>{{data.direct_privileged_grants}}</span><small>Direct grants</small></div>
+    </div>
+    <div class="iam-scroll-list mt-3">
+        {{#each data.roles as |role|}}
+            <div class="iam-list-row">
+                <div class="min-w-0">
+                    <div class="iam-list-title">{{role.name}}</div>
+                    <div class="iam-list-subtitle">{{role.type}}</div>
+                </div>
+                <strong>{{role.permissions_count}}</strong>
+            </div>
+        {{else}}
+            <div class="iam-widget-empty">No privileged roles detected</div>
+        {{/each}}
+    </div>
+</Widget::IamDashboardWidget>
