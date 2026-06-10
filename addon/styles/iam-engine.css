@@ -240,6 +240,12 @@ body[data-theme='dark'] .iam-stat-card {
     line-height: 1;
 }
 
+.iam-action-link span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 body[data-theme='dark'] .iam-stat-card span,
 body[data-theme='dark'] .iam-coverage-hero span {
     color: #f9fafb;
@@ -305,13 +311,13 @@ body[data-theme='dark'] .iam-list-row {
     font-weight: 800;
 }
 
+.iam-row-warning strong {
+    color: #dc2626;
+}
+
 body[data-theme='dark'] .iam-row strong,
 body[data-theme='dark'] .iam-list-row strong {
     color: #f9fafb;
-}
-
-.iam-row-warning strong {
-    color: #dc2626;
 }
 
 .iam-list-title,
@@ -369,12 +375,6 @@ body[data-theme='dark'] .iam-list-title {
     color: #374151;
     font-size: 0.78rem;
     font-weight: 800;
-}
-
-.iam-action-link span {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
 }
 
 .iam-action-link:hover {
