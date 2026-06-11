@@ -1,0 +1,10 @@
+<Widget::IamDashboardWidget @endpoint="user-lifecycle" @title="User Lifecycle Trend" @subtitle="Created, pending, and inactive users" @icon="chart-line" as |data|>
+    <div class="iam-chart-frame">
+        <Chart
+            @type="line"
+            @labels={{data.labels}}
+            @datasets={{data.datasets}}
+            @options={{hash responsive=true maintainAspectRatio=false}}
+        />
+    </div>
+</Widget::IamDashboardWidget>

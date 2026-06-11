@@ -1,0 +1,27 @@
+<div class="iam-dashboard-widget flex h-full min-h-0 flex-col overflow-hidden rounded-md border shadow-sm {{@class}}" ...attributes>
+    <div class="iam-widget-header">
+        <div class="min-w-0">
+            <div class="iam-widget-title">{{@title}}</div>
+            {{#if @subtitle}}
+                <div class="iam-widget-subtitle">{{@subtitle}}</div>
+            {{/if}}
+        </div>
+        {{#if @icon}}
+            <div class="iam-widget-icon">
+                <FaIcon @icon={{@icon}} @prefix={{or @iconPrefix "fas"}} />
+            </div>
+        {{/if}}
+    </div>
+
+    <div class="iam-widget-body">
+        {{#if this.load.isRunning}}
+            <div class="iam-widget-empty">
+                <Spinner />
+            </div>
+        {{else if this.error}}
+            <div class="iam-widget-empty text-rose-600 dark:text-rose-300">{{this.error}}</div>
+        {{else}}
+            {{yield this.data}}
+        {{/if}}
+    </div>
+</div>

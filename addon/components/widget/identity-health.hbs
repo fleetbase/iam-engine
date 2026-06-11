@@ -1,0 +1,34 @@
+<Widget::IamDashboardWidget @endpoint="identity-health" @title="Identity Health" @subtitle="Access posture snapshot" @icon="heart-pulse" as |data|>
+    <div class="iam-stat-grid">
+        <div class="iam-stat-card">
+            <span>{{data.status.active}}</span>
+            <small>Active</small>
+        </div>
+        <div class="iam-stat-card">
+            <span>{{data.status.pending}}</span>
+            <small>Pending</small>
+        </div>
+        <div class="iam-stat-card">
+            <span>{{data.verification.unverified}}</span>
+            <small>Unverified</small>
+        </div>
+        <div class="iam-stat-card">
+            <span>{{data.dormant.count}}</span>
+            <small>Dormant</small>
+        </div>
+    </div>
+    <div class="iam-row-list mt-3">
+        <div class="iam-row">
+            <span>MFA coverage</span>
+            <strong>{{if data.mfa.available (concat data.mfa.value "%") "Unavailable"}}</strong>
+        </div>
+        <div class="iam-row">
+            <span>Organization 2FA</span>
+            <strong>{{if data.mfa.company_enforced "Enforced" (if data.mfa.company_enabled "Enabled" "Off")}}</strong>
+        </div>
+        <div class="iam-row">
+            <span>Dormant threshold</span>
+            <strong>{{data.dormant.threshold_days}} days</strong>
+        </div>
+    </div>
+</Widget::IamDashboardWidget>

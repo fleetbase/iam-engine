@@ -17,6 +17,7 @@ export default class WidgetIamMetricsComponent extends Component {
      * @memberof WidgetKeyMetricsComponent
      */
     @service fetch;
+    @service notifications;
 
     /**
      * Property for loading metrics to.

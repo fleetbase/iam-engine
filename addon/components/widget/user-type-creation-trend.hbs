@@ -1,0 +1,11 @@
+<Widget::IamDashboardWidget
+    @endpoint="users-by-type-created"
+    @title="Users by Type Created Over Time"
+    @subtitle="New identities grouped by user type"
+    @icon="chart-column"
+    as |data|
+>
+    <div class="iam-chart-frame iam-chart-frame-tall">
+        <Chart @type="bar" @labels={{data.labels}} @datasets={{data.datasets}} @options={{this.chartOptions}} />
+    </div>
+</Widget::IamDashboardWidget>

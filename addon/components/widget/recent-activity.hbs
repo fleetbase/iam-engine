@@ -1,0 +1,15 @@
+<Widget::IamDashboardWidget @endpoint="activity" @title="Recent IAM Activity" @subtitle="Latest identity and access changes" @icon="clock-rotate-left" as |data|>
+    <div class="iam-scroll-list">
+        {{#each data.items as |activity|}}
+            <div class="iam-list-row">
+                <div class="min-w-0">
+                    <div class="iam-list-title">{{n-a activity.description}}</div>
+                    <div class="iam-list-subtitle">{{n-a activity.subject_type}} · {{n-a activity.causer_name}}</div>
+                </div>
+                <span class="iam-list-subtitle">{{n-a activity.created_at}}</span>
+            </div>
+        {{else}}
+            <div class="iam-widget-empty">No recent IAM activity</div>
+        {{/each}}
+    </div>
+</Widget::IamDashboardWidget>
