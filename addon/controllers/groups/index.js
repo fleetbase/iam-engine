@@ -23,7 +23,7 @@ export default class GroupsIndexController extends Controller {
      *
      * @var {Array}
      */
-    queryParams = ['page', 'limit', 'sort', 'query', 'type', 'created_by', 'updated_by', 'status'];
+    queryParams = ['view_group', 'page', 'limit', 'sort', 'query', 'type', 'created_by', 'updated_by', 'status'];
 
     /**
      * The current page of data being viewed
@@ -45,6 +45,7 @@ export default class GroupsIndexController extends Controller {
      * @var {Integer}
      */
     @tracked query;
+    @tracked view_group;
 
     /**
      * The param to sort the data on, the param with prepended `-` is descending
@@ -270,5 +271,33 @@ export default class GroupsIndexController extends Controller {
                 }
             },
         });
+    }
+
+    @action async openDeepLinkedResource() {
+        const resourceId = this.view_group;
+
+        if (!resourceId) {
+            return;
+        }
+
+        try {
+            const record = this.store.peekRecord('group', resourceId) ?? (await this.store.findRecord('group', resourceId));
+            this.editGroup(record, {
+                onDecline: this.clearDeepLinkedResource,
+                onFinish: this.clearDeepLinkedResource,
+            });
+        } catch (_) {
+            this.notifications.warning('Unable to open the selected IAM resource.');
+            this.clearDeepLinkedResource();
+        }
+    }
+
+    @action clearDeepLinkedResource() {
+        if (!this.view_group) {
+            return;
+        }
+
+        this.view_group = null;
+        this.hostRouter.transitionTo({ queryParams: { view_group: null } });
     }
 }

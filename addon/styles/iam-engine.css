@@ -228,6 +228,10 @@ body[data-theme='dark'] .iam-kpi-footer {
     text-align: center;
 }
 
+.iam-risk-summary .iam-stat-card {
+    min-height: 5.25rem;
+}
+
 body[data-theme='dark'] .iam-stat-card {
     background-color: #111827;
 }
@@ -315,6 +319,10 @@ body[data-theme='dark'] .iam-list-row {
     color: #dc2626;
 }
 
+.iam-risk-row strong {
+    color: #dc2626;
+}
+
 body[data-theme='dark'] .iam-row strong,
 body[data-theme='dark'] .iam-list-row strong {
     color: #f9fafb;
@@ -345,9 +353,13 @@ body[data-theme='dark'] .iam-list-title {
 
 .iam-chart-frame {
     position: relative;
-    min-height: 0;
+    min-height: 14rem;
     width: 100%;
     flex: 1 1 auto;
+}
+
+.iam-chart-frame-tall {
+    min-height: 16rem;
 }
 
 .iam-chart-frame .ui-chart,
@@ -356,6 +368,10 @@ body[data-theme='dark'] .iam-list-title {
     inset: 0;
     width: 100% !important;
     height: 100% !important;
+}
+
+body[data-theme='dark'] .iam-risk-row strong {
+    color: #fca5a5;
 }
 
 .iam-action-grid {
