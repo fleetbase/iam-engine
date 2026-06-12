@@ -23,7 +23,7 @@ export default class RolesIndexController extends Controller {
      *
      * @var {Array}
      */
-    queryParams = ['page', 'limit', 'sort', 'query', 'service', 'type'];
+    queryParams = ['view_role', 'page', 'limit', 'sort', 'query', 'service', 'type'];
 
     /**
      * The current page of data being viewed
@@ -45,6 +45,7 @@ export default class RolesIndexController extends Controller {
      * @var {Integer}
      */
     @tracked query;
+    @tracked view_role;
 
     /**
      * The param to sort the data on, the param with prepended `-` is descending
@@ -253,7 +254,7 @@ export default class RolesIndexController extends Controller {
      */
     @action editRole(role, options = {}) {
         if (!role.is_mutable) {
-            return this.viewRolePermissions(role);
+            return this.viewRolePermissions(role, options);
         }
 
         const formPermission = 'iam update role';
@@ -335,12 +336,13 @@ export default class RolesIndexController extends Controller {
      * @param {RoleModel} role
      * @memberof RolesIndexController
      */
-    @action viewRolePermissions(role) {
+    @action viewRolePermissions(role, options = {}) {
         this.modalsManager.show('modals/view-role-permissions', {
             title: this.intl.t('iam.components.modals.view-role-permissions.view-permissions', { roleName: role.name }),
             hideDeclineButton: true,
             acceptButtonText: this.intl.t('common.done'),
             role,
+            ...options,
         });
     }
 
@@ -358,5 +360,33 @@ export default class RolesIndexController extends Controller {
      */
     @action reload() {
         return this.hostRouter.refresh();
+    }
+
+    @action async openDeepLinkedResource() {
+        const resourceId = this.view_role;
+
+        if (!resourceId) {
+            return;
+        }
+
+        try {
+            const record = this.store.peekRecord('role', resourceId) ?? (await this.store.findRecord('role', resourceId));
+            this.editRole(record, {
+                onDecline: this.clearDeepLinkedResource,
+                onFinish: this.clearDeepLinkedResource,
+            });
+        } catch (_) {
+            this.notifications.warning('Unable to open the selected IAM resource.');
+            this.clearDeepLinkedResource();
+        }
+    }
+
+    @action clearDeepLinkedResource() {
+        if (!this.view_role) {
+            return;
+        }
+
+        this.view_role = null;
+        this.hostRouter.transitionTo({ queryParams: { view_role: null } });
     }
 }

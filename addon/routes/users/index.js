@@ -1,5 +1,6 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
+import { later } from '@ember/runloop';
 
 export default class UsersIndexRoute extends Route {
     @service store;
@@ -9,6 +10,7 @@ export default class UsersIndexRoute extends Route {
         limit: { refreshModel: true },
         sort: { refreshModel: true },
         query: { refreshModel: true },
+        view_user: { refreshModel: false },
         status: { refreshModel: true },
         role: { refreshModel: true },
         name: { refreshModel: true },
@@ -17,6 +19,14 @@ export default class UsersIndexRoute extends Route {
     };
 
     model(params) {
-        return this.store.query('user', { ...params, is_user: 1 });
+        const queryParams = { ...params };
+        delete queryParams.view_user;
+
+        return this.store.query('user', { ...queryParams, is_user: 1 });
+    }
+
+    setupController(controller) {
+        super.setupController(...arguments);
+        later(controller, controller.openDeepLinkedResource);
     }
 }

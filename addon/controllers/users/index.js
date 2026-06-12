@@ -64,10 +64,12 @@ export default class UsersIndexController extends Controller {
         ];
     }
 
-    queryParams = ['page', 'limit', 'sort', 'query', 'type', 'created_by', 'updated_by', 'status', 'role', 'name', 'phone', 'email'];
+    queryParams = ['view_user', 'page', 'limit', 'sort', 'query', 'type', 'created_by', 'updated_by', 'status', 'role', 'name', 'phone', 'email'];
     @tracked page = 1;
     @tracked limit;
     @tracked query;
+    @tracked view_user;
+
     @tracked name;
     @tracked phone;
     @tracked email;
@@ -592,5 +594,33 @@ export default class UsersIndexController extends Controller {
      */
     @action reload() {
         return this.hostRouter.refresh();
+    }
+
+    @action async openDeepLinkedResource() {
+        const resourceId = this.view_user;
+
+        if (!resourceId) {
+            return;
+        }
+
+        try {
+            const record = this.store.peekRecord('user', resourceId) ?? (await this.store.findRecord('user', resourceId));
+            this.editUser(record, {
+                onDecline: this.clearDeepLinkedResource,
+                onFinish: this.clearDeepLinkedResource,
+            });
+        } catch (_) {
+            this.notifications.warning('Unable to open the selected IAM resource.');
+            this.clearDeepLinkedResource();
+        }
+    }
+
+    @action clearDeepLinkedResource() {
+        if (!this.view_user) {
+            return;
+        }
+
+        this.view_user = null;
+        this.hostRouter.transitionTo({ queryParams: { view_user: null } });
     }
 }

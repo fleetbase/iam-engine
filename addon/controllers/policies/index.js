@@ -23,7 +23,7 @@ export default class PoliciesIndexController extends Controller {
      *
      * @var {Array}
      */
-    queryParams = ['page', 'limit', 'sort', 'query', 'type', 'created_by', 'updated_by', 'status', 'service', 'type'];
+    queryParams = ['view_policy', 'page', 'limit', 'sort', 'query', 'type', 'created_by', 'updated_by', 'status', 'service', 'type'];
 
     /**
      * The current page of data being viewed
@@ -45,6 +45,7 @@ export default class PoliciesIndexController extends Controller {
      * @var {Integer}
      */
     @tracked query;
+    @tracked view_policy;
 
     /**
      * The param to sort the data on, the param with prepended `-` is descending
@@ -244,7 +245,7 @@ export default class PoliciesIndexController extends Controller {
      */
     @action editPolicy(policy, options = {}) {
         if (!policy.is_mutable) {
-            return this.viewPolicyPermissions(policy);
+            return this.viewPolicyPermissions(policy, options);
         }
 
         const formPermission = 'iam update policy';
@@ -282,12 +283,13 @@ export default class PoliciesIndexController extends Controller {
      * @param {PolicyModel} policy
      * @memberof PoliciesIndexController
      */
-    @action viewPolicyPermissions(policy) {
+    @action viewPolicyPermissions(policy, options = {}) {
         this.modalsManager.show('modals/view-policy-permissions', {
             title: this.intl.t('iam.components.modals.view-policy-permissions.view-permissions', { policyName: policy.name }),
             hideDeclineButton: true,
             acceptButtonText: this.intl.t('common.done'),
             policy,
+            ...options,
         });
     }
 
@@ -334,5 +336,33 @@ export default class PoliciesIndexController extends Controller {
      */
     @action reload() {
         return this.hostRouter.refresh();
+    }
+
+    @action async openDeepLinkedResource() {
+        const resourceId = this.view_policy;
+
+        if (!resourceId) {
+            return;
+        }
+
+        try {
+            const record = this.store.peekRecord('policy', resourceId) ?? (await this.store.findRecord('policy', resourceId));
+            this.editPolicy(record, {
+                onDecline: this.clearDeepLinkedResource,
+                onFinish: this.clearDeepLinkedResource,
+            });
+        } catch (_) {
+            this.notifications.warning('Unable to open the selected IAM resource.');
+            this.clearDeepLinkedResource();
+        }
+    }
+
+    @action clearDeepLinkedResource() {
+        if (!this.view_policy) {
+            return;
+        }
+
+        this.view_policy = null;
+        this.hostRouter.transitionTo({ queryParams: { view_policy: null } });
     }
 }
