@@ -111,7 +111,7 @@ export function registerWidgets(widgetService) {
             description: 'Recent user, group, role, and policy changes.',
             icon: 'clock-rotate-left',
             component: new ExtensionComponent('@fleetbase/iam-engine', 'widget/recent-activity'),
-            grid_options: operationsGridOptions,
+            grid_options: insightGridOptions,
             category: 'Operations',
             default: true,
         }),
@@ -123,7 +123,7 @@ export function registerWidgets(widgetService) {
             component: new ExtensionComponent('@fleetbase/iam-engine', 'widget/quick-actions'),
             grid_options: operationsGridOptions,
             category: 'Actions',
-            default: true,
+            default: false,
         }),
         new Widget({
             id: 'iam-metrics-widget',
