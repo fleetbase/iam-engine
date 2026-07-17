@@ -58,6 +58,15 @@ iam:
         view-permissions: 角色：{roleName} 权限
       view-user-permissions:
         view-permissions: 用户：{userName} 权限
+      change-user-email:
+        title: Change User Email
+        heading: Change email for {userName}
+        prompt: Enter the new email address. The user must verify the new address before it becomes their login email.
+        current-email: Current Email
+        new-email: New Email
+        send-verification: Send Verification
+        email-required: A new email address is required.
+        verification-sent: Email change verification sent. The user must confirm the new address before their login email changes.
       role-form:
         role-name: 角色名称
         enter-name-for-this-role: 为此角色输入名称
@@ -141,6 +150,7 @@ iam:
       delete-user: 删除用户...
       verify-user: 验证用户...
       change-user-password: 更改用户密码...
+      change-user-email: Change user email...
       new-user: 新用户
       user-invited-join-your-organization-success: 用户已被邀请加入您的组织。
       edit-user-title: 编辑用户

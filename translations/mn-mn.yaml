@@ -59,6 +59,15 @@ iam:
         view-permissions: 'Үүрэг: {roleName} Зөвшөөрлүүд'
       view-user-permissions:
         view-permissions: 'Хэрэглэгч: {userName} Зөвшөөрлүүд'
+      change-user-email:
+        title: Change User Email
+        heading: Change email for {userName}
+        prompt: Enter the new email address. The user must verify the new address before it becomes their login email.
+        current-email: Current Email
+        new-email: New Email
+        send-verification: Send Verification
+        email-required: A new email address is required.
+        verification-sent: Email change verification sent. The user must confirm the new address before their login email changes.
       role-form:
         role-name: Үүргийн нэр
         enter-name-for-this-role: Энэхүү үүргийн нэрийг оруулна уу
@@ -150,6 +159,7 @@ iam:
       delete-user: Хэрэглэгчийг устгах...
       verify-user: Хэрэглэгчийг баталгаажуулах...
       change-user-password: Хэрэглэгчийн нууц үгийг солих...
+      change-user-email: Change user email...
       new-user: Шинэ хэрэглэгч
       user-invited-join-your-organization-success: Хэрэглэгчийг танай байгууллагад
         нэгдэх урилгаар илгээсэн.

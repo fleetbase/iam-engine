@@ -1,0 +1,16 @@
+<Modal::Default @modalIsOpened={{@modalIsOpened}} @options={{@options}} @confirm={{@onConfirm}} @decline={{@onDecline}}>
+    <div class="px-4 text-gray-900 dark:text-gray-50">
+        <div class="mb-1 text-base font-semibold">
+            {{t "iam.components.modals.change-user-email.heading" userName=this.user.name}}
+        </div>
+        <div class="text-sm mb-4">
+            {{t "iam.components.modals.change-user-email.prompt"}}
+        </div>
+        <InputGroup>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                <InputGroup @name={{t "iam.components.modals.change-user-email.current-email"}} @type="email" @value={{this.user.email}} @disabled={{true}} @wrapperClass="mb-0i" />
+                <InputGroup @name={{t "iam.components.modals.change-user-email.new-email"}} @type="email" @value={{this.email}} @wrapperClass="mb-0i" />
+            </div>
+        </InputGroup>
+    </div>
+</Modal::Default>

@@ -1,6 +1,6 @@
 {
     "name": "@fleetbase/iam-engine",
-    "version": "0.1.10",
+    "version": "0.1.11",
     "description": "Fleetbase IAM extension provides identity and access management module for managing users, permissions and policies.",
     "fleetbase": {
         "route": "iam"
@@ -42,8 +42,8 @@
     },
     "dependencies": {
         "@babel/core": "^7.23.2",
-        "@fleetbase/ember-core": "^0.3.22",
-        "@fleetbase/ember-ui": "^0.3.34",
+        "@fleetbase/ember-core": "^0.3.24",
+        "@fleetbase/ember-ui": "^0.3.41",
         "@fortawesome/ember-fontawesome": "^2.0.0",
         "@fortawesome/fontawesome-svg-core": "6.4.0",
         "@fortawesome/free-brands-svg-icons": "6.4.0",
@@ -109,11 +109,6 @@
     },
     "ember-addon": {
         "configPath": "tests/dummy/config"
-    },
-    "pnpm": {
-        "overrides": {
-            "broccoli-funnel": "3.0.8"
-        }
     },
     "prettier": {
         "trailingComma": "es5",

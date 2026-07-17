@@ -61,6 +61,15 @@ iam:
       view-user-permissions:
         view-permissions: >-
           User: {userName} Permissions
+      change-user-email:
+        title: Change User Email
+        heading: Change email for {userName}
+        prompt: Enter the new email address. The user must verify the new address before it becomes their login email.
+        current-email: Current Email
+        new-email: New Email
+        send-verification: Send Verification
+        email-required: A new email address is required.
+        verification-sent: Email change verification sent. The user must confirm the new address before their login email changes.
       role-form:
         role-name: Role Name
         enter-name-for-this-role: Enter a name for this role
@@ -145,6 +154,7 @@ iam:
       delete-user: Delete user...
       verify-user: Verify user...
       change-user-password: Change user password...
+      change-user-email: Change user email...
       new-user: New User
       user-invited-join-your-organization-success: User has been invited to join your organization.
       edit-user-title: Edit User
@@ -176,9 +186,3 @@ iam:
       access-management: Access Management
   home:
       identity-access-management: Identity & Access Management
-  
-      
-
-
-
-      

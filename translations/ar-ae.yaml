@@ -58,6 +58,15 @@ iam:
         view-permissions: 'الدور: {roleName} الأذونات'
       view-user-permissions:
         view-permissions: 'المستخدم: {userName} الأذونات'
+      change-user-email:
+        title: Change User Email
+        heading: Change email for {userName}
+        prompt: Enter the new email address. The user must verify the new address before it becomes their login email.
+        current-email: Current Email
+        new-email: New Email
+        send-verification: Send Verification
+        email-required: A new email address is required.
+        verification-sent: Email change verification sent. The user must confirm the new address before their login email changes.
       role-form:
         role-name: اسم الدور
         enter-name-for-this-role: أدخل اسمًا لهذا الدور
@@ -147,6 +156,7 @@ iam:
       delete-user: حذف المستخدم...
       verify-user: التحقق من المستخدم...
       change-user-password: تغيير كلمة مرور المستخدم...
+      change-user-email: Change user email...
       new-user: مستخدم جديد
       user-invited-join-your-organization-success: تمت دعوة المستخدم للانضمام إلى
         مؤسستك.

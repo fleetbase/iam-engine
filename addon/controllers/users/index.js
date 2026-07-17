@@ -217,6 +217,12 @@ export default class UsersIndexController extends Controller {
                     isVisible: (user) => this.abilities.can('iam change-password-for user') || user.role_name === 'Administrator' || user.is_admin === true,
                 },
                 {
+                    label: this.intl.t('iam.users.index.change-user-email'),
+                    fn: this.changeUserEmail,
+                    className: 'text-danger',
+                    isVisible: () => this.abilities.can('iam change-email-for user') || this.currentUser.user.role_name === 'Administrator' || this.currentUser.user.is_admin === true,
+                },
+                {
                     label: this.intl.t('iam.users.index.delete-user'),
                     fn: this.deleteUser,
                     className: 'text-danger',
@@ -371,6 +377,7 @@ export default class UsersIndexController extends Controller {
             acceptButtonDisabled: this.abilities.cannot(formPermission),
             acceptButtonHelpText: this.abilities.cannot(formPermission) ? this.intl.t('common.unauthorized') : null,
             formPermission,
+            allowEmailEdit: true,
             confirm: async (modal) => {
                 modal.startLoading();
 
@@ -407,6 +414,7 @@ export default class UsersIndexController extends Controller {
             acceptButtonHelpText: this.abilities.cannot(formPermission) ? this.intl.t('common.unauthorized') : null,
             keepOpen: true,
             formPermission,
+            allowEmailEdit: false,
             user,
             uploadNewPhoto: (file) => {
                 this.fetch.uploadFile.perform(
@@ -562,6 +570,21 @@ export default class UsersIndexController extends Controller {
         this.modalsManager.show('modals/change-user-password', {
             keepOpen: true,
             user,
+        });
+    }
+
+    /**
+     * Change email for a user
+     *
+     * @void
+     */
+    @action changeUserEmail(user) {
+        this.modalsManager.show('modals/change-user-email', {
+            keepOpen: true,
+            user,
+            onEmailChangeComplete: () => {
+                return this.hostRouter.refresh();
+            },
         });
     }
 

@@ -4,6 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  broccoli-funnel: 3.0.8
+
 importers:
 
   .:
@@ -12,11 +15,11 @@ importers:
         specifier: ^7.23.2
         version: 7.29.7
       '@fleetbase/ember-core':
-        specifier: ^0.3.22
-        version: 0.3.22(@ember/string@3.1.1)(@ember/test-helpers@3.3.1(@babel/core@7.29.7)(ember-source@5.4.1(@babel/core@7.29.7)(@glimmer/component@1.1.2(@babel/core@7.29.7))(rsvp@4.8.5)(webpack@5.107.2(postcss@8.5.15)))(webpack@5.107.2(postcss@8.5.15)))(ember-resolver@11.0.1(ember-source@5.4.1(@babel/core@7.29.7)(@glimmer/component@1.1.2(@babel/core@7.29.7))(rsvp@4.8.5)(webpack@5.107.2(postcss@8.5.15))))(ember-source@5.4.1(@babel/core@7.29.7)(@glimmer/component@1.1.2(@babel/core@7.29.7))(rsvp@4.8.5)(webpack@5.107.2(postcss@8.5.15)))(eslint@8.57.1)(webpack@5.107.2(postcss@8.5.15))
+        specifier: ^0.3.24
+        version: 0.3.24(@ember/string@3.1.1)(@ember/test-helpers@3.3.1(@babel/core@7.29.7)(ember-source@5.4.1(@babel/core@7.29.7)(@glimmer/component@1.1.2(@babel/core@7.29.7))(rsvp@4.8.5)(webpack@5.107.2(postcss@8.5.15)))(webpack@5.107.2(postcss@8.5.15)))(ember-resolver@11.0.1(ember-source@5.4.1(@babel/core@7.29.7)(@glimmer/component@1.1.2(@babel/core@7.29.7))(rsvp@4.8.5)(webpack@5.107.2(postcss@8.5.15))))(ember-source@5.4.1(@babel/core@7.29.7)(@glimmer/component@1.1.2(@babel/core@7.29.7))(rsvp@4.8.5)(webpack@5.107.2(postcss@8.5.15)))(eslint@8.57.1)(webpack@5.107.2(postcss@8.5.15))
       '@fleetbase/ember-ui':
-        specifier: ^0.3.34
-        version: 0.3.34(@ember/test-helpers@3.3.1(@babel/core@7.29.7)(ember-source@5.4.1(@babel/core@7.29.7)(@glimmer/component@1.1.2(@babel/core@7.29.7))(rsvp@4.8.5)(webpack@5.107.2(postcss@8.5.15)))(webpack@5.107.2(postcss@8.5.15)))(@glimmer/component@1.1.2(@babel/core@7.29.7))(@glimmer/tracking@1.1.2)(ember-resolver@11.0.1(ember-source@5.4.1(@babel/core@7.29.7)(@glimmer/component@1.1.2(@babel/core@7.29.7))(rsvp@4.8.5)(webpack@5.107.2(postcss@8.5.15))))(ember-source@5.4.1(@babel/core@7.29.7)(@glimmer/component@1.1.2(@babel/core@7.29.7))(rsvp@4.8.5)(webpack@5.107.2(postcss@8.5.15)))(postcss@8.5.15)(rollup@2.80.0)(tracked-built-ins@3.4.0(@babel/core@7.29.7))(webpack@5.107.2(postcss@8.5.15))
+        specifier: ^0.3.41
+        version: 0.3.41(@ember/test-helpers@3.3.1(@babel/core@7.29.7)(ember-source@5.4.1(@babel/core@7.29.7)(@glimmer/component@1.1.2(@babel/core@7.29.7))(rsvp@4.8.5)(webpack@5.107.2(postcss@8.5.15)))(webpack@5.107.2(postcss@8.5.15)))(@glimmer/component@1.1.2(@babel/core@7.29.7))(@glimmer/tracking@1.1.2)(ember-resolver@11.0.1(ember-source@5.4.1(@babel/core@7.29.7)(@glimmer/component@1.1.2(@babel/core@7.29.7))(rsvp@4.8.5)(webpack@5.107.2(postcss@8.5.15))))(ember-source@5.4.1(@babel/core@7.29.7)(@glimmer/component@1.1.2(@babel/core@7.29.7))(rsvp@4.8.5)(webpack@5.107.2(postcss@8.5.15)))(postcss@8.5.15)(rollup@2.80.0)(tracked-built-ins@3.4.0(@babel/core@7.29.7))(webpack@5.107.2(postcss@8.5.15))(yaml@2.9.0)
       '@fortawesome/ember-fontawesome':
         specifier: ^2.0.0
         version: 2.0.0(@babel/core@7.29.7)(ember-source@5.4.1(@babel/core@7.29.7)(@glimmer/component@1.1.2(@babel/core@7.29.7))(rsvp@4.8.5)(webpack@5.107.2(postcss@8.5.15)))(rollup@2.80.0)(webpack@5.107.2(postcss@8.5.15))
@@ -76,7 +79,7 @@ importers:
         specifier: ^3.0.0
         version: 3.0.0
       broccoli-funnel:
-        specifier: ^3.0.8
+        specifier: 3.0.8
         version: 3.0.8
       concurrently:
         specifier: ^8.2.2
@@ -1245,12 +1248,12 @@ packages:
     peerDependencies:
       ember-source: '>= 4.0.0'
 
-  '@fleetbase/ember-core@0.3.22':
-    resolution: {integrity: sha512-tCYgxJoemUXgjsUztzeJZSwU2ejDp5x2WYI3FsBO55AlcC+mfWm0FsYtuPd9xd9PoO1jZ3T3VyvQQ06HRPtqWw==}
+  '@fleetbase/ember-core@0.3.24':
+    resolution: {integrity: sha512-WG32JlX4S75ofa34RQEMxFEqc20fTv2Qn3A5+NlqXtL0lfnCthdO+a1DrGqIIierthHl3mVTxhe+z63f8sM6EA==}
     engines: {node: '>= 18'}
 
-  '@fleetbase/ember-ui@0.3.34':
-    resolution: {integrity: sha512-l67lrbpeh0JRLDHr1sJ3QnxP6vPKwVW614CVWEASs6ZImGCBr6CK3DjsT3h+1uslQa51dpixN/stiQ+C/Z1etA==}
+  '@fleetbase/ember-ui@0.3.41':
+    resolution: {integrity: sha512-xWWrqHnVj2YW1dfEGC5woLrpPEGx8Z6dstxVZygjt9apf8Vu3goyNnLSdkIdbJS2ACMlg+QuAUV5tPySQuO+3w==}
     engines: {node: '>= 18'}
 
   '@fleetbase/intl-lint@0.0.1':
@@ -2498,9 +2501,6 @@ packages:
   bl@4.1.0:
     resolution: {integrity: sha512-1W07cM9gS6DcLperZfFSj+bWLtaPGSOHWhPiGzXmvVJbRLdG82sH/Kn8EtW1VqWVA54AKf2h5k5BbnIbwF3h6w==}
 
-  blank-object@1.0.2:
-    resolution: {integrity: sha512-kXQ19Xhoghiyw66CUiGypnuRpWlbHAzY/+NyvqTEdTfhfQGH1/dbEMYiXju7fYKIFePpzp/y9dsu5Cu/PkmawQ==}
-
   blob-polyfill@7.0.20220408:
     resolution: {integrity: sha512-oD8Ydw+5lNoqq+en24iuPt1QixdPpe/nUF8azTHnviCZYu9zUC+TwdzIp5orpblJosNlgNbVmmAb//c6d6ImUQ==}
 
@@ -2597,14 +2597,6 @@ packages:
 
   broccoli-funnel-reducer@1.0.0:
     resolution: {integrity: sha512-SaOCEdh+wnt2jFUV2Qb32m7LXyElvFwW3NKNaEJyi5PGQNwxfqpkc0KI6AbQANKgdj/40U2UC0WuGThFwuEUaA==}
-
-  broccoli-funnel@2.0.1:
-    resolution: {integrity: sha512-C8Lnp9TVsSSiZMGEF16C0dCiNg2oJqUKwuZ1K4kVC6qRPG/2Cj/rtB5kRCC9qEbwqhX71bDbfHROx0L3J7zXQg==}
-    engines: {node: ^4.5 || 6.* || >= 7.*}
-
-  broccoli-funnel@2.0.2:
-    resolution: {integrity: sha512-/vDTqtv7ipjEZQOVqO4vGDVAOZyuYzQ/EgGoyewfOgh1M7IQAToBKZI0oAQPgMBeFPPlIbfMuAngk+ohPBuaHQ==}
-    engines: {node: ^4.5 || 6.* || >= 7.*}
 
   broccoli-funnel@3.0.8:
     resolution: {integrity: sha512-ng4eIhPYiXqMw6SyGoxPHR3YAwEd2lr9FgBI1CyTbspl4txZovOsmzFkMkGAlu88xyvYXJqHiM2crfLa65T1BQ==}
@@ -3488,6 +3480,11 @@ packages:
 
   decorator-transforms@2.3.2:
     resolution: {integrity: sha512-XcErcjlmCzG5ODgYjt6ZTXwd6S8fPKln/sJmw15ZXkWG2JpoQNwszis+AwF6XSGlOoG7g8MCEO97g+Yw3fk5OQ==}
+
+  decorator-transforms@2.4.0:
+    resolution: {integrity: sha512-IB+0RqnJpuS7ndH4dVY5dfWTZsrCzN3avWFdjSiET0uT2U24jKywjpVEK97TflnZkZgiSRfmeqc1WfS+1CI23w==}
+    peerDependencies:
+      '@babel/core': ^7.23.0 || ^8.0.0
 
   deep-extend@0.6.0:
     resolution: {integrity: sha512-LOHxIOaPYdHlJRtCQfDIVZtfw/ufM8+rVj649RIHzcm/vGwQRXFt6OPqIFWsm2XEMrNIEtWR64sY1LEKD2vAOA==}
@@ -4514,9 +4511,6 @@ packages:
 
   fast-memoize@2.5.2:
     resolution: {integrity: sha512-Ue0LwpDYErFbmNnZSF0UH6eImUwDmogUO1jyE+JbN2gsQz/jICm1Ve7t9QT0rNSsfJt+Hs4/S3GnsDVjL4HVrw==}
-
-  fast-ordered-set@1.0.3:
-    resolution: {integrity: sha512-MxBW4URybFszOx1YlACEoK52P6lE3xiFcPaGCUZ7QQOZ6uJXKo++Se8wa31SjcZ+NC/fdAWX7UtKEfaGgHS2Vg==}
 
   fast-sourcemap-concat@2.1.1:
     resolution: {integrity: sha512-7h9/x25c6AQwdU3mA8MZDUMR3UCy50f237egBrBkuwjnUZSmfu4ptCf91PZSKzON2Uh5VvIHozYKWcPPgcjxIw==}
@@ -9543,7 +9537,7 @@ snapshots:
     dependencies:
       postcss: 8.5.15
 
-  '@ember-data/adapter@4.12.8(@babel/core@7.29.7)(@ember-data/store@4.12.8)(@ember/string@3.1.1)(ember-inflector@4.0.3(ember-source@5.4.1(@babel/core@7.29.7)(@glimmer/component@1.1.2(@babel/core@7.29.7))(rsvp@4.8.5)(webpack@5.107.2(postcss@8.5.15))))':
+  '@ember-data/adapter@4.12.8(@babel/core@7.29.7)(@ember-data/store@4.12.8(@babel/core@7.29.7)(@ember-data/graph@4.12.8)(@ember-data/json-api@4.12.8)(@ember-data/legacy-compat@4.12.8)(@ember-data/model@4.12.8)(@ember-data/tracking@4.12.8(@babel/core@7.29.7))(@ember/string@3.1.1)(@glimmer/tracking@1.1.2)(ember-source@5.4.1(@babel/core@7.29.7)(@glimmer/component@1.1.2(@babel/core@7.29.7))(rsvp@4.8.5)(webpack@5.107.2(postcss@8.5.15))))(@ember/string@3.1.1)(ember-inflector@4.0.3(ember-source@5.4.1(@babel/core@7.29.7)(@glimmer/component@1.1.2(@babel/core@7.29.7))(rsvp@4.8.5)(webpack@5.107.2(postcss@8.5.15))))':
     dependencies:
       '@ember-data/private-build-infra': 4.12.8
       '@ember-data/store': 4.12.8(@babel/core@7.29.7)(@ember-data/graph@4.12.8)(@ember-data/json-api@4.12.8)(@ember-data/legacy-compat@4.12.8)(@ember-data/model@4.12.8)(@ember-data/tracking@4.12.8(@babel/core@7.29.7))(@ember/string@3.1.1)(@glimmer/tracking@1.1.2)(ember-source@5.4.1(@babel/core@7.29.7)(@glimmer/component@1.1.2(@babel/core@7.29.7))(rsvp@4.8.5)(webpack@5.107.2(postcss@8.5.15)))
@@ -9680,7 +9674,7 @@ snapshots:
 
   '@ember-data/rfc395-data@0.0.4': {}
 
-  '@ember-data/serializer@4.12.8(@babel/core@7.29.7)(@ember-data/store@4.12.8)(@ember/string@3.1.1)(ember-inflector@4.0.3(ember-source@5.4.1(@babel/core@7.29.7)(@glimmer/component@1.1.2(@babel/core@7.29.7))(rsvp@4.8.5)(webpack@5.107.2(postcss@8.5.15))))':
+  '@ember-data/serializer@4.12.8(@babel/core@7.29.7)(@ember-data/store@4.12.8(@babel/core@7.29.7)(@ember-data/graph@4.12.8)(@ember-data/json-api@4.12.8)(@ember-data/legacy-compat@4.12.8)(@ember-data/model@4.12.8)(@ember-data/tracking@4.12.8(@babel/core@7.29.7))(@ember/string@3.1.1)(@glimmer/tracking@1.1.2)(ember-source@5.4.1(@babel/core@7.29.7)(@glimmer/component@1.1.2(@babel/core@7.29.7))(rsvp@4.8.5)(webpack@5.107.2(postcss@8.5.15))))(@ember/string@3.1.1)(ember-inflector@4.0.3(ember-source@5.4.1(@babel/core@7.29.7)(@glimmer/component@1.1.2(@babel/core@7.29.7))(rsvp@4.8.5)(webpack@5.107.2(postcss@8.5.15))))':
     dependencies:
       '@ember-data/private-build-infra': 4.12.8
       '@ember-data/store': 4.12.8(@babel/core@7.29.7)(@ember-data/graph@4.12.8)(@ember-data/json-api@4.12.8)(@ember-data/legacy-compat@4.12.8)(@ember-data/model@4.12.8)(@ember-data/tracking@4.12.8(@babel/core@7.29.7))(@ember/string@3.1.1)(@glimmer/tracking@1.1.2)(ember-source@5.4.1(@babel/core@7.29.7)(@glimmer/component@1.1.2(@babel/core@7.29.7))(rsvp@4.8.5)(webpack@5.107.2(postcss@8.5.15)))
@@ -9933,7 +9927,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@fleetbase/ember-core@0.3.22(@ember/string@3.1.1)(@ember/test-helpers@3.3.1(@babel/core@7.29.7)(ember-source@5.4.1(@babel/core@7.29.7)(@glimmer/component@1.1.2(@babel/core@7.29.7))(rsvp@4.8.5)(webpack@5.107.2(postcss@8.5.15)))(webpack@5.107.2(postcss@8.5.15)))(ember-resolver@11.0.1(ember-source@5.4.1(@babel/core@7.29.7)(@glimmer/component@1.1.2(@babel/core@7.29.7))(rsvp@4.8.5)(webpack@5.107.2(postcss@8.5.15))))(ember-source@5.4.1(@babel/core@7.29.7)(@glimmer/component@1.1.2(@babel/core@7.29.7))(rsvp@4.8.5)(webpack@5.107.2(postcss@8.5.15)))(eslint@8.57.1)(webpack@5.107.2(postcss@8.5.15))':
+  '@fleetbase/ember-core@0.3.24(@ember/string@3.1.1)(@ember/test-helpers@3.3.1(@babel/core@7.29.7)(ember-source@5.4.1(@babel/core@7.29.7)(@glimmer/component@1.1.2(@babel/core@7.29.7))(rsvp@4.8.5)(webpack@5.107.2(postcss@8.5.15)))(webpack@5.107.2(postcss@8.5.15)))(ember-resolver@11.0.1(ember-source@5.4.1(@babel/core@7.29.7)(@glimmer/component@1.1.2(@babel/core@7.29.7))(rsvp@4.8.5)(webpack@5.107.2(postcss@8.5.15))))(ember-source@5.4.1(@babel/core@7.29.7)(@glimmer/component@1.1.2(@babel/core@7.29.7))(rsvp@4.8.5)(webpack@5.107.2(postcss@8.5.15)))(eslint@8.57.1)(webpack@5.107.2(postcss@8.5.15))':
     dependencies:
       '@babel/core': 7.29.7
       compress-json: 3.4.0
@@ -9966,7 +9960,7 @@ snapshots:
       - utf-8-validate
       - webpack
 
-  '@fleetbase/ember-ui@0.3.34(@ember/test-helpers@3.3.1(@babel/core@7.29.7)(ember-source@5.4.1(@babel/core@7.29.7)(@glimmer/component@1.1.2(@babel/core@7.29.7))(rsvp@4.8.5)(webpack@5.107.2(postcss@8.5.15)))(webpack@5.107.2(postcss@8.5.15)))(@glimmer/component@1.1.2(@babel/core@7.29.7))(@glimmer/tracking@1.1.2)(ember-resolver@11.0.1(ember-source@5.4.1(@babel/core@7.29.7)(@glimmer/component@1.1.2(@babel/core@7.29.7))(rsvp@4.8.5)(webpack@5.107.2(postcss@8.5.15))))(ember-source@5.4.1(@babel/core@7.29.7)(@glimmer/component@1.1.2(@babel/core@7.29.7))(rsvp@4.8.5)(webpack@5.107.2(postcss@8.5.15)))(postcss@8.5.15)(rollup@2.80.0)(tracked-built-ins@3.4.0(@babel/core@7.29.7))(webpack@5.107.2(postcss@8.5.15))':
+  '@fleetbase/ember-ui@0.3.41(@ember/test-helpers@3.3.1(@babel/core@7.29.7)(ember-source@5.4.1(@babel/core@7.29.7)(@glimmer/component@1.1.2(@babel/core@7.29.7))(rsvp@4.8.5)(webpack@5.107.2(postcss@8.5.15)))(webpack@5.107.2(postcss@8.5.15)))(@glimmer/component@1.1.2(@babel/core@7.29.7))(@glimmer/tracking@1.1.2)(ember-resolver@11.0.1(ember-source@5.4.1(@babel/core@7.29.7)(@glimmer/component@1.1.2(@babel/core@7.29.7))(rsvp@4.8.5)(webpack@5.107.2(postcss@8.5.15))))(ember-source@5.4.1(@babel/core@7.29.7)(@glimmer/component@1.1.2(@babel/core@7.29.7))(rsvp@4.8.5)(webpack@5.107.2(postcss@8.5.15)))(postcss@8.5.15)(rollup@2.80.0)(tracked-built-ins@3.4.0(@babel/core@7.29.7))(webpack@5.107.2(postcss@8.5.15))(yaml@2.9.0)':
     dependencies:
       '@babel/core': 7.29.7
       '@ember/render-modifiers': 2.1.0(@babel/core@7.29.7)(ember-source@5.4.1(@babel/core@7.29.7)(@glimmer/component@1.1.2(@babel/core@7.29.7))(rsvp@4.8.5)(webpack@5.107.2(postcss@8.5.15)))
@@ -9984,7 +9978,7 @@ snapshots:
       '@fullcalendar/daygrid': 6.1.20(@fullcalendar/core@6.1.20)
       '@fullcalendar/interaction': 6.1.20(@fullcalendar/core@6.1.20)
       '@makepanic/ember-power-calendar-date-fns': 0.4.2
-      '@tailwindcss/forms': 0.5.11(tailwindcss@3.4.19)
+      '@tailwindcss/forms': 0.5.11(tailwindcss@3.4.19(yaml@2.9.0))
       '@tiptap/core': 2.27.2(@tiptap/pm@2.27.2)
       '@tiptap/extension-color': 2.27.2(@tiptap/core@2.27.2(@tiptap/pm@2.27.2))(@tiptap/extension-text-style@2.27.2(@tiptap/core@2.27.2(@tiptap/pm@2.27.2)))
       '@tiptap/extension-font-family': 2.27.2(@tiptap/core@2.27.2(@tiptap/pm@2.27.2))(@tiptap/extension-text-style@2.27.2(@tiptap/core@2.27.2(@tiptap/pm@2.27.2)))
@@ -10050,7 +10044,7 @@ snapshots:
       postcss-import: 15.1.0(postcss@8.5.15)
       postcss-mixins: 9.0.4(postcss@8.5.15)
       postcss-preset-env: 9.6.0(postcss@8.5.15)
-      tailwindcss: 3.4.19
+      tailwindcss: 3.4.19(yaml@2.9.0)
     transitivePeerDependencies:
       - '@ember/test-helpers'
       - '@glimmer/component'
@@ -10471,7 +10465,7 @@ snapshots:
 
   '@makepanic/ember-power-calendar-date-fns@0.4.2':
     dependencies:
-      broccoli-funnel: 2.0.2
+      broccoli-funnel: 3.0.8
       broccoli-string-replace: 0.1.2
       date-fns: 2.30.0
       ember-auto-import: 1.12.2
@@ -10563,10 +10557,10 @@ snapshots:
     dependencies:
       defer-to-connect: 1.1.3
 
-  '@tailwindcss/forms@0.5.11(tailwindcss@3.4.19)':
+  '@tailwindcss/forms@0.5.11(tailwindcss@3.4.19(yaml@2.9.0))':
     dependencies:
       mini-svg-data-uri: 1.4.4
-      tailwindcss: 3.4.19
+      tailwindcss: 3.4.19(yaml@2.9.0)
 
   '@tiptap/core@2.27.2(@tiptap/pm@2.27.2)':
     dependencies:
@@ -10844,7 +10838,7 @@ snapshots:
 
   '@types/minimatch@6.0.0':
     dependencies:
-      minimatch: 7.4.9
+      minimatch: 10.2.5
 
   '@types/minimist@1.2.5': {}
 
@@ -11611,8 +11605,6 @@ snapshots:
       inherits: 2.0.4
       readable-stream: 3.6.2
 
-  blank-object@1.0.2: {}
-
   blob-polyfill@7.0.20220408: {}
 
   bluebird@3.7.2: {}
@@ -11712,7 +11704,7 @@ snapshots:
     dependencies:
       '@babel/core': 7.29.7
       '@babel/polyfill': 7.12.1
-      broccoli-funnel: 2.0.2
+      broccoli-funnel: 3.0.8
       broccoli-merge-trees: 3.0.2
       broccoli-persistent-filter: 2.3.1
       clone: 2.1.2
@@ -11853,42 +11845,6 @@ snapshots:
       - supports-color
 
   broccoli-funnel-reducer@1.0.0: {}
-
-  broccoli-funnel@2.0.1:
-    dependencies:
-      array-equal: 1.0.2
-      blank-object: 1.0.2
-      broccoli-plugin: 1.3.1
-      debug: 2.6.9
-      fast-ordered-set: 1.0.3
-      fs-tree-diff: 0.5.9
-      heimdalljs: 0.2.6
-      minimatch: 3.1.5
-      mkdirp: 0.5.6
-      path-posix: 1.0.0
-      rimraf: 2.7.1
-      symlink-or-copy: 1.3.1
-      walk-sync: 0.3.4
-    transitivePeerDependencies:
-      - supports-color
-
-  broccoli-funnel@2.0.2:
-    dependencies:
-      array-equal: 1.0.2
-      blank-object: 1.0.2
-      broccoli-plugin: 1.3.1
-      debug: 2.6.9
-      fast-ordered-set: 1.0.3
-      fs-tree-diff: 0.5.9
-      heimdalljs: 0.2.6
-      minimatch: 3.1.5
-      mkdirp: 0.5.6
-      path-posix: 1.0.0
-      rimraf: 2.7.1
-      symlink-or-copy: 1.3.1
-      walk-sync: 0.3.4
-    transitivePeerDependencies:
-      - supports-color
 
   broccoli-funnel@3.0.8:
     dependencies:
@@ -12125,7 +12081,7 @@ snapshots:
   broccoli-stew@1.6.0:
     dependencies:
       broccoli-debug: 0.6.5
-      broccoli-funnel: 2.0.2
+      broccoli-funnel: 3.0.8
       broccoli-merge-trees: 2.0.1
       broccoli-persistent-filter: 1.4.6
       broccoli-plugin: 1.3.1
@@ -12144,7 +12100,7 @@ snapshots:
   broccoli-stew@3.0.0:
     dependencies:
       broccoli-debug: 0.6.5
-      broccoli-funnel: 2.0.2
+      broccoli-funnel: 3.0.8
       broccoli-merge-trees: 3.0.2
       broccoli-persistent-filter: 2.3.1
       broccoli-plugin: 2.1.0
@@ -12924,6 +12880,11 @@ snapshots:
     transitivePeerDependencies:
       - '@babel/core'
 
+  decorator-transforms@2.4.0(@babel/core@7.29.7):
+    dependencies:
+      '@babel/core': 7.29.7
+      babel-import-util: 3.0.1
+
   deep-extend@0.6.0: {}
 
   deep-is@0.1.4: {}
@@ -13259,7 +13220,7 @@ snapshots:
       babel-plugin-module-resolver: 3.2.0
       broccoli-babel-transpiler: 7.8.1
       broccoli-debug: 0.6.5
-      broccoli-funnel: 2.0.2
+      broccoli-funnel: 3.0.8
       broccoli-source: 2.1.2
       calculate-cache-key-for-tree: 2.0.0
       clone: 2.1.2
@@ -13325,7 +13286,7 @@ snapshots:
 
   ember-cli-element-closest-polyfill@0.0.2:
     dependencies:
-      broccoli-funnel: 2.0.2
+      broccoli-funnel: 3.0.8
       caniuse-api: 3.0.0
       element-closest: 3.0.2
       ember-cli-babel: 7.26.11
@@ -13433,7 +13394,7 @@ snapshots:
   ember-cli-preprocess-registry@3.3.0:
     dependencies:
       broccoli-clean-css: 1.1.0
-      broccoli-funnel: 2.0.2
+      broccoli-funnel: 3.0.8
       debug: 3.2.7
       process-relative-require: 1.0.0
     transitivePeerDependencies:
@@ -13745,7 +13706,7 @@ snapshots:
   ember-composable-helpers@5.0.0:
     dependencies:
       '@babel/core': 7.29.7
-      broccoli-funnel: 2.0.1
+      broccoli-funnel: 3.0.8
       ember-cli-babel: 7.26.11
       resolve: 1.22.12
     transitivePeerDependencies:
@@ -13810,7 +13771,7 @@ snapshots:
 
   ember-data@4.12.8(@babel/core@7.29.7)(@ember/string@3.1.1)(@glimmer/tracking@1.1.2)(ember-source@5.4.1(@babel/core@7.29.7)(@glimmer/component@1.1.2(@babel/core@7.29.7))(rsvp@4.8.5)(webpack@5.107.2(postcss@8.5.15)))(webpack@5.107.2(postcss@8.5.15)):
     dependencies:
-      '@ember-data/adapter': 4.12.8(@babel/core@7.29.7)(@ember-data/store@4.12.8)(@ember/string@3.1.1)(ember-inflector@4.0.3(ember-source@5.4.1(@babel/core@7.29.7)(@glimmer/component@1.1.2(@babel/core@7.29.7))(rsvp@4.8.5)(webpack@5.107.2(postcss@8.5.15))))
+      '@ember-data/adapter': 4.12.8(@babel/core@7.29.7)(@ember-data/store@4.12.8(@babel/core@7.29.7)(@ember-data/graph@4.12.8)(@ember-data/json-api@4.12.8)(@ember-data/legacy-compat@4.12.8)(@ember-data/model@4.12.8)(@ember-data/tracking@4.12.8(@babel/core@7.29.7))(@ember/string@3.1.1)(@glimmer/tracking@1.1.2)(ember-source@5.4.1(@babel/core@7.29.7)(@glimmer/component@1.1.2(@babel/core@7.29.7))(rsvp@4.8.5)(webpack@5.107.2(postcss@8.5.15))))(@ember/string@3.1.1)(ember-inflector@4.0.3(ember-source@5.4.1(@babel/core@7.29.7)(@glimmer/component@1.1.2(@babel/core@7.29.7))(rsvp@4.8.5)(webpack@5.107.2(postcss@8.5.15))))
       '@ember-data/debug': 4.12.8(@babel/core@7.29.7)(@ember-data/store@4.12.8)(@ember/string@3.1.1)(webpack@5.107.2(postcss@8.5.15))
       '@ember-data/graph': 4.12.8(@babel/core@7.29.7)(@ember-data/store@4.12.8)
       '@ember-data/json-api': 4.12.8(@babel/core@7.29.7)(@ember-data/graph@4.12.8)(@ember-data/store@4.12.8)
@@ -13818,7 +13779,7 @@ snapshots:
       '@ember-data/model': 4.12.8(@babel/core@7.29.7)(@ember-data/debug@4.12.8)(@ember-data/graph@4.12.8)(@ember-data/json-api@4.12.8)(@ember-data/legacy-compat@4.12.8)(@ember-data/store@4.12.8)(@ember-data/tracking@4.12.8(@babel/core@7.29.7))(@ember/string@3.1.1)(ember-inflector@4.0.3(ember-source@5.4.1(@babel/core@7.29.7)(@glimmer/component@1.1.2(@babel/core@7.29.7))(rsvp@4.8.5)(webpack@5.107.2(postcss@8.5.15))))(ember-source@5.4.1(@babel/core@7.29.7)(@glimmer/component@1.1.2(@babel/core@7.29.7))(rsvp@4.8.5)(webpack@5.107.2(postcss@8.5.15)))
       '@ember-data/private-build-infra': 4.12.8
       '@ember-data/request': 4.12.8(@babel/core@7.29.7)
-      '@ember-data/serializer': 4.12.8(@babel/core@7.29.7)(@ember-data/store@4.12.8)(@ember/string@3.1.1)(ember-inflector@4.0.3(ember-source@5.4.1(@babel/core@7.29.7)(@glimmer/component@1.1.2(@babel/core@7.29.7))(rsvp@4.8.5)(webpack@5.107.2(postcss@8.5.15))))
+      '@ember-data/serializer': 4.12.8(@babel/core@7.29.7)(@ember-data/store@4.12.8(@babel/core@7.29.7)(@ember-data/graph@4.12.8)(@ember-data/json-api@4.12.8)(@ember-data/legacy-compat@4.12.8)(@ember-data/model@4.12.8)(@ember-data/tracking@4.12.8(@babel/core@7.29.7))(@ember/string@3.1.1)(@glimmer/tracking@1.1.2)(ember-source@5.4.1(@babel/core@7.29.7)(@glimmer/component@1.1.2(@babel/core@7.29.7))(rsvp@4.8.5)(webpack@5.107.2(postcss@8.5.15))))(@ember/string@3.1.1)(ember-inflector@4.0.3(ember-source@5.4.1(@babel/core@7.29.7)(@glimmer/component@1.1.2(@babel/core@7.29.7))(rsvp@4.8.5)(webpack@5.107.2(postcss@8.5.15))))
       '@ember-data/store': 4.12.8(@babel/core@7.29.7)(@ember-data/graph@4.12.8)(@ember-data/json-api@4.12.8)(@ember-data/legacy-compat@4.12.8)(@ember-data/model@4.12.8)(@ember-data/tracking@4.12.8(@babel/core@7.29.7))(@ember/string@3.1.1)(@glimmer/tracking@1.1.2)(ember-source@5.4.1(@babel/core@7.29.7)(@glimmer/component@1.1.2(@babel/core@7.29.7))(rsvp@4.8.5)(webpack@5.107.2(postcss@8.5.15)))
       '@ember-data/tracking': 4.12.8(@babel/core@7.29.7)
       '@ember/edition-utils': 1.2.0
@@ -15021,10 +14982,6 @@ snapshots:
   fast-levenshtein@2.0.6: {}
 
   fast-memoize@2.5.2: {}
-
-  fast-ordered-set@1.0.3:
-    dependencies:
-      blank-object: 1.0.2
 
   fast-sourcemap-concat@2.1.1:
     dependencies:
@@ -17313,12 +17270,13 @@ snapshots:
       '@csstools/utilities': 1.0.0(postcss@8.5.15)
       postcss: 8.5.15
 
-  postcss-load-config@6.0.1(jiti@1.21.7)(postcss@8.5.15):
+  postcss-load-config@6.0.1(jiti@1.21.7)(postcss@8.5.15)(yaml@2.9.0):
     dependencies:
       lilconfig: 3.1.3
     optionalDependencies:
       jiti: 1.21.7
       postcss: 8.5.15
+      yaml: 2.9.0
 
   postcss-logical@7.0.1(postcss@8.5.15):
     dependencies:
@@ -18802,7 +18760,7 @@ snapshots:
       string-width: 4.2.3
       strip-ansi: 6.0.1
 
-  tailwindcss@3.4.19:
+  tailwindcss@3.4.19(yaml@2.9.0):
     dependencies:
       '@alloc/quick-lru': 5.2.0
       arg: 5.0.2
@@ -18821,7 +18779,7 @@ snapshots:
       postcss: 8.5.15
       postcss-import: 15.1.0(postcss@8.5.15)
       postcss-js: 4.1.0(postcss@8.5.15)
-      postcss-load-config: 6.0.1(jiti@1.21.7)(postcss@8.5.15)
+      postcss-load-config: 6.0.1(jiti@1.21.7)(postcss@8.5.15)(yaml@2.9.0)
       postcss-nested: 6.2.0(postcss@8.5.15)
       postcss-selector-parser: 6.1.2
       resolve: 1.22.12
@@ -19076,7 +19034,7 @@ snapshots:
   tracked-built-ins@3.4.0(@babel/core@7.29.7):
     dependencies:
       '@embroider/addon-shim': 1.10.3
-      decorator-transforms: 2.3.2(@babel/core@7.29.7)
+      decorator-transforms: 2.4.0(@babel/core@7.29.7)
       ember-tracked-storage-polyfill: 1.0.1
     transitivePeerDependencies:
       - '@babel/core'
