@@ -110,11 +110,6 @@
     "ember-addon": {
         "configPath": "tests/dummy/config"
     },
-    "pnpm": {
-        "overrides": {
-            "broccoli-funnel": "3.0.8"
-        }
-    },
     "prettier": {
         "trailingComma": "es5",
         "tabWidth": 4,

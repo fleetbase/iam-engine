@@ -5,5 +5,7 @@ allowBuilds:
   '@fortawesome/free-solid-svg-icons': false
   core-js: false
   fsevents: false
+overrides:
+  "broccoli-funnel": "3.0.8"
 minimumReleaseAge: 0
 packages: []
