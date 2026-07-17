@@ -59,6 +59,15 @@ iam:
         view-permissions: 'Vai trò: {roleName} Quyền'
       view-user-permissions:
         view-permissions: 'Người dùng: {userName} Quyền'
+      change-user-email:
+        title: Change User Email
+        heading: Change email for {userName}
+        prompt: Enter the new email address. The user must verify the new address before it becomes their login email.
+        current-email: Current Email
+        new-email: New Email
+        send-verification: Send Verification
+        email-required: A new email address is required.
+        verification-sent: Email change verification sent. The user must confirm the new address before their login email changes.
       role-form:
         role-name: Tên vai trò
         enter-name-for-this-role: Nhập tên cho vai trò này
@@ -151,6 +160,7 @@ iam:
       delete-user: Xóa người dùng...
       verify-user: Xác minh người dùng...
       change-user-password: Thay đổi mật khẩu người dùng...
+      change-user-email: Change user email...
       new-user: Người dùng mới
       user-invited-join-your-organization-success: Người dùng đã được mời tham gia
         tổ chức của bạn.

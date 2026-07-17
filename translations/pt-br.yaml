@@ -59,6 +59,15 @@ iam:
         view-permissions: 'Função: {roleName} Permissões'
       view-user-permissions:
         view-permissions: 'Usuário: {userName} Permissões'
+      change-user-email:
+        title: Change User Email
+        heading: Change email for {userName}
+        prompt: Enter the new email address. The user must verify the new address before it becomes their login email.
+        current-email: Current Email
+        new-email: New Email
+        send-verification: Send Verification
+        email-required: A new email address is required.
+        verification-sent: Email change verification sent. The user must confirm the new address before their login email changes.
       role-form:
         role-name: Nome da Função
         enter-name-for-this-role: Digite um nome para esta função
@@ -151,6 +160,7 @@ iam:
       delete-user: Excluir usuário...
       verify-user: Verificar usuário...
       change-user-password: Alterar senha do usuário...
+      change-user-email: Change user email...
       new-user: Novo Usuário
       user-invited-join-your-organization-success: Usuário foi convidado para entrar
         na sua organização.

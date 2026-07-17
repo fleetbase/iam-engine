@@ -8,7 +8,7 @@
             <div class="flex-1">
                 <div class="grid grid-cols-2 gap-2 text-xs dark:text-gray-100 mb-2">
                     <InputGroup @name={{t "iam.common.name"}} @value={{@options.user.name}} @disabled={{cannot @options.formPermission}} />
-                    <InputGroup @name={{t "iam.common.email"}} @type="email" @value={{@options.user.email}} @disabled={{cannot @options.formPermission}} />
+                    <InputGroup @name={{t "iam.common.email"}} @type="email" @value={{@options.user.email}} @disabled={{or (cannot @options.formPermission) (not @options.allowEmailEdit)}} />
                     <InputGroup @name={{t "iam.common.phone"}}>
                         <PhoneInput @value={{@options.user.phone}} @onInput={{fn (mut @options.user.phone)}} disabled={{cannot @options.formPermission}} class="form-input w-full" />
                     </InputGroup>
