@@ -6,6 +6,7 @@ import { isBlank } from '@ember/utils';
 import { timeout, task } from 'ember-concurrency';
 
 export default class UsersIndexController extends Controller {
+    @service userActions;
     @service store;
     @service intl;
     @service notifications;
@@ -288,328 +289,49 @@ export default class UsersIndexController extends Controller {
         this.crud.export('users', { params: { selections } });
     }
 
-    /**
-     * View user permissions.
-     *
-     * @param {UserModel} user
-     * @memberof UsersIndexController
-     */
-    @action viewUserPermissions(user) {
-        this.modalsManager.show('modals/view-user-permissions', {
-            title: this.intl.t('iam.components.modals.view-user-permissions.view-permissions', { userName: user.name }),
-            hideDeclineButton: true,
-            acceptButtonText: this.intl.t('common.done'),
-            user,
-        });
+    // Dialog and lifecycle actions live in the user-actions service so other engines can open them too.
+    @action viewUserPermissions(...args) {
+        return this.userActions.viewUserPermissions(...args);
     }
 
-    /**
-     * Opens the Invite User dialog.
-     *
-     * Sends only an email (and optional name / role) to POST users/invite-user.
-     * The backend handles both cases transparently:
-     *   - Email already in the system → cross-organisation invite issued.
-     *   - Brand-new email → pending user created and invite email sent.
-     *
-     * The response includes `invited: true` when an existing user was invited,
-     * allowing the frontend to display the appropriate success message.
-     *
-     * @void
-     */
-    @action inviteUser() {
-        this.modalsManager.show('modals/invite-user', {
-            title: this.intl.t('iam.users.invite.title'),
-            acceptButtonText: this.intl.t('iam.users.invite.send-invitation'),
-            acceptButtonIcon: 'paper-plane',
-            email: '',
-            name: '',
-            role: null,
-            confirm: async (modal) => {
-                modal.startLoading();
-
-                const email = modal.getOption('email');
-                const name = modal.getOption('name');
-                const role = modal.getOption('role');
-
-                if (!email) {
-                    this.notifications.warning(this.intl.t('iam.users.invite.email-required'));
-                    return modal.stopLoading();
-                }
-
-                try {
-                    const response = await this.fetch.post('users/invite-user', {
-                        user: {
-                            email,
-                            name,
-                            role_uuid: role ? role.id : undefined,
-                        },
-                    });
-
-                    const wasExistingUser = response && response.invited === true;
-                    this.notifications.success(wasExistingUser ? this.intl.t('iam.users.invite.invitation-sent-existing') : this.intl.t('iam.users.invite.invitation-sent-new'));
-
-                    modal.done();
-                    return this.hostRouter.refresh();
-                } catch (error) {
-                    this.notifications.serverError(error);
-                    modal.stopLoading();
-                }
-            },
-        });
+    @action inviteUser(...args) {
+        return this.userActions.inviteUser(...args);
     }
 
-    /**
-     * Toggles modal to create a new API key
-     *
-     * @void
-     */
-    @action createUser() {
-        const formPermission = 'iam create user';
-        const user = this.store.createRecord('user', {
-            status: 'pending',
-            type: 'user',
-        });
-
-        this.editUser(user, {
-            title: this.intl.t('iam.users.index.new-user'),
-            acceptButtonText: this.intl.t('common.confirm'),
-            acceptButtonIcon: 'check',
-            acceptButtonDisabled: this.abilities.cannot(formPermission),
-            acceptButtonHelpText: this.abilities.cannot(formPermission) ? this.intl.t('common.unauthorized') : null,
-            formPermission,
-            allowEmailEdit: true,
-            confirm: async (modal) => {
-                modal.startLoading();
-
-                if (this.abilities.cannot(formPermission)) {
-                    return this.notifications.warning(this.intl.t('common.permissions-required-for-changes'));
-                }
-
-                try {
-                    await user.save();
-                    this.notifications.success(this.intl.t('iam.users.index.new-user-created'));
-                    this.hostRouter.refresh();
-                    modal.done();
-                } catch (error) {
-                    this.notifications.serverError(error);
-                    modal.stopLoading();
-                }
-            },
-        });
+    @action createUser(...args) {
+        return this.userActions.createUser(...args);
     }
 
-    /**
-     * Toggles modal to create a new API key
-     *
-     * @void
-     */
-    @action editUser(user, options = {}) {
-        const formPermission = 'iam update user';
-        this.modalsManager.show('modals/user-form', {
-            title: this.intl.t('iam.users.index.edit-user-title'),
-            modalClass: 'modal-lg',
-            acceptButtonText: this.intl.t('common.save-changes'),
-            acceptButtonIcon: 'save',
-            acceptButtonDisabled: this.abilities.cannot(formPermission),
-            acceptButtonHelpText: this.abilities.cannot(formPermission) ? this.intl.t('common.unauthorized') : null,
-            keepOpen: true,
-            formPermission,
-            allowEmailEdit: false,
-            user,
-            uploadNewPhoto: (file) => {
-                this.fetch.uploadFile.perform(
-                    file,
-                    {
-                        path: `uploads/${user.company_uuid}/users/${user.slug}`,
-                        key_uuid: user.id,
-                        key_type: `user`,
-                        type: `user_photo`,
-                    },
-                    (uploadedFile) => {
-                        user.setProperties({
-                            avatar_uuid: uploadedFile.id,
-                            avatar_url: uploadedFile.url,
-                            avatar: uploadedFile,
-                        });
-                    }
-                );
-            },
-            confirm: async (modal) => {
-                modal.startLoading();
-
-                if (this.abilities.cannot(formPermission)) {
-                    return this.notifications.warning(this.intl.t('common.permissions-required-for-changes'));
-                }
-
-                try {
-                    await user.save();
-                    this.notifications.success(this.intl.t('iam.users.index.user-changes-saved-success'));
-                    this.hostRouter.refresh();
-                    modal.done();
-                } catch (error) {
-                    this.notifications.serverError(error);
-
-                    // If error is because email address was made empty rollback changes
-                    if (error && typeof error.message === 'string' && error.message.includes('Email address cannot be empty')) {
-                        user.rollbackAttributes();
-                    }
-
-                    modal.stopLoading();
-                }
-            },
-            ...options,
-        });
+    @action editUser(...args) {
+        return this.userActions.editUser(...args);
     }
 
-    /**
-     * Toggles dialog to delete API key
-     *
-     * @void
-     */
-    @action deleteUser(user) {
-        if (user.id === this.currentUser.id) {
-            return this.notifications.error(this.intl.t('iam.users.index.error-you-cant-delete-yourself'));
-        }
-
-        this.modalsManager.confirm({
-            title: this.intl.t('iam.users.index.delete-user-title', { userName: user.get('name') }),
-            body: this.intl.t('iam.users.index.data-assosciated-user-delete'),
-            confirm: async (modal) => {
-                modal.startLoading();
-
-                try {
-                    await user.removeFromCurrentCompany();
-                    this.notifications.success(this.intl.t('iam.users.index.delete-user-success-message', { userName: user.get('name') }));
-                    this.hostRouter.refresh();
-                } catch (error) {
-                    this.notifications.serverError(error);
-                    modal.stopLoading();
-                }
-            },
-        });
+    @action deleteUser(...args) {
+        return this.userActions.deleteUser(...args);
     }
 
-    /**
-     * Deactivates a user
-     *
-     * @void
-     */
-    @action deactivateUser(user) {
-        this.modalsManager.confirm({
-            title: this.intl.t('iam.users.index.deactivate-user-title', { userName: user.get('name') }),
-            body: this.intl.t('iam.users.index.access-account-or-resources-unless-re-activated'),
-            confirm: async (modal) => {
-                modal.startLoading();
-
-                try {
-                    await user.deactivate();
-                    this.notifications.success(this.intl.t('iam.users.index.deactivate-user-success-message', { userName: user.get('name') }));
-                    this.hostRouter.refresh();
-                } catch (error) {
-                    this.notifications.serverError(error);
-                    modal.stopLoading();
-                }
-            },
-        });
+    @action deactivateUser(...args) {
+        return this.userActions.deactivateUser(...args);
     }
 
-    /**
-     * Activate a user
-     *
-     * @void
-     */
-    @action activateUser(user) {
-        this.modalsManager.confirm({
-            title: this.intl.t('iam.users.index.re-activate-user-title', { userName: user.get('name') }),
-            body: this.intl.t('iam.users.index.this-user-will-regain-access-to-your-organization'),
-            confirm: async (modal) => {
-                modal.startLoading();
-
-                try {
-                    await user.activate();
-                    this.notifications.success(this.intl.t('iam.users.index.re-activate-user-success-message', { userName: user.get('name') }));
-                    this.hostRouter.refresh();
-                } catch (error) {
-                    this.notifications.serverError(error);
-                    modal.stopLoading();
-                }
-            },
-        });
+    @action activateUser(...args) {
+        return this.userActions.activateUser(...args);
     }
 
-    /**
-     * Verify a user
-     *
-     * @void
-     */
-    @action verifyUser(user) {
-        this.modalsManager.confirm({
-            title: this.intl.t('iam.users.index.verify-user-title', { userName: user.get('name') }),
-            body: this.intl.t('iam.users.index.verify-user-manually-prompt'),
-            confirm: async (modal) => {
-                modal.startLoading();
-
-                try {
-                    await user.verify();
-                    this.notifications.success(this.intl.t('iam.users.index.user-verified-success-message', { userName: user.get('name') }));
-                    this.hostRouter.refresh();
-                } catch (error) {
-                    this.notifications.serverError(error);
-                    modal.stopLoading();
-                }
-            },
-        });
+    @action verifyUser(...args) {
+        return this.userActions.verifyUser(...args);
     }
 
-    /**
-     * Change password for a user
-     *
-     * @void
-     */
-    @action changeUserPassword(user) {
-        this.modalsManager.show('modals/change-user-password', {
-            keepOpen: true,
-            user,
-        });
+    @action changeUserPassword(...args) {
+        return this.userActions.changeUserPassword(...args);
     }
 
-    /**
-     * Change email for a user
-     *
-     * @void
-     */
-    @action changeUserEmail(user) {
-        this.modalsManager.show('modals/change-user-email', {
-            keepOpen: true,
-            user,
-            onEmailChangeComplete: () => {
-                return this.hostRouter.refresh();
-            },
-        });
+    @action changeUserEmail(...args) {
+        return this.userActions.changeUserEmail(...args);
     }
 
-    /**
-     * Resends invite for a user to join.
-     *
-     * @void
-     */
-    @action resendInvitation(user) {
-        this.modalsManager.confirm({
-            title: this.intl.t('iam.users.index.resend-invitation-to-join-organization'),
-            body: this.intl.t('iam.users.index.confirming-fleetbase-will-re-send-invitation-for-user-to-join-your-organization'),
-            confirm: async (modal) => {
-                modal.startLoading();
-
-                try {
-                    await user.resendInvite();
-                    this.notifications.success(this.intl.t('iam.users.index.invitation-resent'));
-                    this.hostRouter.refresh();
-                } catch (error) {
-                    this.notifications.serverError(error);
-                    modal.stopLoading();
-                }
-            },
-        });
+    @action resendInvitation(...args) {
+        return this.userActions.resendInvitation(...args);
     }
 
     /**

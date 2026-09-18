@@ -4,9 +4,9 @@ import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { isBlank } from '@ember/utils';
 import { timeout, task } from 'ember-concurrency';
-import getWithDefault from '@fleetbase/ember-core/utils/get-with-default';
 
 export default class GroupsIndexController extends Controller {
+    @service groupActions;
     @controller('users.index') usersIndexController;
     @service store;
     @service intl;
@@ -170,107 +170,17 @@ export default class GroupsIndexController extends Controller {
         this.crud.export('group');
     }
 
-    /**
-     * Toggles modal to create a new group
-     *
-     * @void
-     */
-    @action createGroup() {
-        const formPermission = 'iam create group';
-        const group = this.store.createRecord('group', { users: [] });
-
-        this.editGroup(group, {
-            title: this.intl.t('iam.groups.index.new-group'),
-            acceptButtonText: this.intl.t('common.confirm'),
-            acceptButtonIcon: 'check',
-            acceptButtonDisabled: this.abilities.cannot(formPermission),
-            acceptButtonHelpText: this.abilities.cannot(formPermission) ? this.intl.t('common.unauthorized') : null,
-            formPermission,
-            group,
-            confirm: async (modal) => {
-                modal.startLoading();
-
-                if (this.abilities.cannot(formPermission)) {
-                    return this.notifications.warning(this.intl.t('common.permissions-required-for-changes'));
-                }
-                try {
-                    await group.save();
-                    this.notifications.success(this.intl.t('iam.groups.index.new-group-created'));
-                    return this.hostRouter.refresh();
-                } catch (error) {
-                    this.notifications.serverError(error);
-                    modal.stopLoading();
-                }
-            },
-        });
+    // Dialog and lifecycle actions live in the group-actions service so other engines can open them too.
+    @action createGroup(...args) {
+        return this.groupActions.createGroup(...args);
     }
 
-    /**
-     * Toggles modal to edit a group
-     *
-     * @void
-     */
-    @action editGroup(group, options = {}) {
-        const formPermission = 'iam update group';
-        this.modalsManager.show('modals/group-form', {
-            title: this.intl.t('iam.groups.index.edit-group-title'),
-            acceptButtonText: this.intl.t('common.save-changes'),
-            acceptButtonIcon: 'save',
-            acceptButtonDisabled: this.abilities.cannot(formPermission),
-            acceptButtonHelpText: this.abilities.cannot(formPermission) ? this.intl.t('common.unauthorized') : null,
-            formPermission,
-            group,
-            lastSelectedUser: null,
-            removeUser: (user) => {
-                group.users.removeObject(user);
-            },
-            addUser: (user) => {
-                group.users.pushObject(user);
-                this.modalsManager.setOption('lastSelectedUser', null);
-            },
-            confirm: async (modal) => {
-                modal.startLoading();
-
-                if (this.abilities.cannot(formPermission)) {
-                    return this.notifications.warning(this.intl.t('common.permissions-required-for-changes'));
-                }
-
-                try {
-                    await group.save();
-                    this.notifications.success(this.intl.t('iam.groups.index.changes-group-save'));
-                    return this.hostRouter.refresh();
-                } catch (error) {
-                    this.notifications.serverError(error);
-                    modal.stopLoading();
-                }
-            },
-            ...options,
-        });
+    @action editGroup(...args) {
+        return this.groupActions.editGroup(...args);
     }
 
-    /**
-     * Toggles dialog to delete a group
-     *
-     * @void
-     */
-    @action deleteGroup(group) {
-        const groupName = getWithDefault(group, 'name', this.intl.t('iam.groups.index.untitled'));
-
-        this.modalsManager.confirm({
-            title: this.intl.t('iam.groups.index.delete-group-title', { groupName }),
-            body: this.intl.t('iam.groups.index.data-assosciated-this-group-deleted'),
-            confirm: async (modal) => {
-                modal.startLoading();
-                try {
-                    await group.destroyRecord();
-                    this.notifications.success(this.intl.t('iam.groups.index.delete-group-success-message', { name: group.name }));
-                    return this.hostRouter.refresh();
-                } catch (error) {
-                    this.notifications.serverError(error);
-                    modal.stopLoading();
-                }
-            },
-        });
+    @action deleteGroup(...args) {
+        return this.groupActions.deleteGroup(...args);
     }
 
     @action async openDeepLinkedResource() {
