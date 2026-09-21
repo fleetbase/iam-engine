@@ -1,13 +1,9 @@
-> v0.1.11 ~ "RELEASE_NOTES_PLACEHOLDER — replace this line with the release title"
+> v0.1.12 ~ "IAM dialogs open from anywhere"
 
 ---
 ## Highlights
 
-RELEASE_NOTES_PLACEHOLDER
-
-Describe what changed in this release. The first line above must name the version
-being released, and both placeholder markers must be gone, or the release workflow
-refuses to tag.
+- **IAM dialogs are reusable services.** New `user-actions`, `group-actions`, `role-actions` and `policy-actions` services hold the create, edit, invite and permission dialogs that lived in the index controllers, so other engines can open them — Fleetbase AI uses this to open **New User** from its confirmation cards. The IAM pages delegate to the same services, so buttons, row actions and deep links behave as before. ([#33](https://github.com/fleetbase/iam-engine/pull/33))
 
 ---
 ## Need help?
