@@ -6,6 +6,7 @@ import { isBlank } from '@ember/utils';
 import { timeout, task } from 'ember-concurrency';
 
 export default class PoliciesIndexController extends Controller {
+    @service policyActions;
     @service store;
     @service intl;
     @service notifications;
@@ -198,128 +199,21 @@ export default class PoliciesIndexController extends Controller {
         });
     }
 
-    /**
-     * Toggles modal to create a new API key
-     *
-     * @void
-     */
-    @action createPolicy() {
-        const formPermission = 'iam create policy';
-        const policy = this.store.createRecord('policy', {
-            is_mutable: true,
-            is_deletable: true,
-        });
-
-        this.editPolicy(policy, {
-            title: this.intl.t('iam.policies.index.new-policy'),
-            acceptButtonText: this.intl.t('common.confirm'),
-            acceptButtonIcon: 'check',
-            acceptButtonDisabled: this.abilities.cannot(formPermission),
-            acceptButtonHelpText: this.abilities.cannot(formPermission) ? this.intl.t('common.unauthorized') : null,
-            formPermission,
-            confirm: async (modal) => {
-                modal.startLoading();
-
-                if (this.abilities.cannot(formPermission)) {
-                    return this.notifications.warning(this.intl.t('common.permissions-required-for-changes'));
-                }
-
-                try {
-                    await policy.save();
-                    this.notifications.success(this.intl.t('iam.policies.index.new-policy-created'));
-                    return this.hostRouter.refresh();
-                } catch (error) {
-                    this.notifications.serverError(error);
-                    modal.stopLoading();
-                }
-            },
-        });
+    // Dialog and lifecycle actions live in the policy-actions service so other engines can open them too.
+    @action createPolicy(...args) {
+        return this.policyActions.createPolicy(...args);
     }
 
-    /**
-     * Toggles modal to create a new API key
-     *
-     * @param {PolicyModel} policy
-     * @memberof PoliciesIndexController
-     * @void
-     */
-    @action editPolicy(policy, options = {}) {
-        if (!policy.is_mutable) {
-            return this.viewPolicyPermissions(policy, options);
-        }
-
-        const formPermission = 'iam update policy';
-        this.modalsManager.show('modals/policy-form', {
-            title: this.intl.t('iam.policies.index.edit-policy-title'),
-            acceptButtonText: this.intl.t('common.save-changes'),
-            acceptButtonIcon: 'save',
-            acceptButtonDisabled: this.abilities.cannot(formPermission),
-            acceptButtonHelpText: this.abilities.cannot(formPermission) ? this.intl.t('common.unauthorized') : null,
-            formPermission,
-            policy,
-            confirm: async (modal) => {
-                modal.startLoading();
-
-                if (this.abilities.cannot(formPermission)) {
-                    return this.notifications.warning(this.intl.t('common.permissions-required-for-changes'));
-                }
-
-                try {
-                    await policy.save();
-                    this.notifications.success(this.intl.t('iam.policies.index.changes-policy-saved-success'));
-                    return this.hostRouter.refresh();
-                } catch (error) {
-                    this.notifications.serverError(error);
-                    modal.stopLoading();
-                }
-            },
-            ...options,
-        });
+    @action editPolicy(...args) {
+        return this.policyActions.editPolicy(...args);
     }
 
-    /**
-     * View policy permissions
-     *
-     * @param {PolicyModel} policy
-     * @memberof PoliciesIndexController
-     */
-    @action viewPolicyPermissions(policy, options = {}) {
-        this.modalsManager.show('modals/view-policy-permissions', {
-            title: this.intl.t('iam.components.modals.view-policy-permissions.view-permissions', { policyName: policy.name }),
-            hideDeclineButton: true,
-            acceptButtonText: this.intl.t('common.done'),
-            policy,
-            ...options,
-        });
+    @action viewPolicyPermissions(...args) {
+        return this.policyActions.viewPolicyPermissions(...args);
     }
 
-    /**
-     * Toggles dialog to delete API key
-     *
-     * @param {PolicyModel} policy
-     * @memberof PoliciesIndexController
-     * @void
-     */
-    @action deletePolicy(policy) {
-        if (!policy.is_deletable) {
-            return this.notifications.warning(this.intl.t('iam.policies.index.unable-delete-policy-warning', { policyType: policy.type }));
-        }
-
-        this.modalsManager.confirm({
-            title: `Delete (${policy.name || 'Untitled'}) policy`,
-            body: this.intl.t('iam.policies.index.data-assosciated-this-policy-deleted'),
-            confirm: async (modal) => {
-                modal.startLoading();
-                try {
-                    await policy.destroyRecord();
-                    this.notifications.success(this.intl.t('iam.policies.index.policy-deleted', { policyName: policy.name }));
-                    return this.hostRouter.refresh();
-                } catch (error) {
-                    this.notifications.serverError(error);
-                    modal.stopLoading();
-                }
-            },
-        });
+    @action deletePolicy(...args) {
+        return this.policyActions.deletePolicy(...args);
     }
 
     /**
