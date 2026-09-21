@@ -81,8 +81,13 @@ export default class UserActionsService extends ResourceActionService {
                         },
                     });
 
-                    const wasExistingUser = response && response.invited === true;
-                    this.notifications.success(wasExistingUser ? this.intl.t('iam.users.invite.invitation-sent-existing') : this.intl.t('iam.users.invite.invitation-sent-new'));
+                    const promotedFrom = response?.promoted_from;
+                    if (promotedFrom) {
+                        this.notifyPromotedAccount(promotedFrom, response?.user?.name ?? name ?? email);
+                    } else {
+                        const wasExistingUser = response?.invited === true;
+                        this.notifications.success(wasExistingUser ? this.intl.t('iam.users.invite.invitation-sent-existing') : this.intl.t('iam.users.invite.invitation-sent-new'));
+                    }
 
                     modal.done();
                     return this.hostRouter.refresh();
@@ -92,6 +97,18 @@ export default class UserActionsService extends ResourceActionService {
                 }
             },
         });
+    }
+
+    /**
+     * Shows the toast for a managed driver/customer/contact account that the backend
+     * upgraded to a team member instead of creating a new user.
+     *
+     * @param {String} type the account's previous type (driver, customer or contact)
+     * @param {String} name
+     * @void
+     */
+    notifyPromotedAccount(type, name) {
+        this.notifications.success(this.intl.t('iam.users.notifications.promoted-existing-account', { type, name: name ?? '' }));
     }
 
     /**
@@ -123,7 +140,15 @@ export default class UserActionsService extends ResourceActionService {
 
                 try {
                     await user.save();
-                    this.notifications.success(this.intl.t('iam.users.index.new-user-created'));
+
+                    // When the email/phone belonged to a driver/customer/contact account in this
+                    // organisation, the backend upgrades that account instead of creating a duplicate.
+                    const promotedFrom = user.promoted_from ?? user.meta?.promoted_from;
+                    if (promotedFrom) {
+                        this.notifyPromotedAccount(promotedFrom, user.name ?? user.email);
+                    } else {
+                        this.notifications.success(this.intl.t('iam.users.index.new-user-created'));
+                    }
                     this.hostRouter.refresh();
                     modal.done();
                 } catch (error) {

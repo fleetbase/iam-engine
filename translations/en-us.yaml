@@ -182,6 +182,8 @@ iam:
       email-required: Please enter an email address.
       invitation-sent-existing: Invitation sent. The user will receive an email to join your organisation.
       invitation-sent-new: Invitation sent. A pending account has been created and the user will be asked to set a password.
+    notifications:
+      promoted-existing-account: Existing {type} account for {name} was upgraded to a team member.
   application:
       access-management: Access Management
   home:
