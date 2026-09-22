@@ -1,0 +1,9 @@
+{{#let (get @row @column.valuePath) as |verifiedAt|}}
+    {{#if verifiedAt}}
+        <Badge @status="success" @text={{t "iam.users.index.verified"}} @helpText={{format-date-fns verifiedAt}} />
+    {{else if (get @row @column.contactPath)}}
+        <Badge @status="warning" @text={{t "iam.users.index.unverified"}} />
+    {{else}}
+        <span class="text-gray-400 dark:text-gray-500">-</span>
+    {{/if}}
+{{/let}}

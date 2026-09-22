@@ -279,22 +279,74 @@ export default class UserActionsService extends ResourceActionService {
      * @void
      */
     @action verifyUser(user) {
+        return this.markVerified(user, 'email');
+    }
+
+    /**
+     * Manually mark a user's email or phone as verified, bypassing verification.
+     *
+     * @param {UserModel} user
+     * @param {String} channel `email` or `phone`
+     * @void
+     */
+    @action markVerified(user, channel = 'email') {
         this.modalsManager.confirm({
-            title: this.intl.t('iam.users.index.verify-user-title', { userName: user.get('name') }),
-            body: this.intl.t('iam.users.index.verify-user-manually-prompt'),
+            title: this.intl.t('iam.users.index.mark-verified-title', { userName: user.get('name'), channel: this.channelLabel(channel) }),
+            body: this.intl.t('iam.users.index.mark-verified-prompt', { channel: this.channelLabel(channel) }),
             confirm: async (modal) => {
                 modal.startLoading();
 
                 try {
-                    await user.verify();
+                    await this.fetch.patch(`users/verify/${user.id}`, { channel });
                     this.notifications.success(this.intl.t('iam.users.index.user-verified-success-message', { userName: user.get('name') }));
                     this.hostRouter.refresh();
+                    modal.done();
                 } catch (error) {
                     this.notifications.serverError(error);
                     modal.stopLoading();
                 }
             },
         });
+    }
+
+    /**
+     * Send the user a link to verify their email or phone.
+     *
+     * @param {UserModel} user
+     * @param {String} channel `email` or `phone`
+     * @void
+     */
+    @action sendVerification(user, channel = 'email') {
+        const destination = user.get(channel);
+
+        this.modalsManager.confirm({
+            title: this.intl.t('iam.users.index.send-verification-title', { channel: this.channelLabel(channel) }),
+            body: this.intl.t('iam.users.index.send-verification-prompt', { userName: user.get('name'), destination }),
+            acceptButtonText: this.intl.t('iam.users.index.send-verification'),
+            acceptButtonIcon: 'paper-plane',
+            confirm: async (modal) => {
+                modal.startLoading();
+
+                try {
+                    await this.fetch.post(`users/${user.id}/send-verification`, { channel });
+                    this.notifications.success(this.intl.t('iam.users.index.verification-sent', { destination }));
+                    modal.done();
+                } catch (error) {
+                    this.notifications.serverError(error);
+                    modal.stopLoading();
+                }
+            },
+        });
+    }
+
+    /**
+     * The translated name of a verification channel.
+     *
+     * @param {String} channel `email` or `phone`
+     * @return {String}
+     */
+    channelLabel(channel) {
+        return this.intl.t(channel === 'phone' ? 'iam.users.index.channel-phone' : 'iam.users.index.channel-email');
     }
 
     /**
