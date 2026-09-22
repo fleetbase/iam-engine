@@ -1,19 +1,14 @@
-<TabNavigation @tabs={{this.tabs}} @size="lg" @containerClass="tab-navigation-fill" @tablistClass="next-view-section-subheader-fixed-height pl-2">
-    <:actions>
-        <div class="flex flex-row items-center space-x-1 pr-4">
-            <Layout::Resource::TabularActions
-                @columns={{this.childController.columns}}
-                @actionButtons={{this.childController.actionButtons}}
-                @bulkActions={{this.childController.bulkActions}}
-                @searchQuery={{this.childController.query}}
-                @onSearch={{perform this.childController.search}}
-                @table={{this.childController.table}}
-                @bulkActionIconOnly={{true}}
-                @controller={{this.childController}}
-            />
-        </div>
-    </:actions>
-    <:default>
-        {{outlet}}
-    </:default>
-</TabNavigation>
+<Layout::Section::Header @title={{t "iam.common.user"}} @actionsWrapperClass="flex flex-row items-center space-x-1">
+    <Layout::Resource::TabularActions
+        @columns={{this.childController.columns}}
+        @actionButtons={{this.childController.actionButtons}}
+        @bulkActions={{this.childController.bulkActions}}
+        @searchQuery={{this.childController.query}}
+        @onSearch={{perform this.childController.search}}
+        @table={{this.childController.table}}
+        @bulkActionIconOnly={{true}}
+        @controller={{this.childController}}
+    />
+</Layout::Section::Header>
+
+{{outlet}}

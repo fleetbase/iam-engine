@@ -5,23 +5,6 @@ import { getOwner } from '@ember/application';
 export default class UsersController extends Controller {
     @service hostRouter;
 
-    get tabs() {
-        return [
-            {
-                route: 'users.index',
-                label: 'Users',
-            },
-            {
-                route: 'users.drivers',
-                label: 'Drivers',
-            },
-            {
-                route: 'users.customers',
-                label: 'Customers',
-            },
-        ];
-    }
-
     get childController() {
         const owner = getOwner(this);
         const fullRouteName = this.hostRouter.currentRouteName;

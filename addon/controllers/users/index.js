@@ -65,7 +65,7 @@ export default class UsersIndexController extends Controller {
         ];
     }
 
-    queryParams = ['view_user', 'page', 'limit', 'sort', 'query', 'type', 'created_by', 'updated_by', 'status', 'role', 'name', 'phone', 'email'];
+    queryParams = ['view_user', 'page', 'limit', 'sort', 'query', 'created_by', 'updated_by', 'status', 'role', 'name', 'phone', 'email'];
     @tracked page = 1;
     @tracked limit;
     @tracked query;
