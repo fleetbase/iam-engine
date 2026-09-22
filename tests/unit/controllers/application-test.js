@@ -54,7 +54,7 @@ module('Unit | Controller | application', function (hooks) {
         this.owner.register('service:fetch', FetchStub);
     });
 
-    test('it builds IAM sidebar navigator items with host routes and nested users', function (assert) {
+    test('it builds IAM sidebar navigator items with host routes', function (assert) {
         const controller = this.owner.lookup('controller:application');
         const items = controller.navigationItems;
         const users = items.find((item) => item.route === 'console.iam.users');
@@ -64,16 +64,7 @@ module('Unit | Controller | application', function (hooks) {
             ['console.iam.home', 'console.iam.users', 'console.iam.groups', 'console.iam.roles', 'console.iam.policies'],
             'root items keep the console host route names'
         );
-        assert.deepEqual(
-            users.children.map((item) => item.route),
-            ['console.iam.users.index', 'console.iam.users.drivers', 'console.iam.users.customers'],
-            'users item exposes child routes for nested navigator testing'
-        );
-        assert.deepEqual(
-            users.children.map((item) => item.label),
-            ['Users', 'Drivers', 'Customers'],
-            'users item labels distinguish actual users from drivers and customers'
-        );
+        assert.strictEqual(users.children, undefined, 'users item is a single staff list without driver/customer sub-sections');
         assert.true(items[0].tooltip, 'dashboard opts into description-backed tooltip behavior');
         assert.strictEqual(users.permission, 'iam list user', 'users item keeps list permission filtering');
         assert.true(users.visible, 'users item is visible when the see permission is allowed');

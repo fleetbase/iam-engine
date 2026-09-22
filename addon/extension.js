@@ -160,18 +160,6 @@ export default {
                     route: 'console.iam.users',
                 },
                 {
-                    title: 'Drivers',
-                    description: 'View and manage driver accounts linked to your organisation.',
-                    icon: 'id-card',
-                    route: 'console.iam.users.drivers',
-                },
-                {
-                    title: 'Customers',
-                    description: 'View and manage customer accounts linked to your organisation.',
-                    icon: 'users',
-                    route: 'console.iam.users.customers',
-                },
-                {
                     title: 'Groups',
                     description: 'Organise users into groups for bulk permission management.',
                     icon: 'people-group',
