@@ -6,7 +6,7 @@
         <div class="grid grid-cols-1">
             <InputGroup @name={{t "iam.common.email"}} @type="email" @value={{@options.email}} @placeholder={{t "iam.users.invite.email-placeholder"}} />
             <InputGroup @name={{t "iam.common.name"}} @value={{@options.name}} @placeholder={{t "iam.users.invite.name-placeholder"}} @helpText={{t "iam.users.invite.name-help"}} />
-            <InputGroup @name={{t "iam.common.role"}}>
+            <InputGroup @name={{t "iam.common.role"}} @required={{true}}>
                 <ModelSelect
                     @modelName="role"
                     @selectedModel={{@options.role}}

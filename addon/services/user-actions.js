@@ -72,6 +72,12 @@ export default class UserActionsService extends ResourceActionService {
                     return modal.stopLoading();
                 }
 
+                // A role is always chosen explicitly: no access is granted by default
+                if (!role) {
+                    this.notifications.warning(this.intl.t('iam.users.role-required'));
+                    return modal.stopLoading();
+                }
+
                 try {
                     const response = await this.fetch.post('users/invite-user', {
                         user: {
@@ -136,6 +142,12 @@ export default class UserActionsService extends ResourceActionService {
 
                 if (this.abilities.cannot(formPermission)) {
                     return this.notifications.warning(this.intl.t('common.permissions-required-for-changes'));
+                }
+
+                // A role is always chosen explicitly: no access is granted by default
+                if (!user.get('role.id')) {
+                    this.notifications.warning(this.intl.t('iam.users.role-required'));
+                    return modal.stopLoading();
                 }
 
                 try {
