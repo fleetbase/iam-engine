@@ -1,0 +1,188 @@
+iam:
+  extension-name: IAM
+  common:
+    address: Адреса
+    bulk-action: Масова дія
+    country: Країна
+    create: Створено
+    dashboard: Панель керування
+    description: Опис
+    email: Електронна пошта
+    export: Експорт
+    group: Групи
+    member: Учасники
+    name: Назва
+    new: Новий
+    permission: Дозвіл
+    phone: Телефон
+    photo: Фото
+    policy: Політика
+    policies: Політики
+    attach-policies: Прикріпити політики
+    select-policy: Вибрати політику
+    attach-permissions: Прикріпити дозволи
+    attach-inline-permissions: Прикріпити вбудовані дозволи
+    select-permissions: Вибрати дозволи
+    primary: Основний
+    role: Роль
+    roles: Ролі
+    status: Статус
+    type: Тип
+    user: Користувачі
+    service: Сервіс
+    reload: Перезавантажити
+    reload-data: Оновити дані
+  components:
+    widget:
+      metrics:
+        title: Метрики IAM
+    modals:
+      group-details:    
+        group-name: Назва групи
+      group-form:
+        group-name: Назва групи
+        group-description: Опис групи
+        select-users-add-group: Виберіть користувачів для додавання до групи
+        search-select-users-add-group: Знайдіть та виберіть користувачів для додавання до цієї групи.
+        select-user-add-group: Виберіть користувача для додавання до групи
+        no-user-add-group: Жодного користувача не додано до групи
+      policy-form:
+        policy-name: Назва політики
+        enter-name-your-policy: Введіть назву вашої політики
+        policy-description: Опис політики
+        enter-description-your-policy: Введіть опис вашої політики
+        select-permissions: Вибрати дозволи
+      view-policy-permissions:
+        view-permissions: >-
+          Політика: {policyName} Дозволи
+      view-role-permissions:
+        view-permissions: >-
+          Роль: {roleName} Дозволи
+      view-user-permissions:
+        view-permissions: >-
+          Користувач: {userName} Дозволи
+      change-user-email:
+        title: Змінити email користувача
+        heading: Зміна email для {userName}
+        prompt: Введіть нову адресу електронної пошти. Користувач повинен підтвердити нову адресу перед тим, як вона стане його логіном.
+        current-email: Поточний email
+        new-email: Новий email
+        send-verification: Надіслати підтвердження
+        email-required: Потрібно вказати нову адресу електронної пошти.
+        verification-sent: Підтвердження зміни email надіслано. Користувач повинен підтвердити нову адресу, перш ніж зміниться його логін.
+      role-form:
+        role-name: Назва ролі
+        enter-name-for-this-role: Введіть назву для цієї ролі
+        role-description: Опис ролі
+        enter-description-your-role: Введіть опис вашої ролі
+        select-permission: Вибрати дозволи
+    table:
+      group-members:
+        no-member: Немає учасників
+    permission-picker:
+      selected: >-
+        Вибрано: 
+      search-permissions-keyword: Шукати дозволи за ключовими словами
+      loading-permission: Завантаження дозволів...
+  groups:
+    index:
+      untitled: Без назви
+      delete-group-title: Видалити групу {groupName}
+      delete-group-success-message: Групу {name} видалено.
+      delete-group: Видалити групи
+      created: Створено
+      edit-group: Редагувати групу...
+      delete-group-label: Видалити групу...
+      new-group: Нова група
+      new-group-created: Нову групу створено.
+      edit-group-title: Редагувати групу
+      group-actions: Дії з групою
+      changes-group-save: Зміни в групі збережено.
+      data-assosciated-this-group-deleted: Ви впевнені, що хочете видалити цю групу? Усі дані, пов'язані з цією групою, також будуть видалені. Цю дію неможливо скасувати.
+  policies:
+    index:
+      title: Політики
+      delete-policies: Видалити політики
+      contact-action: Дії з контактами
+      edit-policy: Редагувати політику...
+      delete-policy: Видалити політику...
+      new-policy: Нова політика
+      new-policy-created: Нову політику створено.
+      unable-changes-policy-warning: Неможливо внести зміни до політики типу {policyType}.
+      edit-policy-title: Редагувати політику
+      policy-actions: Дії з політикою
+      changes-policy-saved-success: Зміни в політиці збережено.
+      unable-delete-policy-warning: Неможливо видалити політику типу {policyType}.
+      data-assosciated-this-policy-deleted: Ви впевнені, що хочете видалити цю політику? Усі дані, пов'язані з цією політикою, також будуть видалені. Цю дію неможливо скасувати.
+      policy-deleted: Політику {policyName} видалено.
+  roles:
+    index:
+      delete-roles: Видалити ролі
+      contact-action: Дії з контактами
+      edit-role: Редагувати роль...
+      delete-role: Видалити роль...
+      new-role: Нова роль
+      new-role-create: Нову роль створено
+      edit-role-title: Редагувати роль
+      role-actions: Дії з роллю
+      changes-role-saved: Зміни в ролі збережено.
+      data-assosciated-this-role-deleted: Ви впевнені, що хочете видалити цю роль? Усі дані, пов'язані з цією роллю, також будуть видалені. Цю дію неможливо скасувати.
+      role-deleted: Роль {roleName} видалено.
+      unable-changes-role-warning: Неможливо внести зміни до ролі типу {roleType}.
+      unable-delete-role-warning: Неможливо видалити роль типу {roleType}.
+  users:
+    index:
+      delete-user-title: Видалити користувача {userName}
+      delete-user-success-message: Користувача {userName} видалено.
+      deactivate-user-title: Деактивувати обліковий запис користувача {userName}
+      deactivate-user-success-message: Користувача {userName} деактивовано.
+      re-activate-user-title: Повторно активувати обліковий запис користувача {userName}
+      re-activate-user-success-message: Користувача {userName} активовано.
+      verify-user-title: Вручну підтвердити обліковий запис користувача {userName}
+      verify-user-manually-prompt: Підтверджуючи цю дію, ви вручну підтвердите адресу електронної пошти користувача. Ви впевнені, що хочете пропустити перевірку для цього користувача?
+      user-verified-success-message: Користувача {userName} підтверджено.
+      delete-users: Видалити користувачів
+      last-login: Останній вхід
+      created-at: Дата створення
+      updated-at: Дата оновлення
+      user-actions: Дії з користувачем
+      edit-user: Редагувати користувача...
+      view-user-permissions: Переглянути дозволи...
+      re-send-invitation: Повторно надіслати запрошення...
+      deactivate-user: Деактивувати користувача...
+      activate-user: Активувати користувача...
+      delete-user: Видалити користувача...
+      verify-user: Підтвердити користувача...
+      change-user-password: Змінити пароль користувача...
+      change-user-email: Змінити email користувача...
+      new-user: Новий користувач
+      user-invited-join-your-organization-success: Користувача запрошено приєднатися до вашої організації.
+      edit-user-title: Редагувати користувача
+      new-user-created: Нового користувача додано до організації.
+      user-changes-saved-success: Зміни даних користувача збережено.
+      error-you-cant-delete-yourself: Ви не можете видалити самого себе
+      data-assosciated-user-delete: Ви впевнені, що хочете видалити цього користувача? Усі дані, пов'язані з цим користувачем, також будуть видалені. Цю дію неможливо скасувати.
+      access-account-or-resources-unless-re-activated: Ви впевнені, що хочете деактивувати цього користувача? Цей користувач більше не матиме доступу до свого облікового запису або ресурсів, доки його не буде повторно активовано.
+      this-user-will-regain-access-to-your-organization: Ви впевнені, що хочете повторно активувати цього користувача? Цей користувач відновлюватиме доступ до вашої організації.
+      resend-invitation-to-join-organization: Повторно надіслати запрошення приєднатися до організації
+      confirming-fleetbase-will-re-send-invitation-for-user-to-join-your-organization: Підтверджуючи, Fleetbase повторно надішле запрошення цьому користувачеві приєднатися до вашої організації.
+      invitation-resent: Запрошення повторно надіслано.
+      invite-user: Запросити користувача
+    invite:
+      title: Запросити користувача
+      description: >-
+        Введіть адресу електронної пошти особи, яку ви хочете запросити. Якщо у неї
+        вже є обліковий запис Fleetbase, вона отримає запрошення приєднатися до вашої
+        організації. Якщо це новий користувач, буде створено обліковий запис з очікуванням
+        підтвердження, і після прийняття їй буде запропоновано встановити пароль.
+      email-placeholder: colleague@example.com
+      name-placeholder: Повне ім'я (обов'язково для нових користувачів)
+      name-help: Потрібно лише у випадку, якщо особа ще не має облікового запису Fleetbase.
+      send-invitation: Надіслати запрошення
+      email-required: Будь ласка, введіть адресу електронної пошти.
+      invitation-sent-existing: Запрошення надіслано. Користувач отримає електронний лист для приєднання до вашої організації.
+      invitation-sent-new: Запрошення надіслано. Створено обліковий запис з очікуванням підтвердження, і користувачеві буде запропоновано встановити пароль.
+  application:
+      access-management: Управління доступом
+  home:
+      identity-access-management: Управління ідентифікацією та доступом (IAM)
