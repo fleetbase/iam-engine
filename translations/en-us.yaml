@@ -138,9 +138,26 @@ iam:
       deactivate-user-success-message: User {userName} deactivated.
       re-activate-user-title: Re-activate {userName} user's account
       re-activate-user-success-message: User {userName} activated.
-      verify-user-title: Manually Verify user {userName} account
-      verify-user-manually-prompt: By clicking confirm this action will manually verify the users email address. Are you sure you want to bypass verification for this user?
       user-verified-success-message: User {userName} verified.
+      mark-verified-title: Mark {userName}'s {channel} as verified
+      mark-verified-prompt: This marks the user's {channel} as verified without them confirming it. Are you sure?
+      send-verification-title: Send {channel} verification
+      send-verification-prompt: '{userName} will receive a link at {destination} to confirm it. The link expires in 48 hours.'
+      send-verification: Send verification
+      verification-sent: Verification link sent to {destination}.
+      channel-email: email address
+      channel-phone: phone number
+      send-email-verification: Send email verification...
+      send-phone-verification: Send phone verification...
+      mark-email-verified: Mark email verified...
+      mark-phone-verified: Mark phone verified...
+      email-verified: Email Verified
+      phone-verified: Phone Verified
+      verified: Verified
+      unverified: Unverified
+      timezone: Timezone
+      date-of-birth: Date of Birth
+      ip-address: IP Address
       delete-users: Delete Users
       last-login: Last Login
       created-at: Created At
@@ -152,7 +169,6 @@ iam:
       deactivate-user: Deactivate user...
       activate-user: Activate user...
       delete-user: Delete user...
-      verify-user: Verify user...
       change-user-password: Change user password...
       change-user-email: Change user email...
       new-user: New User

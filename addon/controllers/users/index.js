@@ -65,7 +65,25 @@ export default class UsersIndexController extends Controller {
         ];
     }
 
-    queryParams = ['view_user', 'page', 'limit', 'sort', 'query', 'created_by', 'updated_by', 'status', 'role', 'name', 'phone', 'email'];
+    queryParams = [
+        'view_user',
+        'page',
+        'limit',
+        'sort',
+        'query',
+        'type',
+        'created_by',
+        'updated_by',
+        'status',
+        'role',
+        'name',
+        'phone',
+        'email',
+        'email_verified',
+        'phone_verified',
+        'country',
+        'timezone',
+    ];
     @tracked page = 1;
     @tracked limit;
     @tracked query;
@@ -75,6 +93,10 @@ export default class UsersIndexController extends Controller {
     @tracked phone;
     @tracked email;
     @tracked role;
+    @tracked email_verified;
+    @tracked phone_verified;
+    @tracked country;
+    @tracked timezone;
     @tracked sort = '-created_at';
 
     /**
@@ -134,6 +156,66 @@ export default class UsersIndexController extends Controller {
             filterComponent: 'filter/select',
             filterParam: 'status',
             filterOptions: ['pending', 'active', 'inactive'],
+        },
+        {
+            label: this.intl.t('iam.users.index.email-verified'),
+            valuePath: 'email_verified_at',
+            contactPath: 'email',
+            cellComponent: 'table/cell/verification-status',
+            sortable: false,
+            filterable: true,
+            filterComponent: 'filter/select',
+            filterParam: 'email_verified',
+            filterOptions: this.verificationFilterOptions,
+        },
+        {
+            label: this.intl.t('iam.users.index.phone-verified'),
+            valuePath: 'phone_verified_at',
+            contactPath: 'phone',
+            cellComponent: 'table/cell/verification-status',
+            sortable: false,
+            filterable: true,
+            filterComponent: 'filter/select',
+            filterParam: 'phone_verified',
+            filterOptions: this.verificationFilterOptions,
+        },
+        {
+            label: this.intl.t('iam.common.country'),
+            valuePath: 'country',
+            cellComponent: 'table/cell/country',
+            hidden: true,
+            resizable: true,
+            sortable: true,
+            filterable: true,
+            filterComponent: 'filter/country',
+            filterParam: 'country',
+        },
+        {
+            label: this.intl.t('iam.users.index.timezone'),
+            valuePath: 'timezone',
+            hidden: true,
+            resizable: true,
+            sortable: true,
+            filterable: true,
+            filterComponent: 'filter/string',
+            filterParam: 'timezone',
+        },
+        {
+            label: this.intl.t('iam.users.index.date-of-birth'),
+            valuePath: 'date_of_birth',
+            hidden: true,
+            resizable: true,
+            sortable: true,
+            filterable: false,
+        },
+        {
+            label: this.intl.t('iam.users.index.ip-address'),
+            valuePath: 'ip_address',
+            cellComponent: 'click-to-copy',
+            hidden: true,
+            resizable: true,
+            sortable: false,
+            filterable: false,
         },
         {
             label: this.intl.t('iam.users.index.last-login'),
@@ -205,11 +287,30 @@ export default class UsersIndexController extends Controller {
                     isVisible: (user) => user.get('session_status') === 'inactive' || (this.currentUser.user.is_admin && user.get('session_status') === 'pending'),
                 },
                 {
-                    label: this.intl.t('iam.users.index.verify-user'),
-                    fn: this.verifyUser,
+                    label: this.intl.t('iam.users.index.send-email-verification'),
+                    fn: (user) => this.userActions.sendVerification(user, 'email'),
+                    permission: 'iam verify user',
+                    isVisible: (user) => this.canVerify(user, 'email'),
+                },
+                {
+                    label: this.intl.t('iam.users.index.send-phone-verification'),
+                    fn: (user) => this.userActions.sendVerification(user, 'phone'),
+                    permission: 'iam verify user',
+                    isVisible: (user) => this.canVerify(user, 'phone'),
+                },
+                {
+                    label: this.intl.t('iam.users.index.mark-email-verified'),
+                    fn: (user) => this.userActions.markVerified(user, 'email'),
                     className: 'text-danger',
                     permission: 'iam verify user',
-                    isVisible: (user) => !user.get('email_verified_at'),
+                    isVisible: (user) => this.canVerify(user, 'email'),
+                },
+                {
+                    label: this.intl.t('iam.users.index.mark-phone-verified'),
+                    fn: (user) => this.userActions.markVerified(user, 'phone'),
+                    className: 'text-danger',
+                    permission: 'iam verify user',
+                    isVisible: (user) => this.canVerify(user, 'phone'),
                 },
                 {
                     label: this.intl.t('iam.users.index.change-user-password'),
@@ -236,6 +337,29 @@ export default class UsersIndexController extends Controller {
             searchable: false,
         },
     ];
+
+    /**
+     * Options for the email/phone verified column filters.
+     *
+     * @var {Array}
+     */
+    get verificationFilterOptions() {
+        return [
+            { label: this.intl.t('iam.users.index.verified'), value: 'true' },
+            { label: this.intl.t('iam.users.index.unverified'), value: 'false' },
+        ];
+    }
+
+    /**
+     * Whether the user's email or phone can be verified: it is set and not yet verified.
+     *
+     * @param {UserModel} user
+     * @param {String} channel `email` or `phone`
+     * @return {Boolean}
+     */
+    canVerify(user, channel) {
+        return Boolean(user.get(channel)) && !user.get(`${channel}_verified_at`);
+    }
 
     /**
      * The search task.
