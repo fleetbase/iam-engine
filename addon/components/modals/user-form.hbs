@@ -21,7 +21,7 @@
                             placeholder={{t "iam.common.country"}}
                         />
                     </InputGroup>
-                    <InputGroup @name={{t "iam.common.role"}}>
+                    <InputGroup @name={{t "iam.common.role"}} @required={{true}}>
                         <ModelSelect
                             @modelName="role"
                             @selectedModel={{@options.user.role}}
