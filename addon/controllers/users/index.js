@@ -1,6 +1,6 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
-import { tracked } from '@glimmer/tracking';
+import { tracked, cached } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { isBlank } from '@ember/utils';
 import { timeout, task } from 'ember-concurrency';
@@ -23,11 +23,13 @@ export default class UsersIndexController extends Controller {
     get actionButtons() {
         return [
             {
+                id: 'refresh',
                 icon: 'refresh',
                 onClick: () => this.hostRouter.refresh(),
                 helpText: this.intl.t('common.refresh'),
             },
             {
+                id: 'invite-user',
                 text: this.intl.t('iam.users.index.invite-user'),
                 type: 'default',
                 icon: 'paper-plane',
@@ -35,6 +37,7 @@ export default class UsersIndexController extends Controller {
                 onClick: this.inviteUser,
             },
             {
+                id: 'create-user',
                 text: this.intl.t('common.new'),
                 type: 'primary',
                 icon: 'plus',
@@ -42,6 +45,7 @@ export default class UsersIndexController extends Controller {
                 onClick: this.createUser,
             },
             {
+                id: 'export-users',
                 text: this.intl.t('common.export'),
                 icon: 'long-arrow-up',
                 iconClass: 'rotate-icon-45',
@@ -58,6 +62,7 @@ export default class UsersIndexController extends Controller {
 
         return [
             {
+                id: 'bulk-delete-users',
                 label: this.intl.t('common.delete-selected-count', { count: selected.length }),
                 class: 'text-red-500',
                 fn: this.bulkDeleteUsers,
@@ -65,7 +70,7 @@ export default class UsersIndexController extends Controller {
         ];
     }
 
-    queryParams = [
+    queryParams = this.userActions.queryParamsFor([
         'view_user',
         'page',
         'limit',
@@ -83,7 +88,7 @@ export default class UsersIndexController extends Controller {
         'phone_verified',
         'country',
         'timezone',
-    ];
+    ]);
     @tracked page = 1;
     @tracked limit;
     @tracked query;
@@ -104,8 +109,9 @@ export default class UsersIndexController extends Controller {
      *
      * @var {Array}
      */
-    @tracked columns = [
+    @tracked baseColumns = [
         {
+            id: 'name',
             sticky: true,
             label: this.intl.t('iam.common.name'),
             valuePath: 'name',
@@ -119,6 +125,7 @@ export default class UsersIndexController extends Controller {
             filterComponent: 'filter/string',
         },
         {
+            id: 'email',
             sticky: true,
             label: this.intl.t('iam.common.email'),
             valuePath: 'email',
@@ -129,6 +136,7 @@ export default class UsersIndexController extends Controller {
             filterComponent: 'filter/string',
         },
         {
+            id: 'phone',
             label: this.intl.t('iam.common.phone'),
             valuePath: 'phone',
             cellComponent: 'click-to-copy',
@@ -138,6 +146,7 @@ export default class UsersIndexController extends Controller {
             filterComponent: 'filter/string',
         },
         {
+            id: 'role-name',
             label: this.intl.t('iam.common.role'),
             valuePath: 'role.name',
             sortable: false,
@@ -148,6 +157,7 @@ export default class UsersIndexController extends Controller {
             model: 'role',
         },
         {
+            id: 'session-status',
             label: this.intl.t('iam.common.status'),
             valuePath: 'session_status',
             sortable: false,
@@ -158,6 +168,7 @@ export default class UsersIndexController extends Controller {
             filterOptions: ['pending', 'active', 'inactive'],
         },
         {
+            id: 'email-verified-at',
             label: this.intl.t('iam.users.index.email-verified'),
             valuePath: 'email_verified_at',
             contactPath: 'email',
@@ -169,6 +180,7 @@ export default class UsersIndexController extends Controller {
             filterOptions: this.verificationFilterOptions,
         },
         {
+            id: 'phone-verified-at',
             label: this.intl.t('iam.users.index.phone-verified'),
             valuePath: 'phone_verified_at',
             contactPath: 'phone',
@@ -180,6 +192,7 @@ export default class UsersIndexController extends Controller {
             filterOptions: this.verificationFilterOptions,
         },
         {
+            id: 'country',
             label: this.intl.t('iam.common.country'),
             valuePath: 'country',
             cellComponent: 'table/cell/country',
@@ -191,6 +204,7 @@ export default class UsersIndexController extends Controller {
             filterParam: 'country',
         },
         {
+            id: 'timezone',
             label: this.intl.t('iam.users.index.timezone'),
             valuePath: 'timezone',
             hidden: true,
@@ -201,6 +215,7 @@ export default class UsersIndexController extends Controller {
             filterParam: 'timezone',
         },
         {
+            id: 'date-of-birth',
             label: this.intl.t('iam.users.index.date-of-birth'),
             valuePath: 'date_of_birth',
             hidden: true,
@@ -209,6 +224,7 @@ export default class UsersIndexController extends Controller {
             filterable: false,
         },
         {
+            id: 'ip-address',
             label: this.intl.t('iam.users.index.ip-address'),
             valuePath: 'ip_address',
             cellComponent: 'click-to-copy',
@@ -218,6 +234,7 @@ export default class UsersIndexController extends Controller {
             filterable: false,
         },
         {
+            id: 'last-login',
             label: this.intl.t('iam.users.index.last-login'),
             valuePath: 'lastLogin',
             resizable: true,
@@ -226,6 +243,7 @@ export default class UsersIndexController extends Controller {
             filterComponent: 'filter/date',
         },
         {
+            id: 'created-at',
             label: this.intl.t('iam.users.index.created-at'),
             valuePath: 'createdAt',
             sortParam: 'created_at',
@@ -235,6 +253,7 @@ export default class UsersIndexController extends Controller {
             filterComponent: 'filter/date',
         },
         {
+            id: 'updated-at',
             label: this.intl.t('iam.users.index.updated-at'),
             valuePath: 'updatedAt',
             sortParam: 'updated_at',
@@ -245,6 +264,7 @@ export default class UsersIndexController extends Controller {
             filterComponent: 'filter/date',
         },
         {
+            id: 'row-actions',
             label: '',
             cellComponent: 'table/cell/dropdown',
             ddButtonText: false,
@@ -257,22 +277,26 @@ export default class UsersIndexController extends Controller {
             width: 60,
             actions: [
                 {
+                    id: 'edit-user',
                     label: this.intl.t('iam.users.index.edit-user'),
                     fn: this.editUser,
                     permission: 'iam view user',
                 },
                 {
+                    id: 'view-user-permissions',
                     label: this.intl.t('iam.users.index.view-user-permissions'),
                     fn: this.viewUserPermissions,
                     permission: 'iam view user',
                 },
                 {
+                    id: 'resend-invitation',
                     label: this.intl.t('iam.users.index.re-send-invitation'),
                     fn: this.resendInvitation,
                     permission: 'iam update user',
                     isVisible: (user) => user.get('session_status') === 'pending',
                 },
                 {
+                    id: 'deactivate-user',
                     label: this.intl.t('iam.users.index.deactivate-user'),
                     fn: this.deactivateUser,
                     className: 'text-danger',
@@ -280,6 +304,7 @@ export default class UsersIndexController extends Controller {
                     isVisible: (user) => user.get('session_status') === 'active',
                 },
                 {
+                    id: 'activate-user',
                     label: this.intl.t('iam.users.index.activate-user'),
                     fn: this.activateUser,
                     className: 'text-danger',
@@ -287,18 +312,21 @@ export default class UsersIndexController extends Controller {
                     isVisible: (user) => user.get('session_status') === 'inactive' || (this.currentUser.user.is_admin && user.get('session_status') === 'pending'),
                 },
                 {
+                    id: 'send-email-verification',
                     label: this.intl.t('iam.users.index.send-email-verification'),
                     fn: (user) => this.userActions.sendVerification(user, 'email'),
                     permission: 'iam verify user',
                     isVisible: (user) => this.canVerify(user, 'email'),
                 },
                 {
+                    id: 'send-phone-verification',
                     label: this.intl.t('iam.users.index.send-phone-verification'),
                     fn: (user) => this.userActions.sendVerification(user, 'phone'),
                     permission: 'iam verify user',
                     isVisible: (user) => this.canVerify(user, 'phone'),
                 },
                 {
+                    id: 'mark-email-verified',
                     label: this.intl.t('iam.users.index.mark-email-verified'),
                     fn: (user) => this.userActions.markVerified(user, 'email'),
                     className: 'text-danger',
@@ -306,6 +334,7 @@ export default class UsersIndexController extends Controller {
                     isVisible: (user) => this.canVerify(user, 'email'),
                 },
                 {
+                    id: 'mark-phone-verified',
                     label: this.intl.t('iam.users.index.mark-phone-verified'),
                     fn: (user) => this.userActions.markVerified(user, 'phone'),
                     className: 'text-danger',
@@ -313,18 +342,21 @@ export default class UsersIndexController extends Controller {
                     isVisible: (user) => this.canVerify(user, 'phone'),
                 },
                 {
+                    id: 'change-user-password',
                     label: this.intl.t('iam.users.index.change-user-password'),
                     fn: this.changeUserPassword,
                     className: 'text-danger',
                     isVisible: (user) => this.abilities.can('iam change-password-for user') || user.role_name === 'Administrator' || user.is_admin === true,
                 },
                 {
+                    id: 'change-user-email',
                     label: this.intl.t('iam.users.index.change-user-email'),
                     fn: this.changeUserEmail,
                     className: 'text-danger',
                     isVisible: () => this.abilities.can('iam change-email-for user') || this.currentUser.user.role_name === 'Administrator' || this.currentUser.user.is_admin === true,
                 },
                 {
+                    id: 'delete-user',
                     label: this.intl.t('iam.users.index.delete-user'),
                     fn: this.deleteUser,
                     className: 'text-danger',
@@ -337,6 +369,16 @@ export default class UsersIndexController extends Controller {
             searchable: false,
         },
     ];
+
+    /**
+     * The columns with what extensions registered under `iam:table:user` merged in.
+     * The table and its header (`users.hbs`) render separately, so both read this.
+     *
+     * @var {Array}
+     */
+    @cached get columns() {
+        return this.userActions.mergeRegisteredColumns(this.baseColumns, { controller: this });
+    }
 
     /**
      * Options for the email/phone verified column filters.
