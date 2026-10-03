@@ -66,7 +66,7 @@ export default class GroupActionsService extends ResourceActionService {
         const formPermission = 'iam update group';
         this.modalsManager.show('modals/group-form', {
             title: this.intl.t('iam.groups.index.edit-group-title'),
-            // What extensions registered under `iam:details:group` (buttons and "…" menu items).
+            // What extensions registered under `iam:group:details` (buttons and "…" menu items).
             actionButtons: mergeHeaderButtons(this.resourceView, this.detailsRegistry, [], { resource: group }, { withMenu: true }),
             acceptButtonText: this.intl.t('common.save-changes'),
             acceptButtonIcon: 'save',

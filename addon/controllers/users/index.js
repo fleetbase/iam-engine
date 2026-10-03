@@ -371,7 +371,7 @@ export default class UsersIndexController extends Controller {
     ];
 
     /**
-     * The columns with what extensions registered under `iam:table:user` merged in.
+     * The columns with what extensions registered under `iam:user:table` merged in.
      * The table and its header (`users.hbs`) render separately, so both read this.
      *
      * @var {Array}

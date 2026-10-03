@@ -70,7 +70,7 @@ export default class RolesIndexController extends Controller {
     @tracked types = this.iam.schemeTypes;
 
     /**
-     * Header buttons. Extensions add to them through `iam:table:role:actions`.
+     * Header buttons. Extensions add to them through `iam:role:table:actions`.
      *
      * @var {Array}
      */
@@ -89,7 +89,7 @@ export default class RolesIndexController extends Controller {
     }
 
     /**
-     * Bulk actions for the selected rows. Extensions add to them through `iam:table:role:bulk-actions`.
+     * Bulk actions for the selected rows. Extensions add to them through `iam:role:table:bulk-actions`.
      *
      * @var {Array}
      */

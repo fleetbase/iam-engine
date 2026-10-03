@@ -181,7 +181,7 @@ export default class UserActionsService extends ResourceActionService {
         const formPermission = 'iam update user';
         this.modalsManager.show('modals/user-form', {
             title: this.intl.t('iam.users.index.edit-user-title'),
-            // What extensions registered under `iam:details:user` (buttons and "…" menu items).
+            // What extensions registered under `iam:user:details` (buttons and "…" menu items).
             actionButtons: mergeHeaderButtons(this.resourceView, this.detailsRegistry, [], { resource: user }, { withMenu: true }),
             modalClass: 'modal-lg',
             acceptButtonText: this.intl.t('common.save-changes'),

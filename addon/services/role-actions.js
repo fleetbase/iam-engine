@@ -84,7 +84,7 @@ export default class RoleActionsService extends ResourceActionService {
         const formPermission = 'iam update role';
         this.modalsManager.show('modals/role-form', {
             title: this.intl.t('iam.roles.index.edit-role-title'),
-            // What extensions registered under `iam:details:role` (buttons and "…" menu items).
+            // What extensions registered under `iam:role:details` (buttons and "…" menu items).
             actionButtons: mergeHeaderButtons(this.resourceView, this.detailsRegistry, [], { resource: role }, { withMenu: true }),
             acceptButtonText: this.intl.t('common.save-changes'),
             acceptButtonIcon: 'save',

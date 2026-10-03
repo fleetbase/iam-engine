@@ -75,7 +75,7 @@ export default class PolicyActionsService extends ResourceActionService {
         const formPermission = 'iam update policy';
         this.modalsManager.show('modals/policy-form', {
             title: this.intl.t('iam.policies.index.edit-policy-title'),
-            // What extensions registered under `iam:details:policy` (buttons and "…" menu items).
+            // What extensions registered under `iam:policy:details` (buttons and "…" menu items).
             actionButtons: mergeHeaderButtons(this.resourceView, this.detailsRegistry, [], { resource: policy }, { withMenu: true }),
             acceptButtonText: this.intl.t('common.save-changes'),
             acceptButtonIcon: 'save',

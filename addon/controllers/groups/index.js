@@ -55,7 +55,7 @@ export default class GroupsIndexController extends Controller {
     @tracked sort = '-created_at';
 
     /**
-     * Header buttons. Extensions add to them through `iam:table:group:actions`.
+     * Header buttons. Extensions add to them through `iam:group:table:actions`.
      *
      * @var {Array}
      */
@@ -82,7 +82,7 @@ export default class GroupsIndexController extends Controller {
     }
 
     /**
-     * Bulk actions for the selected rows. Extensions add to them through `iam:table:group:bulk-actions`.
+     * Bulk actions for the selected rows. Extensions add to them through `iam:group:table:bulk-actions`.
      *
      * @var {Array}
      */
