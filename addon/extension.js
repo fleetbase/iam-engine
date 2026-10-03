@@ -182,5 +182,9 @@ export default {
 
         // Register dashboard and widgets
         registerWidgets(widgetService);
+
+        // Declare the registries extensions can add table columns, actions and
+        // buttons to, e.g. `iam:table:user:columns` or `iam:table:role:row-actions`.
+        universe.getService('universe/resource-view-service')?.declare('iam', ['group', 'policy', 'role', 'user']);
     },
 };
