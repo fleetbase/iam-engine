@@ -4,8 +4,8 @@
 ## Highlights
 
 - **Resource view registries.** Extensions can add the following for `user`, `group`, `role` and `policy`:
-  - columns, row actions, bulk actions and toolbar buttons, through `iam:table:<resource>:<slot>`;
-  - buttons and menu items in the edit dialogs, through `iam:details:<resource>:<slot>`.
+  - columns, row actions, bulk actions and toolbar buttons, through `iam:<resource>:table:<slot>`;
+  - buttons and menu items in the edit dialogs, through `iam:<resource>:details:<slot>`.
 - **Groups, roles and policies use the standard table layout**, with filters and a column picker, like users.
 - **Fix: the delete-groups confirmation read a misspelt translation key.**
 
