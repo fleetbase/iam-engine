@@ -1,11 +1,20 @@
-> v0.1.12 ~ "IAM dialogs open from anywhere"
+> v0.1.13 ~ "Extensions can add columns, actions and buttons to IAM tables and dialogs"
 
 ---
 ## Highlights
 
-- **IAM dialogs are reusable services.** New `user-actions`, `group-actions`, `role-actions` and `policy-actions` services hold the create, edit, invite and permission dialogs that lived in the index controllers, so other engines can open them — Fleetbase AI uses this to open **New User** from its confirmation cards. The IAM pages delegate to the same services, so buttons, row actions and deep links behave as before. ([#33](https://github.com/fleetbase/iam-engine/pull/33))
+- **Resource view registries.** Extensions can add the following for `user`, `group`, `role` and `policy`:
+  - columns, row actions, bulk actions and toolbar buttons, through `iam:<resource>:table:<slot>`;
+  - buttons and menu items in the edit dialogs, through `iam:<resource>:details:<slot>`.
+- **Groups, roles and policies use the standard table layout**, with filters and a column picker, like users.
+- **Fix: the delete-groups confirmation read a misspelt translation key.**
+
+---
+## Upgrading
+Needs fleetbase/ember-core v0.3.25 and fleetbase/ember-ui v0.4.5.
 
 ---
 ## Need help?
 - [GitHub Discussions](https://github.com/fleetbase/fleetbase/discussions)
 - [Discord](https://discord.gg/HnTqQ6zAVn)
+---

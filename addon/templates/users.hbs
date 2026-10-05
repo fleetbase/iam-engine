@@ -1,5 +1,6 @@
 <Layout::Section::Header @title={{t "iam.common.user"}} @actionsWrapperClass="flex flex-row items-center space-x-1">
     <Layout::Resource::TabularActions
+        @registry="iam:user:table"
         @columns={{this.childController.columns}}
         @actionButtons={{this.childController.actionButtons}}
         @bulkActions={{this.childController.bulkActions}}

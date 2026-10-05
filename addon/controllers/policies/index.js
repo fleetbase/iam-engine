@@ -24,7 +24,7 @@ export default class PoliciesIndexController extends Controller {
      *
      * @var {Array}
      */
-    queryParams = ['view_policy', 'page', 'limit', 'sort', 'query', 'type', 'created_by', 'updated_by', 'status', 'service', 'type'];
+    queryParams = this.policyActions.queryParamsFor(['view_policy', 'page', 'limit', 'sort', 'query', 'type', 'created_by', 'updated_by', 'status', 'service', 'type']);
 
     /**
      * The current page of data being viewed
@@ -70,12 +70,49 @@ export default class PoliciesIndexController extends Controller {
     @tracked types = this.iam.schemeTypes;
 
     /**
+     * Header buttons. Extensions add to them through `iam:policy:table:actions`.
+     *
+     * @var {Array}
+     */
+    get actionButtons() {
+        return [
+            {
+                id: 'create',
+                text: this.intl.t('iam.common.new'),
+                type: 'primary',
+                icon: 'plus',
+                iconPrefix: 'fas',
+                onClick: this.createPolicy,
+                permission: 'iam create policy',
+            },
+        ];
+    }
+
+    /**
+     * Bulk actions for the selected rows. Extensions add to them through `iam:policy:table:bulk-actions`.
+     *
+     * @var {Array}
+     */
+    get bulkActions() {
+        return [
+            {
+                id: 'bulk-delete',
+                label: this.intl.t('iam.policies.index.delete-policies'),
+                class: 'text-red-500',
+                fn: this.bulkDeletePolicies,
+                permission: 'iam delete policy',
+            },
+        ];
+    }
+
+    /**
      * All columns applicable for roles
      *
      * @var {Array}
      */
     @tracked columns = [
         {
+            id: 'name',
             label: this.intl.t('iam.common.name'),
             valuePath: 'name',
             cellComponent: 'table/cell/anchor',
@@ -85,12 +122,14 @@ export default class PoliciesIndexController extends Controller {
             sortable: false,
         },
         {
+            id: 'description',
             label: this.intl.t('iam.common.description'),
             valuePath: 'description',
             sortable: false,
             width: '35%',
         },
         {
+            id: 'service',
             label: this.intl.t('iam.common.service'),
             valuePath: 'service',
             sortable: false,
@@ -100,6 +139,7 @@ export default class PoliciesIndexController extends Controller {
             filterOptions: this.services,
         },
         {
+            id: 'type',
             label: this.intl.t('iam.common.type'),
             valuePath: 'type',
             sortable: false,
@@ -111,6 +151,7 @@ export default class PoliciesIndexController extends Controller {
             filterOptions: this.types,
         },
         {
+            id: 'created-at',
             label: this.intl.t('iam.common.create'),
             valuePath: 'createdAt',
             sortable: false,
@@ -119,6 +160,7 @@ export default class PoliciesIndexController extends Controller {
             cellClassNames: 'overflow-visible',
         },
         {
+            id: 'row-actions',
             label: '',
             cellComponent: 'table/cell/dropdown',
             ddButtonText: false,
@@ -130,11 +172,13 @@ export default class PoliciesIndexController extends Controller {
             width: '15%',
             actions: [
                 {
+                    id: 'edit-policy',
                     label: this.intl.t('iam.policies.index.edit-policy'),
                     fn: this.editPolicy,
                     permission: 'iam view policy',
                 },
                 {
+                    id: 'delete-policy',
                     label: this.intl.t('iam.policies.index.delete-policy'),
                     fn: this.deletePolicy,
                     className: 'text-red-700 hover:text-red-800',

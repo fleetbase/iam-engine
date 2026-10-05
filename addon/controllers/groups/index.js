@@ -23,7 +23,7 @@ export default class GroupsIndexController extends Controller {
      *
      * @var {Array}
      */
-    queryParams = ['view_group', 'page', 'limit', 'sort', 'query', 'type', 'created_by', 'updated_by', 'status'];
+    queryParams = this.groupActions.queryParamsFor(['view_group', 'page', 'limit', 'sort', 'query', 'type', 'created_by', 'updated_by', 'status']);
 
     /**
      * The current page of data being viewed
@@ -55,12 +55,57 @@ export default class GroupsIndexController extends Controller {
     @tracked sort = '-created_at';
 
     /**
+     * Header buttons. Extensions add to them through `iam:group:table:actions`.
+     *
+     * @var {Array}
+     */
+    get actionButtons() {
+        return [
+            {
+                id: 'create',
+                text: this.intl.t('iam.common.new'),
+                type: 'primary',
+                icon: 'plus',
+                iconPrefix: 'fas',
+                onClick: this.createGroup,
+                permission: 'iam create group',
+            },
+            {
+                id: 'export',
+                text: this.intl.t('iam.common.export'),
+                icon: 'long-arrow-up',
+                iconClass: 'rotate-icon-45',
+                onClick: this.exportGroups,
+                permission: 'iam export group',
+            },
+        ];
+    }
+
+    /**
+     * Bulk actions for the selected rows. Extensions add to them through `iam:group:table:bulk-actions`.
+     *
+     * @var {Array}
+     */
+    get bulkActions() {
+        return [
+            {
+                id: 'bulk-delete',
+                label: this.intl.t('iam.groups.index.delete-groups'),
+                class: 'text-red-500',
+                fn: this.bulkDeleteGroups,
+                permission: 'iam delete group',
+            },
+        ];
+    }
+
+    /**
      * All columns applicable for groups
      *
      * @var {Array}
      */
     @tracked columns = [
         {
+            id: 'name',
             label: this.intl.t('iam.common.name'),
             valuePath: 'name',
             cellComponent: 'table/cell/anchor',
@@ -70,12 +115,14 @@ export default class GroupsIndexController extends Controller {
             sortable: false,
         },
         {
+            id: 'description',
             label: this.intl.t('iam.common.description'),
             valuePath: 'description',
             sortable: false,
             width: '25%',
         },
         {
+            id: 'users',
             label: this.intl.t('iam.common.member'),
             valuePath: 'users',
             cellComponent: 'table/cell/group-members',
@@ -86,6 +133,7 @@ export default class GroupsIndexController extends Controller {
             width: '35%',
         },
         {
+            id: 'created-at',
             label: this.intl.t('iam.groups.index.created'),
             valuePath: 'createdAt',
             sortable: false,
@@ -94,6 +142,7 @@ export default class GroupsIndexController extends Controller {
             cellClassNames: 'overflow-visible',
         },
         {
+            id: 'row-actions',
             label: '',
             cellComponent: 'table/cell/dropdown',
             ddButtonText: false,
@@ -105,11 +154,13 @@ export default class GroupsIndexController extends Controller {
             width: '10%',
             actions: [
                 {
+                    id: 'edit-group',
                     label: this.intl.t('iam.groups.index.edit-group'),
                     fn: this.editGroup,
                     permission: 'iam view group',
                 },
                 {
+                    id: 'delete-group',
                     label: this.intl.t('iam.groups.index.delete-group-label'),
                     fn: this.deleteGroup,
                     className: 'text-red-700 hover:text-red-800',
@@ -154,7 +205,7 @@ export default class GroupsIndexController extends Controller {
 
         this.crud.bulkDelete(selected, {
             modelNamePath: `name`,
-            acceptButtonText: this.intl.t('aim.groups.index.delete-group'),
+            acceptButtonText: this.intl.t('iam.groups.index.delete-group'),
             onSuccess: () => {
                 return this.hostRouter.refresh();
             },

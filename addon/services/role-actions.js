@@ -1,4 +1,5 @@
 import ResourceActionService from '@fleetbase/ember-core/services/resource-action';
+import { mergeHeaderButtons } from '@fleetbase/ember-ui/utils/resource-view';
 import { action } from '@ember/object';
 
 /**
@@ -83,6 +84,8 @@ export default class RoleActionsService extends ResourceActionService {
         const formPermission = 'iam update role';
         this.modalsManager.show('modals/role-form', {
             title: this.intl.t('iam.roles.index.edit-role-title'),
+            // What extensions registered under `iam:role:details` (buttons and "…" menu items).
+            actionButtons: mergeHeaderButtons(this.resourceView, this.detailsRegistry, [], { resource: role }, { withMenu: true }),
             acceptButtonText: this.intl.t('common.save-changes'),
             acceptButtonIcon: 'save',
             acceptButtonDisabled: this.abilities.cannot(formPermission),
